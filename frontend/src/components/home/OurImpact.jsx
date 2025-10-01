@@ -44,7 +44,7 @@ const OurImpact = () => {
 
   return (
         <section className="py-16 px-6 bg-white">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-[99rem] mx-auto">
                 {/* Heading Section */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -178,7 +178,7 @@ const OurImpact = () => {
                     </button>
 
                     <div
-                        className="max-w-6xl w-full bg-white rounded-2xl overflow-hidden"
+                        className="max-w-[99rem] w-full bg-white rounded-2xl overflow-hidden"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {selectedMedia.type === 'video' ? (

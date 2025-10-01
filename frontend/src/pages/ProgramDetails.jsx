@@ -244,7 +244,7 @@ const ProgramDetails = () => {
             {/* Related Programs */}
             {relatedPrograms.length > 0 && (
                 <Section>
-                    <div className="max-w-6xl mx-auto">
+                    <div className="max-w-[99rem] mx-auto">
                         <Heading
                             title="Other Programs"
                             subtitle="Explore more ways we're creating impact"

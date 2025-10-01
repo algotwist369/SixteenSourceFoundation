@@ -202,7 +202,7 @@ const Volunteer = () => {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[99rem] mx-auto">
                     {benefits.map((benefit, idx) => (
                         <Card key={idx} className="text-center">
                             <div className="flex justify-center mb-4">{benefit.icon}</div>

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { use, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import navigationData from "../../data/navigation.json";
 import organizationData from "../../data/organization.json";
@@ -8,10 +8,11 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { mainNav } = navigationData;
     const { name } = organizationData;
+    const navigate = useNavigate();
 
     return (
         <nav className="bg-white shadow-md fixed w-full z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[99rem] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     {/* Logo */}
                     <Link to="/" className="text-2xl font-bold text-green-600">
@@ -29,7 +30,7 @@ const Navbar = () => {
                                 {link.name}
                             </Link>
                         ))}
-                        <Button variant="primary" size="sm">
+                        <Button onClick={() => {navigate('/donate')}} variant="primary" size="sm">
                             Donate
                         </Button>
                     </div>
