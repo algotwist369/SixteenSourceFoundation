@@ -1,0 +1,166 @@
+{
+  "programs": [
+    {
+      "id": 1,
+      "title": "Child Education & Literacy",
+      "slug": "child-education-literacy",
+      "shortDescription": "Breaking barriers to education for underprivileged children across rural India.",
+      "description": "Our education program provides comprehensive learning support to children from economically disadvantaged backgrounds. We run learning centers in remote villages, provide scholarships to bright students, distribute educational materials, and support schools with infrastructure development. Our digital literacy initiatives ensure children are prepared for the modern world.",
+      "image": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&h=600&fit=crop",
+      "icon": "FaBook",
+      "impact": {
+        "number": "5,200+",
+        "text": "children educated annually"
+      },
+      "color": "blue",
+      "features": [
+        "After-school learning centers in 25 villages",
+        "Merit scholarships for 500+ deserving students",
+        "Computer training and digital literacy programs",
+        "School infrastructure development projects",
+        "Free textbooks and educational materials distribution",
+        "Teacher training and capacity building"
+      ],
+      "stats": [
+        { "label": "Students", "value": "5,200+" },
+        { "label": "Schools", "value": "28" },
+        { "label": "Scholarships", "value": "512" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Community Health Services",
+      "slug": "community-health-services",
+      "shortDescription": "Bringing quality healthcare to India's most underserved communities.",
+      "description": "We organize comprehensive medical camps in rural areas where healthcare access is limited. Our mobile health units provide free consultations, diagnostic services, and essential medicines. We focus on preventive care, maternal and child health, vaccination drives, and health education to build healthier communities.",
+      "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&h=600&fit=crop",
+      "icon": "FaHeartbeat",
+      "impact": {
+        "number": "12,500+",
+        "text": "patients treated annually"
+      },
+      "color": "red",
+      "features": [
+        "Monthly medical camps in 35 villages",
+        "Free medicines and diagnostic services",
+        "Vaccination and immunization drives",
+        "Maternal and child healthcare programs",
+        "Health awareness workshops on hygiene and nutrition",
+        "Mobile medical units for remote areas"
+      ],
+      "stats": [
+        { "label": "Patients", "value": "12,500+" },
+        { "label": "Med Camps", "value": "68" },
+        { "label": "Villages", "value": "35" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Women's Empowerment & Livelihood",
+      "slug": "women-empowerment-livelihood",
+      "shortDescription": "Empowering women through skill development and economic independence.",
+      "description": "Our women's empowerment program provides vocational training, entrepreneurship development, and financial literacy to help women become economically independent. We establish self-help groups (SHGs), provide micro-credit support, and create market linkages for their products. Our focus is on building confident, skilled women who can lead their families and communities.",
+      "image": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&h=600&fit=crop",
+      "icon": "FaUserGraduate",
+      "impact": {
+        "number": "2,400+",
+        "text": "women trained and empowered"
+      },
+      "color": "pink",
+      "features": [
+        "Tailoring, handicraft, and beauty training courses",
+        "Entrepreneurship and business development programs",
+        "Financial literacy and banking awareness",
+        "45 active Self-Help Groups (SHGs)",
+        "Micro-credit and business loan facilitation",
+        "Market linkages and product exhibitions"
+      ],
+      "stats": [
+        { "label": "Women", "value": "2,400+" },
+        { "label": "SHGs", "value": "45" },
+        { "label": "Enterprises", "value": "180" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Sustainable Agriculture Development",
+      "slug": "sustainable-agriculture",
+      "shortDescription": "Supporting farmers with modern techniques and sustainable farming practices.",
+      "description": "We work with small and marginal farmers to improve agricultural productivity through modern farming techniques, organic practices, and water conservation methods. Our program includes training on sustainable agriculture, providing quality seeds, facilitating market linkages, and promoting climate-resilient farming practices to ensure better income for farming families.",
+      "image": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=600&fit=crop",
+      "icon": "FaSeedling",
+      "impact": {
+        "number": "680+",
+        "text": "farmers supported"
+      },
+      "color": "green",
+      "features": [
+        "Organic farming and pesticide-free cultivation training",
+        "Quality seed distribution and soil testing",
+        "Drip irrigation and water conservation techniques",
+        "Farmer Producer Organizations (FPOs) formation",
+        "Direct market linkages for better prices",
+        "Climate-resilient crop training programs"
+      ],
+      "stats": [
+        { "label": "Farmers", "value": "680+" },
+        { "label": "Acres", "value": "1,200+" },
+        { "label": "FPOs", "value": "6" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Housing & Disaster Relief",
+      "slug": "housing-disaster-relief",
+      "shortDescription": "Building safe homes and providing emergency support during crises.",
+      "description": "We construct low-cost, disaster-resistant houses for homeless and disaster-affected families. During natural calamities, our team provides immediate relief through food, water, temporary shelter, and medical aid. We also support post-disaster rehabilitation to help communities rebuild their lives with dignity.",
+      "image": "https://images.unsplash.com/photo-1580389992126-f2b0f0de2e61?w=800&h=600&fit=crop",
+      "icon": "FaHome",
+      "impact": {
+        "number": "245",
+        "text": "houses constructed"
+      },
+      "color": "orange",
+      "features": [
+        "Low-cost, disaster-resistant house construction",
+        "Emergency relief during floods, earthquakes, cyclones",
+        "Distribution of food, water, and essentials",
+        "Temporary shelter and medical camps",
+        "Post-disaster livelihood restoration support",
+        "Community-based disaster preparedness training"
+      ],
+      "stats": [
+        { "label": "Houses", "value": "245" },
+        { "label": "Families", "value": "280+" },
+        { "label": "Relief Ops", "value": "18" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Water, Sanitation & Hygiene",
+      "slug": "water-sanitation-hygiene",
+      "shortDescription": "Ensuring access to clean water and promoting hygiene in rural communities.",
+      "description": "We implement water and sanitation projects to ensure communities have access to safe drinking water and proper sanitation facilities. Our initiatives include installing hand pumps and water purification systems, constructing toilets under Swachh Bharat Mission, and conducting hygiene awareness campaigns to promote community health and dignity.",
+      "image": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=800&h=600&fit=crop",
+      "icon": "FaWater",
+      "impact": {
+        "number": "42",
+        "text": "villages with clean water access"
+      },
+      "color": "cyan",
+      "features": [
+        "Hand pump installation and water source development",
+        "Individual and community toilet construction",
+        "Water quality testing and purification systems",
+        "Menstrual hygiene management programs",
+        "Community-led sanitation campaigns",
+        "School sanitation and handwashing facilities"
+      ],
+      "stats": [
+        { "label": "Villages", "value": "42" },
+        { "label": "Hand Pumps", "value": "125" },
+        { "label": "Toilets", "value": "680+" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop",
+      "title": "Empowering Communities Through Education",
+      "subtitle": "Join us in our mission to provide quality education to 5,000+ underprivileged children across rural India."
+    },
+    {
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1920&h=1080&fit=crop",
+      "title": "Healthcare for All, Accessible to Everyone",
+      "subtitle": "Our mobile medical camps have served 12,500+ patients in remote villages with free healthcare services."
+    },
+    {
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&h=1080&fit=crop",
+      "title": "Empowering Women, Transforming Families",
+      "subtitle": "2,400+ women trained in vocational skills, building independent businesses and leading their communities."
+    }
+  ]
+}
+

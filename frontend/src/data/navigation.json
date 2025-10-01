@@ -1,0 +1,32 @@
+{
+  "mainNav": [
+    { "name": "Home", "path": "/" },
+    { "name": "About", "path": "/about" },
+    { "name": "Programs", "path": "/programs" },
+    { "name": "Get Involved", "path": "/get-involved" },
+    { "name": "Impact", "path": "/impact" },
+    { "name": "Contact", "path": "/contact" }
+  ],
+  
+  "footerLinks": {
+    "quickLinks": [
+      { "name": "About Us", "path": "/about" },
+      { "name": "Our Programs", "path": "/programs" },
+      { "name": "Impact Stories", "path": "/impact" },
+      { "name": "Contact Us", "path": "/contact" }
+    ],
+    "getInvolved": [
+      { "name": "Donate", "path": "/donate" },
+      { "name": "Volunteer", "path": "/volunteer" },
+      { "name": "Partner With Us", "path": "/get-involved" },
+      { "name": "Corporate CSR", "path": "/get-involved" }
+    ],
+    "legal": [
+      { "name": "Privacy Policy", "path": "/privacy-policy" },
+      { "name": "Terms & Conditions", "path": "/terms" },
+      { "name": "Annual Reports", "path": "/reports" },
+      { "name": "Financial Transparency", "path": "/financials" }
+    ]
+  }
+}
+

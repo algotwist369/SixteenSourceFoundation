@@ -1,0 +1,100 @@
+{
+  "impactMedia": [
+    {
+      "id": 1,
+      "type": "image",
+      "title": "Village Learning Center Inauguration",
+      "description": "Opening of our 25th learning center in rural Rajasthan, providing quality education to 200+ children",
+      "media": "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&h=600&fit=crop",
+      "category": "Education"
+    },
+    {
+      "id": 2,
+      "type": "image",
+      "title": "Free Medical Camp - Bihar",
+      "description": "Over 350 patients received free health checkups and medicines in our monthly medical camp",
+      "media": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&h=600&fit=crop",
+      "category": "Healthcare"
+    },
+    {
+      "id": 3,
+      "type": "image",
+      "title": "Women's Tailoring Graduation Ceremony",
+      "description": "45 women received certificates after completing our 6-month tailoring and entrepreneurship program",
+      "media": "https://images.unsplash.com/photo-1573164574511-73c773193279?w=800&h=600&fit=crop",
+      "category": "Empowerment"
+    },
+    {
+      "id": 4,
+      "type": "image",
+      "title": "Clean Water for Village Kasimpur",
+      "description": "Installation of hand pumps bringing clean drinking water to 500+ families",
+      "media": "https://images.unsplash.com/photo-1594398901394-4e34939a4fd0?w=800&h=600&fit=crop",
+      "category": "Water"
+    },
+    {
+      "id": 5,
+      "type": "image",
+      "title": "Scholarship Distribution Ceremony",
+      "description": "120 meritorious students from economically weaker sections received annual scholarships",
+      "media": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=600&fit=crop",
+      "category": "Education"
+    },
+    {
+      "id": 6,
+      "type": "image",
+      "title": "Organic Farming Training Workshop",
+      "description": "85 farmers learned sustainable agriculture practices and pesticide-free cultivation methods",
+      "media": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=600&fit=crop",
+      "category": "Agriculture"
+    },
+    {
+      "id": 7,
+      "type": "image",
+      "title": "New Homes for Flood Victims",
+      "description": "15 disaster-resistant houses constructed for families who lost everything in floods",
+      "media": "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=600&fit=crop",
+      "category": "Housing"
+    },
+    {
+      "id": 8,
+      "type": "image",
+      "title": "Community Health Awareness Camp",
+      "description": "Nutrition and hygiene awareness session attended by 200+ mothers and children",
+      "media": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+      "category": "Healthcare"
+    },
+    {
+      "id": 9,
+      "type": "image",
+      "title": "Self-Help Group Meeting",
+      "description": "Monthly meeting of our SHG where women discuss business plans and financial literacy",
+      "media": "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&h=600&fit=crop",
+      "category": "Empowerment"
+    },
+    {
+      "id": 10,
+      "type": "image",
+      "title": "School Infrastructure Development",
+      "description": "Renovation of government school including new classrooms, toilets, and playground",
+      "media": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop",
+      "category": "Education"
+    },
+    {
+      "id": 11,
+      "type": "image",
+      "title": "Flood Relief Distribution",
+      "description": "Emergency relief materials including food, water, and medicines distributed to 500+ families",
+      "media": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop",
+      "category": "Disaster Relief"
+    },
+    {
+      "id": 12,
+      "type": "image",
+      "title": "Digital Literacy Program",
+      "description": "Rural youth learning computer skills to improve their employability and income",
+      "media": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop",
+      "category": "Education"
+    }
+  ]
+}
