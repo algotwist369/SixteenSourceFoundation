@@ -4,6 +4,7 @@ import Button from "../components/common/Button";
 import Hero from "../components/home/Hero";
 import FeaturedPrograms from "../components/home/FeaturedPrograms";
 import TrainingCourses from "../components/home/TrainingCourses";
+import DonateSection from "../components/home/DonateSection";
 import organizationData from "../data/organization.json";
 import homeData from "../data/homeData.json";
 
@@ -300,6 +301,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Donate Section */}
+      <DonateSection />
 
       {/* Contact Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-green-500 to-green-600 text-white">

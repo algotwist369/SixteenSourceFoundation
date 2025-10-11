@@ -9,27 +9,60 @@
     {
       "id": 1,
       "name": "Free Beauty Parlour Training",
-      "image": "/public/assets/Courses/poster1.jpeg",
+      "tagline": "Learn professional skills, gain confidence, and secure a job. 100% free.",
+      "description": "Master the art of beauty and wellness. From basic grooming to advanced techniques, we train you to become a professional beautician.",
+      "image": "/assets/Courses/poster1.jpeg",
+      "duration": "3 Months",
+      "benefits": [
+        "Professional beauty techniques",
+        "Industry-standard equipment training", 
+        "Job placement assistance",
+        "Startup support for salon business"
+      ],
       "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training"
+      "enrollmentLink": "/enroll/beauty-training",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
     },
     {
       "id": 2,
-      "name": "Free Beauty Training",
-      "image": "/public/assets/Courses/poster2.jpeg",
-      "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training"
-    },
-      {
-      "id": 1,
       "name": "Free Beauty Parlour Training",
-      "image": "/public/assets/Courses/poster1.jpeg",
+      "tagline": "Learn professional skills, gain confidence, and secure a job. 100% free.",
+      "description": "Master the art of beauty and wellness. From basic grooming to advanced techniques, we train you to become a professional beautician.",
+      "image": "/assets/Courses/poster1.jpeg",
+      "duration": "3 Months",
+      "benefits": [
+        "Professional beauty techniques",
+        "Industry-standard equipment training", 
+        "Job placement assistance",
+        "Startup support for salon business"
+      ],
       "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training"
+      "enrollmentLink": "/enroll/beauty-training",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 2,
+      "name": "Advanced Beauty Parlour Training",
+      "tagline": "Master advanced beauty techniques, start your own salon, and build a successful business.",
+      "description": "Advanced beauty training including bridal makeup, hair styling, and salon management. Perfect for those ready to start their own beauty business.",
+      "image": "/assets/Courses/poster2.jpeg",
+      "duration": "4 Months",
+      "benefits": [
+        "Advanced beauty techniques",
+        "Bridal makeup specialization",
+        "Hair styling and coloring",
+        "Salon business management"
+      ],
+      "isNew": true,
+      "enrollmentLink": "/enroll/advanced-beauty-training",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
     }
   ],
   "stats": {
-    "totalCourses": 6,
+    "totalCourses": 2,
     "studentsTrained": "2,500+",
     "jobPlacement": "85%",
     "successStories": "1,200+"

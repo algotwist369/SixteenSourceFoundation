@@ -41,49 +41,49 @@
     {
       "name": "Sonal prakash Mungekar",
       "role": "President",
-      "image": "public/assets/teams/sonal.jpeg",
+      "image": "/assets/teams/sonal.jpeg",
       "email": "sixteensource.ngo24@gmail.com",
       "phone": "9930721145"
     },
     {
       "name": " Sagar Sunil Jagtap",
       "role": "Secretary",
-      "image": "public/assets/teams/Sagar Sunil Jagtap.jpeg",
+      "image": "/assets/teams/Sagar Sunil Jagtap.jpeg",
       "email": " sagarjagtap60@gmail.com",
       "phone": "8898992162"
     },
     {
       "name": "Vandana Prabhakar Gamare",
       "role": "Treasurer",
-      "image": "public/assets/teams/Vandana Prabhakar Gamare.jpeg",
+      "image": "/assets/teams/Vandana Prabhakar Gamare.jpeg",
       "email": "vandanagamare01@gmail.com",
       "phone": "9702368113"
     },
     {
       "name": "Swapnil V. Vhatkar",
       "role": "Member",
-      "image": "public/assets/teams/SWAPNIL V.VHATKAR.jpeg",
+      "image": "/assets/teams/SWAPNIL V.VHATKAR.jpeg",
       "email": "vhatkarswapnil121@gmail.com",
       "phone": "9029199938"
     },
     {
       "name": "Anjalee Sandip Palkar",
       "role": "Member",
-      "image": "public/assets/teams/Anjalee Sandip Palkar.jpeg",
+      "image": "/assets/teams/Anjalee Sandip Palkar.jpeg",
       "email": "anjalee.palkar24@gmail.com",
       "phone": "9372719068"
     },
     {
       "name": "Sajiri Sandesh Trimbakkar",
       "role": "Member",
-      "image": "public/assets/teams/Sajiri Sandesh Trimbakkar.jpeg",
+      "image": "/assets/teams/Sajiri Sandesh Trimbakkar.jpeg",
       "email": "sajiritrimbakkar@gmail.com",
       "phone": "9324197934"
     },
     {
       "name": "Pooja Gole",
       "role": "Member",
-      "image": "public/assets/teams/Pooja Amit Gole.jpeg",
+      "image": "/assets/teams/Pooja Amit Gole.jpeg",
       "email": "golepooja66@gmail.com",
       "phone": "7021109323"
     }

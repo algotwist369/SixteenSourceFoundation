@@ -5,49 +5,49 @@
     "images": [
       {
         "id": 1,
-        "src": "/public/assets/GalleryImg/2.jpeg",
-        "title": "Education Program"
+        "src": "/assets/GalleryImg/1.jpeg",
+        "title": "Community Development"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/3.jpeg",
-        "title": "Education Program"
+        "id": 2,
+        "src": "/assets/GalleryImg/2.jpeg",
+        "title": "Training Activities"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/4.jpeg",
-        "title": "Education Program"
+        "id": 3,
+        "src": "/assets/GalleryImg/3.jpeg",
+        "title": "Student Programs"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/6.jpeg",
-        "title": "Education Program"
+        "id": 4,
+        "src": "/assets/GalleryImg/4.jpeg",
+        "title": "Educational Support"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/8.jpeg",
-        "title": "Education Program"
+        "id": 5,
+        "src": "/assets/GalleryImg/5.jpeg",
+        "title": "Community Engagement"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/9.jpeg",
-        "title": "Education Program"
-      },
-        {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/10.jpeg",
-        "title": "Education Program"
+        "id": 6,
+        "src": "/assets/GalleryImg/6.jpeg",
+        "title": "Program Activities"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/11.jpeg",
-        "title": "Education Program"
+        "id": 7,
+        "src": "/assets/GalleryImg/7.jpeg",
+        "title": "Skills Development"
       },
       {
-        "id": 1,
-        "src": "/public/assets/GalleryImg/12.jpeg",
-        "title": "Education Program"
-      } 
+        "id": 8,
+        "src": "/assets/GalleryImg/8.jpeg",
+        "title": "Volunteer Work"
+      },
+      {
+        "id": 9,
+        "src": "/assets/GalleryImg/9.jpeg",
+        "title": "Team Activities"
+      }
     ]
   },
   "team": {

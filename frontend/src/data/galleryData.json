@@ -2,7 +2,7 @@
   "pageHeader": {
     "title": "Gallery",
     "subtitle": "Moments that capture our impact and community stories",
-    "image": "/public/assets/GalleryImg/11.jpeg"
+    "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=400&fit=crop"
   },
   "content": {
     "title": "Our Work in Pictures",
@@ -11,43 +11,83 @@
   "images": [
     {
       "id": 1,
-      "src": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop",
-      "title": "Education Program"
+      "src": "/assets/GalleryImg/1.jpeg",
+      "title": "Community Development"
     },
     {
       "id": 2,
-      "src": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=300&fit=crop",
-      "title": "Health Camp"
+      "src": "/assets/GalleryImg/2.jpeg",
+      "title": "Training Programs"
     },
     {
       "id": 3,
-      "src": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop",
-      "title": "Women Empowerment"
+      "src": "/assets/GalleryImg/3.jpeg",
+      "title": "Student Activities"
     },
     {
       "id": 4,
-      "src": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
-      "title": "Agriculture Training"
+      "src": "/assets/GalleryImg/4.jpeg",
+      "title": "Educational Support"
     },
     {
       "id": 5,
-      "src": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
-      "title": "Housing Project"
+      "src": "/assets/GalleryImg/5.jpeg",
+      "title": "Community Engagement"
     },
     {
       "id": 6,
-      "src": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&h=300&fit=crop",
-      "title": "Water Project"
+      "src": "/assets/GalleryImg/6.jpeg",
+      "title": "Program Impact"
     },
     {
       "id": 7,
-      "src": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop",
-      "title": "Community Meeting"
+      "src": "/assets/GalleryImg/7.jpeg",
+      "title": "Skills Development"
     },
     {
       "id": 8,
-      "src": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
-      "title": "Volunteer Work"
+      "src": "/assets/GalleryImg/8.jpeg",
+      "title": "Volunteer Activities"
+    },
+    {
+      "id": 9,
+      "src": "/assets/GalleryImg/9.jpeg",
+      "title": "Team Collaboration"
+    },
+    {
+      "id": 10,
+      "src": "/assets/GalleryImg/10.jpeg",
+      "title": "Community Outreach"
+    },
+    {
+      "id": 11,
+      "src": "/assets/GalleryImg/11.jpeg",
+      "title": "Field Activities"
+    },
+    {
+      "id": 12,
+      "src": "/assets/GalleryImg/12.jpeg",
+      "title": "Program Success"
+    },
+    {
+      "id": 13,
+      "src": "/assets/GalleryImg/13.jpeg",
+      "title": "Community Building"
+    },
+    {
+      "id": 14,
+      "src": "/assets/GalleryImg/14.jpeg",
+      "title": "Educational Events"
+    },
+    {
+      "id": 15,
+      "src": "/assets/GalleryImg/15.jpeg",
+      "title": "Support Activities"
+    },
+    {
+      "id": 16,
+      "src": "/assets/GalleryImg/16.jpeg",
+      "title": "Community Growth"
     }
   ]
 }

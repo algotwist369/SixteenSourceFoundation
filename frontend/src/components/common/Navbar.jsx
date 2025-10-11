@@ -31,7 +31,7 @@ const Navbar = () => {
                         className="flex items-center gap-2 text-2xl font-semibold text-green-700 hover:text-green-800 transition"
                     >
                         <img
-                            src={'./public/assets/logo/mainlogo.jpeg'}
+                            src={'/assets/logo/mainlogo.jpeg'}
                             alt="Organization Logo"
                             className="h-20 w-32 object-contain rounded-md"
                         />
