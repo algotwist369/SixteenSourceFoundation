@@ -1,0 +1,103 @@
+{
+  "gallery": {
+    "title": "Our Work in Pictures",
+    "description": "Visual stories from our field operations and community engagement",
+    "images": [
+      {
+        "id": 1,
+        "src": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop",
+        "title": "Education Program"
+      },
+      {
+        "id": 2,
+        "src": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=300&fit=crop",
+        "title": "Health Camp"
+      },
+      {
+        "id": 3,
+        "src": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop",
+        "title": "Women Empowerment"
+      },
+      {
+        "id": 4,
+        "src": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
+        "title": "Agriculture Training"
+      },
+      {
+        "id": 5,
+        "src": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
+        "title": "Housing Project"
+      },
+      {
+        "id": 6,
+        "src": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&h=300&fit=crop",
+        "title": "Water Project"
+      },
+      {
+        "id": 7,
+        "src": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop",
+        "title": "Community Meeting"
+      },
+      {
+        "id": 8,
+        "src": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+        "title": "Volunteer Work"
+      },
+      {
+        "id": 9,
+        "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
+        "title": "Team Meeting"
+      }
+    ]
+  },
+  "team": {
+    "title": "Meet Our Team",
+    "description": "Dedicated individuals driving positive change"
+  },
+  "impact": {
+    "title": "Impact By Numbers",
+    "description": "Real results from our dedicated work in communities"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Get answers to common questions about donating, volunteering, and supporting our mission",
+    "questions": [
+      {
+        "question": "How can I donate to Sixteensource Foundation?",
+        "answer": "You can donate through our secure online platform, bank transfer, UPI (donate@sixteensource), or by visiting our office. All donations are eligible for 80G tax exemption."
+      },
+      {
+        "question": "What percentage of donations goes to programs?",
+        "answer": "85% of all donations directly support our programs, 10% covers operational costs, and 5% is invested in future growth and sustainability."
+      },
+      {
+        "question": "Is my donation tax-deductible?",
+        "answer": "Yes! All donations to Sixteensource Foundation are eligible for 80G tax exemption. You'll receive a tax exemption certificate for your donations."
+      },
+      {
+        "question": "Can I choose which program my donation supports?",
+        "answer": "Absolutely! You can specify which initiative you'd like to support - education, healthcare, women empowerment, agriculture, housing, or sanitation programs."
+      },
+      {
+        "question": "How do you ensure transparency in fund utilization?",
+        "answer": "We maintain complete transparency through regular impact reports, annual financial statements, and detailed program updates. All financial information is publicly available on our website."
+      },
+      {
+        "question": "What is the minimum donation amount?",
+        "answer": "There's no minimum donation amount. Every contribution, no matter how small, makes a difference. ₹500 can educate a child for a month, ₹2,000 can fund a medical camp."
+      },
+      {
+        "question": "Can I make recurring donations?",
+        "answer": "Yes! We offer monthly, quarterly, and annual recurring donation options. This helps us plan long-term programs and create sustained impact."
+      },
+      {
+        "question": "How can I volunteer with your organization?",
+        "answer": "We welcome volunteers in various capacities - from field work to office support. Visit our Volunteer page or contact us to learn about current opportunities."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Ready to make a difference? Contact us to learn more about our programs, volunteer opportunities, or how you can support our mission."
+  }
+}

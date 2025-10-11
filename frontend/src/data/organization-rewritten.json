@@ -1,0 +1,105 @@
+{
+  "name": "Sixteensource Foundation",
+  "tagline": "Where Every Rupee Creates a Ripple of Hope",
+  "established": "2015",
+  "registrationNumber": "12345/2015",
+  
+  "mission": "We believe that no one should be left behind. Every day, we work with communities across rural India to create opportunities where none existed before. From a child's first day at school to a family's first secure home, we're building bridges to a better tomorrow - one life, one family, one village at a time.",
+  
+  "vision": "A world where every child goes to sleep with a full stomach and dreams of a brighter tomorrow. Where no mother has to choose between her child's health and her family's next meal. Where every person, regardless of where they were born, has the chance to write their own success story.",
+  
+  "values": [
+    {
+      "icon": "FaHeart",
+      "title": "Love in Action",
+      "description": "Every decision we make comes from a place of deep compassion. We don't just see statistics - we see faces, stories, and the incredible potential in every person we serve."
+    },
+    {
+      "icon": "FaHandsHelping",
+      "title": "Together We Rise",
+      "description": "Real change happens when communities unite. We partner with local leaders, families, and individuals to build solutions that last generations."
+    },
+    {
+      "icon": "FaGlobe",
+      "title": "Sustainable Hope",
+      "description": "We don't believe in quick fixes. Every program we create is designed to grow, evolve, and continue creating impact long after we're gone."
+    },
+    {
+      "icon": "FaUsers",
+      "title": "Every Voice Matters",
+      "description": "Whether you're 8 or 80, whether you live in a city or a remote village - your dreams, your needs, your potential matters equally to us."
+    },
+    {
+      "icon": "FaShieldAlt",
+      "title": "Complete Trust",
+      "description": "When you donate, you deserve to know exactly how your money changes lives. We share every success story, every challenge, and every rupee spent."
+    },
+    {
+      "icon": "FaStar",
+      "title": "Excellence in Service",
+      "description": "The people we serve deserve nothing less than our absolute best. We continuously improve, learn, and grow to serve them better."
+    }
+  ],
+  
+  "team": [
+    {
+      "name": "Rajesh Kumar Singh",
+      "role": "Founder & Director",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+      "bio": "After witnessing poverty firsthand in his village, Rajesh left his corporate job to dedicate his life to creating opportunities for others. 'Every child I help today becomes an adult who helps others tomorrow.'"
+    },
+    {
+      "name": "Dr. Priya Sharma",
+      "role": "Program Director",
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
+      "bio": "A doctor who chose to serve in the field instead of a hospital. 'I've seen too many mothers cry because they couldn't afford treatment. Now I help bring hope to their doorsteps.'"
+    },
+    {
+      "name": "Amit Patel",
+      "role": "Operations Manager",
+      "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+      "bio": "From managing corporate logistics to coordinating life-changing programs across 8 states. 'Every village we reach is a step closer to a better India.'"
+    },
+    {
+      "name": "Sneha Gupta",
+      "role": "Finance & Compliance Head",
+      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+      "bio": "Ensuring every donation creates maximum impact. 'When someone trusts us with their money, we honor that trust by being completely transparent about how it's used.'"
+    }
+  ],
+  
+  "stats": {
+    "livesImpacted": "25,000+",
+    "childrenEducated": "5,200+",
+    "volunteers": "2,800+",
+    "communities": "42"
+  },
+  
+  "contact": {
+    "email": "info@sixteensource.org",
+    "volunteerEmail": "volunteer@sixteensource.org",
+    "phone": "+91-9876543210",
+    "alternatePhone": "+91-9876543211",
+    "address": {
+      "street": "Plot No. 45, Sector 12",
+      "area": "Dwarka",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "pincode": "110075",
+      "country": "India"
+    },
+    "socialMedia": {
+      "facebook": "https://facebook.com/sixteensource",
+      "twitter": "https://twitter.com/sixteensource",
+      "instagram": "https://instagram.com/sixteensource",
+      "linkedin": "https://linkedin.com/company/sixteensource",
+      "youtube": "https://youtube.com/@sixteensource"
+    }
+  },
+  
+  "workingHours": {
+    "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "saturday": "Saturday: 10:00 AM - 4:00 PM",
+    "sunday": "Sunday: Closed"
+  }
+}

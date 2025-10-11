@@ -1,0 +1,49 @@
+{
+  "pageHeader": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you. Let's connect!",
+    "image": "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&h=400&fit=crop"
+  },
+  "contactInfo": [
+    {
+      "icon": "FaMapMarkerAlt",
+      "title": "Visit Us",
+      "details": ["123 NGO Street", "New Delhi, 110001", "India"]
+    },
+    {
+      "icon": "FaPhone",
+      "title": "Call Us",
+      "details": ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9am-6pm"]
+    },
+    {
+      "icon": "FaEnvelope",
+      "title": "Email Us",
+      "details": ["info@sixteensource.org", "volunteer@sixteensource.org", "We reply within 24 hours"]
+    },
+    {
+      "icon": "FaClock",
+      "title": "Office Hours",
+      "details": ["Monday - Friday: 9am - 6pm", "Saturday: 10am - 4pm", "Sunday: Closed"]
+    }
+  ],
+  "faq": [
+    {
+      "question": "How can I volunteer?",
+      "answer": "Visit our Get Involved page or fill out the contact form above."
+    },
+    {
+      "question": "Are donations tax-deductible?",
+      "answer": "Yes, we provide 80G tax exemption certificates."
+    },
+    {
+      "question": "Can I visit your office?",
+      "answer": "Yes! Please call ahead to schedule a visit."
+    }
+  ],
+  "map": {
+    "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0266552668436!2d77.2088744!3d28.6280638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd371d9e2b53%3A0x8e6b2be8d6a3b7e9!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1234567890",
+    "address": "Sixteensource Foundation",
+    "details": "123 NGO Street, New Delhi, 110001, India"
+  }
+}
+

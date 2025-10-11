@@ -1,0 +1,103 @@
+{
+  "gallery": {
+    "title": "Stories of Transformation",
+    "description": "Behind every number is a human story. See how your support creates real, lasting change in people's lives.",
+    "images": [
+      {
+        "id": 1,
+        "src": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop",
+        "title": "Ravi's Journey: From Dropout to Doctor"
+      },
+      {
+        "id": 2,
+        "src": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=300&fit=crop",
+        "title": "Healing Hands: Bringing Hope to Remote Villages"
+      },
+      {
+        "id": 3,
+        "src": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop",
+        "title": "Meera's Success: From Struggle to Strength"
+      },
+      {
+        "id": 4,
+        "src": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
+        "title": "Green Revolution: Farmers Building Better Lives"
+      },
+      {
+        "id": 5,
+        "src": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
+        "title": "Safe Haven: Families Finding Security"
+      },
+      {
+        "id": 6,
+        "src": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&h=300&fit=crop",
+        "title": "Life-Giving Water: Communities Reborn"
+      },
+      {
+        "id": 7,
+        "src": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop",
+        "title": "Voices Heard: Community Leaders Rising"
+      },
+      {
+        "id": 8,
+        "src": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+        "title": "Heart of Service: Volunteers Making Impact"
+      },
+      {
+        "id": 9,
+        "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
+        "title": "Planning for Tomorrow: Building Sustainable Futures"
+      }
+    ]
+  },
+  "team": {
+    "title": "The Hearts Behind Our Mission",
+    "description": "Meet the passionate individuals who wake up every day determined to create a better world"
+  },
+  "impact": {
+    "title": "Your Impact in Action",
+    "description": "Every number represents a life changed, a family transformed, a community strengthened"
+  },
+  "faq": {
+    "title": "Your Questions, Our Answers",
+    "description": "Everything you need to know about making a difference through Sixteensource Foundation",
+    "questions": [
+      {
+        "question": "How can I make a donation that truly makes a difference?",
+        "answer": "Every donation, no matter the size, creates real impact. ₹500 educates a child for a month, ₹2,000 funds a medical camp for 100 people, ₹5,000 builds a safe toilet for a family. You can donate online, via UPI (donate@sixteensource), bank transfer, or visit our office. All donations qualify for 80G tax benefits."
+      },
+      {
+        "question": "How do I know my money is being used effectively?",
+        "answer": "Transparency is our promise to you. 85% of every donation goes directly to programs - education, healthcare, housing, and empowerment. 12% covers essential operations like staff and logistics. Only 3% goes to administration. We provide detailed reports and even connect you with the families you've helped."
+      },
+      {
+        "question": "Will I get tax benefits for my donation?",
+        "answer": "Absolutely! Every donation to Sixteensource Foundation is eligible for 80G tax exemption. We'll send you a tax exemption certificate immediately after your donation, so you can claim the full benefit during tax filing."
+      },
+      {
+        "question": "Can I choose which cause my donation supports?",
+        "answer": "Yes! You can direct your donation to any specific program that touches your heart - whether it's sponsoring a child's education, supporting healthcare camps, empowering women, building homes, or providing clean water. Every choice creates meaningful impact."
+      },
+      {
+        "question": "How do you ensure complete transparency?",
+        "answer": "We believe you deserve to see exactly how your generosity creates change. We share regular impact stories, detailed financial reports, and even arrange visits so you can meet the families whose lives you've transformed. Your trust means everything to us."
+      },
+      {
+        "question": "Is there a minimum donation amount?",
+        "answer": "No minimum required! Every rupee counts. ₹100 can provide a child with books for a month. ₹500 can fund a health check-up for a family. ₹1,000 can help a woman start her own business. Your generosity, no matter the amount, changes lives."
+      },
+      {
+        "question": "Can I set up recurring donations?",
+        "answer": "Yes! Monthly recurring donations help us plan long-term programs and create sustained impact. Whether it's ₹500 monthly to educate a child or ₹2,000 monthly to support a family, your regular support ensures we can reach more people consistently."
+      },
+      {
+        "question": "How can I get involved beyond donating?",
+        "answer": "We welcome volunteers with open arms! From teaching children to organizing medical camps, from helping with events to sharing your professional skills - there are countless ways to make a hands-on difference. Contact us to find the perfect opportunity for you."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Ready to Change Lives?",
+    "description": "Your journey of making a difference starts with a single step. Let's talk about how you can create lasting impact in someone's life today."
+  }
+}

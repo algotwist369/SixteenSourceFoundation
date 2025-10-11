@@ -1,5 +1,5 @@
-import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button";
 import navigationData from "../../data/navigation.json";
 import organizationData from "../../data/organization.json";
@@ -9,26 +9,48 @@ const Navbar = () => {
     const { mainNav } = navigationData;
     const { name } = organizationData;
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleHomeClick = () => {
+        if (location.pathname === '/') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            navigate('/');
+        }
+    };
 
     return (
         <nav className="bg-white shadow-md fixed w-full z-50">
             <div className="max-w-[99rem] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     {/* Logo */}
-                    <Link to="/" className="text-2xl font-bold text-green-600">
+                    <button 
+                        onClick={handleHomeClick}
+                        className="text-2xl font-bold text-green-600 hover:text-green-700 transition-colors"
+                    >
                         {name}
-                    </Link>
+                    </button>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6 items-center">
                         {mainNav.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className="text-gray-700 hover:text-green-600 transition"
-                            >
-                                {link.name}
-                            </Link>
+                            link.name === "Home" ? (
+                                <button
+                                    key={link.name}
+                                    onClick={handleHomeClick}
+                                    className="text-gray-700 hover:text-green-600 transition"
+                                >
+                                    {link.name}
+                                </button>
+                            ) : (
+                                <Link
+                                    key={link.name}
+                                    to={link.path}
+                                    className="text-gray-700 hover:text-green-600 transition"
+                                >
+                                    {link.name}
+                                </Link>
+                            )
                         ))}
                         <Button onClick={() => {navigate('/donate')}} variant="primary" size="sm">
                             Donate
@@ -51,14 +73,27 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-white px-4 pb-4 space-y-2 shadow-md">
                     {mainNav.map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            onClick={() => setIsOpen(false)}
-                            className="block text-gray-700 hover:text-green-600 transition"
-                        >
-                            {link.name}
-                        </Link>
+                        link.name === "Home" ? (
+                            <button
+                                key={link.name}
+                                onClick={() => {
+                                    handleHomeClick();
+                                    setIsOpen(false);
+                                }}
+                                className="block text-gray-700 hover:text-green-600 transition w-full text-left"
+                            >
+                                {link.name}
+                            </button>
+                        ) : (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                onClick={() => setIsOpen(false)}
+                                className="block text-gray-700 hover:text-green-600 transition"
+                            >
+                                {link.name}
+                            </Link>
+                        )
                     ))}
                     <Button variant="primary" size="sm" className="w-full">
                         Donate

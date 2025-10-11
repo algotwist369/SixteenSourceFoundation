@@ -6,6 +6,10 @@ import Footer from "./components/common/Footer";
 // Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
+import OurInitiative from "./pages/OurInitiative";
+import Gallery from "./pages/Gallery";
+import Team from "./pages/Team";
+import Events from "./pages/Events";
 import Programs from "./pages/Programs";
 import ProgramDetails from "./pages/ProgramDetails";
 import GetInvolved from "./pages/GetInvolved";
@@ -28,6 +32,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/our-initiative" element={<OurInitiative />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/programs/:slug" element={<ProgramDetails />} />
           <Route path="/get-involved" element={<GetInvolved />} />

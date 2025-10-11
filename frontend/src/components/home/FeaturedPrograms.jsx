@@ -1,34 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBook, FaHeartbeat, FaUserGraduate, FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import programsData from "../../data/programs.json";
-
-const iconMap = {
-    FaBook: FaBook,
-    FaHeartbeat: FaHeartbeat,
-    FaUserGraduate: FaUserGraduate
-};
 
 const FeaturedPrograms = () => {
     const { programs } = programsData;
-    const featuredPrograms = programs.slice(0, 3); // Show first 3 programs
+    const featuredPrograms = programs.slice(0, 6); // Show first 6 programs
 
     return (
         <section className="bg-gray-50 py-16 px-6">
             <div className="max-w-[99rem] mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                        Our Key Programs
+                        Our Initiative
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Focused initiatives creating lasting impact in communities
+                        Transform lives and build stronger communities through our impactful initiatives.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {featuredPrograms.map((program) => {
-                        const IconComponent = iconMap[program.icon] || FaBook;
-                        return (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {featuredPrograms.map((program) => (
                             <Link 
                                 key={program.id} 
                                 to={`/programs/${program.slug}`}
@@ -43,11 +35,6 @@ const FeaturedPrograms = () => {
                                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                        <div className="absolute bottom-4 left-4">
-                                            <div className="bg-white/90 backdrop-blur-sm p-3 rounded-lg">
-                                                <IconComponent className="text-2xl text-green-600" />
-                                            </div>
-                                        </div>
                                     </div>
 
                                     {/* Content */}
@@ -70,14 +57,13 @@ const FeaturedPrograms = () => {
                                     </div>
                                 </div>
                             </Link>
-                        );
-                    })}
+                    ))}
                 </div>
 
                 <div className="text-center mt-10">
-                    <Link to="/programs">
+                    <Link to="/our-initiative">
                         <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold text-lg">
-                            View All Programs
+                            Explore All Initiatives
                         </button>
                     </Link>
                 </div>

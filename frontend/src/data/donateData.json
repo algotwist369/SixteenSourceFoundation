@@ -1,0 +1,83 @@
+{
+  "pageHeader": {
+    "title": "Make a Donation",
+    "subtitle": "Your generosity changes lives. Every rupee counts.",
+    "image": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&h=400&fit=crop"
+  },
+  "causes": [
+    {
+      "icon": "FaGraduationCap",
+      "title": "Education Fund",
+      "description": "Help us provide quality education to underprivileged children",
+      "impact": "₹5,000 educates a child for a year"
+    },
+    {
+      "icon": "FaHeartbeat",
+      "title": "Healthcare Support",
+      "description": "Support medical camps and healthcare programs",
+      "impact": "₹2,000 funds a medical camp"
+    },
+    {
+      "icon": "FaHome",
+      "title": "Shelter & Relief",
+      "description": "Build homes and provide disaster relief",
+      "impact": "₹50,000 builds a home"
+    },
+    {
+      "icon": "FaHeart",
+      "title": "General Fund",
+      "description": "Support all our programs where needed most",
+      "impact": "Any amount makes a difference"
+    }
+  ],
+  "benefits": [
+    "80G Tax Exemption Certificate",
+    "Regular updates on impact",
+    "Transparency in fund utilization",
+    "Recognition on our donor wall",
+    "Invitation to annual events"
+  ],
+  "transparency": {
+    "title": "100% Transparent",
+    "description": "We believe in complete transparency. Every donation is tracked and reported. Annual financial reports are publicly available on our website.",
+    "breakdown": [
+      {
+        "percentage": 85,
+        "label": "Directly to Programs"
+      },
+      {
+        "percentage": 10,
+        "label": "Operations"
+      },
+      {
+        "percentage": 5,
+        "label": "Future Growth"
+      }
+    ]
+  },
+  "paymentMethods": [
+    {
+      "title": "Bank Transfer",
+      "details": [
+        "Bank: State Bank of India",
+        "Account: 123456789012",
+        "IFSC: SBIN0001234"
+      ]
+    },
+    {
+      "title": "UPI Payment",
+      "details": [
+        "Scan the QR code or use our UPI ID",
+        "donate@sixteensource"
+      ]
+    },
+    {
+      "title": "In-Kind Donations",
+      "details": [
+        "Books, clothes, food, medicines, and other materials are always welcome.",
+        "Contact us for details."
+      ]
+    }
+  ]
+}
+

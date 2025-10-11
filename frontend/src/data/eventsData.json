@@ -1,0 +1,59 @@
+{
+  "pageHeader": {
+    "title": "Events",
+    "subtitle": "Stay updated with our latest events and community activities",
+    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=400&fit=crop"
+  },
+  "content": {
+    "title": "Our Events",
+    "subtitle": "Join us in making a difference through our community events"
+  },
+  "upcoming": [
+    {
+      "id": 1,
+      "title": "Community Health Camp",
+      "date": "2024-02-15",
+      "time": "9:00 AM - 5:00 PM",
+      "location": "Village Ramnagar, Bihar",
+      "description": "Free medical checkup and health awareness camp for 500+ villagers.",
+      "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=250&fit=crop"
+    },
+    {
+      "id": 2,
+      "title": "Education Fair 2024",
+      "date": "2024-02-25",
+      "time": "10:00 AM - 4:00 PM",
+      "location": "Community Center, Jharkhand",
+      "description": "Scholarship distribution and educational materials distribution event.",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=250&fit=crop"
+    },
+    {
+      "id": 3,
+      "title": "Women Empowerment Workshop",
+      "date": "2024-03-05",
+      "time": "9:00 AM - 3:00 PM",
+      "location": "Training Center, Uttar Pradesh",
+      "description": "Skill development workshop for 100+ women from rural communities.",
+      "image": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=250&fit=crop"
+    }
+  ],
+  "past": [
+    {
+      "id": 4,
+      "title": "Annual Impact Celebration",
+      "date": "2024-01-20",
+      "location": "Delhi",
+      "description": "Celebrating our achievements and impact over the past year.",
+      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=250&fit=crop"
+    },
+    {
+      "id": 5,
+      "title": "Volunteer Recognition Day",
+      "date": "2024-01-10",
+      "location": "Multiple Locations",
+      "description": "Honoring our dedicated volunteers across all programs.",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=250&fit=crop"
+    }
+  ]
+}
+

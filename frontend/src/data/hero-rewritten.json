@@ -1,0 +1,22 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop",
+      "title": "Every Child Deserves a Future Full of Hope",
+      "subtitle": "Help us break the cycle of poverty. Your donation today can transform a child's life forever - from dropping out to becoming a doctor, engineer, or teacher."
+    },
+    {
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1920&h=1080&fit=crop",
+      "title": "When Illness Strikes, Hope Shouldn't Be Lost",
+      "subtitle": "Imagine a mother watching her child suffer because she can't afford medicine. Your support brings our medical teams to remote villages, saving lives every day."
+    },
+    {
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&h=1080&fit=crop",
+      "title": "From Helpless to Hopeful: Women Reclaiming Their Dreams",
+      "subtitle": "Meet Lakshmi, who went from earning ₹50/day to ₹500/day after our training. Your donation doesn't just change one life - it transforms entire families and communities."
+    }
+  ]
+}
