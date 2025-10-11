@@ -1,139 +1,260 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
 import Heading from "../components/common/Heading";
-import { FaHeart, FaHandsHelping, FaGlobe, FaUsers } from "react-icons/fa";
+import { 
+    FaGraduationCap, 
+    FaHandsHelping, 
+    FaBalanceScale,
+    FaMapMarkerAlt,
+    FaFileAlt,
+    FaCheckCircle
+} from "react-icons/fa";
 
 const About = () => {
-    const values = [
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const visionPoints = [
         {
-            icon: <FaHeart className="text-4xl text-green-600" />,
-            title: "Compassion",
-            description: "We believe in leading with empathy and kindness in every action."
+            icon: <FaGraduationCap className="text-5xl text-green-600 mx-auto mb-4" />,
+            title: "Skill Development",
+            description: "Enhancing skills for better livelihood opportunities"
         },
         {
-            icon: <FaHandsHelping className="text-4xl text-green-600" />,
-            title: "Collaboration",
-            description: "Together we achieve more. We value partnerships and teamwork."
+            icon: <FaBalanceScale className="text-5xl text-green-600 mx-auto mb-4" />,
+            title: "Social Justice",
+            description: "Promoting fairness and equality for all"
         },
         {
-            icon: <FaGlobe className="text-4xl text-green-600" />,
-            title: "Impact",
-            description: "Creating sustainable and measurable change in communities."
-        },
-        {
-            icon: <FaUsers className="text-4xl text-green-600" />,
-            title: "Inclusivity",
-            description: "Every voice matters. We serve and include everyone equally."
+            icon: <FaHandsHelping className="text-5xl text-green-600 mx-auto mb-4" />,
+            title: "Restored Dignity",
+            description: "Empowering individuals to regain control over their lives"
         }
     ];
 
-    const team = [
+    const trainingCourses = [
+        "Beautician Training",
+        "Advanced Beautician Course",
+        "Mehndi Artist Training",
+        "Makeup Artist Training",
+        "Life Skills with Leadership Development"
+    ];
+
+    const programBenefits = [
+        "Industrial Visits",
+        "Market Visits",
+        "Job Placement Assistance",
+        "Professional Certification"
+    ];
+
+    const managementCommittee = [
         {
-            name: "Rajesh Kumar",
-            role: "Founder & Director",
-            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop"
+            name: "Sonal Mungekar",
+            designation: "President",
+            image: "/assets/teams/sonal.jpeg"
         },
         {
-            name: "Priya Sharma",
-            role: "Program Manager",
-            image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop"
+            name: "Sagar Jagtap",
+            designation: "Secretary",
+            image: "/assets/teams/Sagar Sunil Jagtap.jpeg"
         },
         {
-            name: "Amit Patel",
-            role: "Community Outreach",
-            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop"
+            name: "Vandana Gamare",
+            designation: "Treasurer",
+            image: "/assets/teams/Vandana Prabhakar Gamare.jpeg"
         },
         {
-            name: "Sneha Gupta",
-            role: "Finance Director",
-            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop"
+            name: "Pooja Gole",
+            designation: "Member",
+            image: "/assets/teams/Pooja Amit Gole.jpeg"
+        },
+        {
+            name: "Sajiri Trimbakkar",
+            designation: "Member",
+            image: "/assets/teams/Sajiri Sandesh Trimbakkar.jpeg"
+        },
+        {
+            name: "Anjali Palkar",
+            designation: "Member",
+            image: "/assets/teams/Anjalee Sandip Palkar.jpeg"
+        },
+        {
+            name: "Swapnil Vhatkar",
+            designation: "Member",
+            image: "/assets/teams/SWAPNIL V.VHATKAR.jpeg"
         }
+    ];
+
+    const legalRegistrations = [
+        "Registered under 1860 Act",
+        "Registered under 1950 Act",
+        "PAN Card Available"
     ];
 
     return (
         <div>
             <PageHeader
-                title="About Sixteensource Foundation"
-                subtitle="Empowering communities through education, healthcare, and sustainable development"
-                image="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=400&fit=crop"
+                title="About Sixteen Source Foundation"
+                subtitle="Empowering rural communities towards self-reliance and sustainable development"
+                image="/assets/GalleryImg/13.jpeg"
             />
 
-            {/* Mission & Vision */}
+            {/* Mission Statement */}
             <Section>
-                <div className="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 className="text-2xl font-bold text-green-600 mb-4">Our Mission</h3>
-                        <p className="text-gray-700 leading-relaxed">
-                            To empower underprivileged communities by providing access to quality education,
-                            healthcare, and livelihood opportunities. We strive to create sustainable impact
-                            through grassroots interventions and community-driven programs.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className="text-2xl font-bold text-green-600 mb-4">Our Vision</h3>
-                        <p className="text-gray-700 leading-relaxed">
-                            A world where every individual has equal opportunities to thrive, regardless of
-                            their socio-economic background. We envision communities that are self-reliant,
-                            healthy, educated, and empowered to shape their own futures.
-                        </p>
+                <div className="max-w-4xl mx-auto">
+                    <Heading title="Our Mission" />
+                    <p className="text-gray-700 leading-relaxed text-lg mt-6">
+                        The Sixteen Source Foundation is a non-profit organization dedicated to providing support 
+                        and resources to underprivileged communities, focusing on education, healthcare, and 
+                        environmental sustainability. We strive to create opportunities for marginalized individuals 
+                        to achieve economic independence and social dignity.
+                    </p>
+                    <div className="mt-6 flex items-center justify-center gap-2 text-gray-700">
+                        <FaMapMarkerAlt className="text-green-600" />
+                        <span className="font-semibold">Coverage Area:</span>
+                        <span>Vadala to Panvel</span>
                     </div>
                 </div>
             </Section>
 
-            {/* Core Values */}
+            {/* Vision */}
             <Section bgColor="bg-gray-50">
-                <Heading title="Our Core Values" subtitle="The principles that guide our work" />
-                <div className="grid md:grid-cols-4 gap-8 mt-10">
-                    {values.map((value, index) => (
-                        <Card key={index} className="text-center">
-                            <div className="flex justify-center mb-4">{value.icon}</div>
-                            <h4 className="text-xl font-semibold mb-2">{value.title}</h4>
-                            <p className="text-gray-600 text-sm">
-                                {value.description}
+                <div className="max-w-5xl mx-auto">
+                    <Heading 
+                        title="Our Vision" 
+                        subtitle="Enabling poor rural households and communities to be self-reliant and sustainable" 
+                    />
+                    <div className="grid md:grid-cols-3 gap-8 mt-10">
+                        {visionPoints.map((point, index) => (
+                            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                                {point.icon}
+                                <h4 className="text-lg font-bold mb-2">{point.title}</h4>
+                                <p className="text-gray-600">{point.description}</p>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* Main Program */}
+            <Section>
+                <div className="max-w-5xl mx-auto">
+                    <Heading 
+                        title="Beauty & Wellness Training Program" 
+                        subtitle="Our flagship program for skill development and employment"
+                    />
+                    
+                    <Card className="mt-8">
+                        <div className="border-l-4 border-green-600 pl-6">
+                            <p className="text-gray-700 leading-relaxed mb-6">
+                                We provide quality training in beauty and wellness, enabling participants 
+                                to secure employment or establish their own businesses. Our goal is to help 
+                                them achieve economic independence and social dignity.
                             </p>
-                        </Card>
-                    ))}
+                            
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                        <FaCheckCircle className="text-green-600" />
+                                        Training Courses Offered
+                                    </h4>
+                                    <ul className="space-y-2 text-gray-700">
+                                        {trainingCourses.map((course, index) => (
+                                            <li key={index} className="flex items-start gap-2">
+                                                <span className="text-green-600 mt-1">•</span>
+                                                <span>{course}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                        <FaCheckCircle className="text-green-600" />
+                                        Program Benefits
+                                    </h4>
+                                    <ul className="space-y-2 text-gray-700">
+                                        {programBenefits.map((benefit, index) => (
+                                            <li key={index} className="flex items-start gap-2">
+                                                <span className="text-green-600 mt-1">•</span>
+                                                <span>{benefit}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
                 </div>
             </Section>
 
-            {/* Our Story */}
-            <Section>
-                <Heading title="Our Story" subtitle="How we started and where we're going" />
-                <div className="max-w-4xl mx-auto text-gray-700 space-y-4 leading-relaxed">
-                    <p>
-                        Sixteensource Foundation was born out of a simple belief: that every individual deserves
-                        a chance to live with dignity and opportunity. Founded in 2010 by a group of passionate
-                        social workers, we started with a small literacy program in a single village.
-                    </p>
-                    <p>
-                        Over the years, we've grown into a comprehensive development organization working across
-                        education, healthcare, women empowerment, and sustainable livelihoods. Today, we serve
-                        over 50 communities, impacting thousands of lives every year.
-                    </p>
-                    <p>
-                        Our journey has been made possible by the dedication of our volunteers, the generosity of
-                        our donors, and most importantly, the trust and participation of the communities we serve.
-                    </p>
-                </div>
-            </Section>
-
-            {/* Team */}
+            {/* Management Committee */}
             <Section bgColor="bg-gray-50">
-                <Heading title="Meet Our Team" subtitle="The passionate people driving change" />
-                <div className="grid md:grid-cols-4 gap-8 mt-10">
-                    {team.map((member, index) => (
-                        <Card key={index} className="text-center">
-                            <img
-                                src={member.image}
-                                alt={member.name}
-                                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                            />
-                            <h4 className="text-lg font-semibold">{member.name}</h4>
-                            <p className="text-green-600 text-sm">{member.role}</p>
+                <div className="max-w-6xl mx-auto">
+                    <Heading 
+                        title="Management Committee" 
+                        subtitle="Dedicated leaders driving our mission"
+                    />
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+                        {managementCommittee.map((member, index) => (
+                            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                                <div className="flex flex-col items-center">
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-gray-200"
+                                    />
+                                    <h4 className="font-bold text-gray-800 mb-1">{member.name}</h4>
+                                    <p className="text-green-600 font-medium text-sm">{member.designation}</p>
+                                </div>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* Contact Information */}
+            <Section>
+                <div className="max-w-5xl mx-auto">
+                    <Heading 
+                        title="Contact & Registration Details" 
+                        subtitle="Legally registered and committed to transparency"
+                    />
+                    <div className="grid md:grid-cols-2 gap-8 mt-10">
+                        <Card className="hover:shadow-lg transition-shadow">
+                            <div className="flex gap-4">
+                                <FaMapMarkerAlt className="text-green-600 text-2xl flex-shrink-0 mt-1" />
+                                <div>
+                                    <h4 className="font-bold text-lg mb-3">Registered Address</h4>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        PMGP Colony, Mankhurd West<br />
+                                        Mumbai - 400043<br />
+                                        Maharashtra, India
+                                    </p>
+                                </div>
+                            </div>
                         </Card>
-                    ))}
+
+                        <Card className="hover:shadow-lg transition-shadow">
+                            <div className="flex gap-4">
+                                <FaFileAlt className="text-green-600 text-2xl flex-shrink-0 mt-1" />
+                                <div>
+                                    <h4 className="font-bold text-lg mb-3">Legal Registration</h4>
+                                    <ul className="text-gray-700 space-y-2">
+                                        {legalRegistrations.map((registration, index) => (
+                                            <li key={index} className="flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
+                                                {registration}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
             </Section>
         </div>

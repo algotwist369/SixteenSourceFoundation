@@ -1,8 +1,7 @@
 {
   "mainNav": [
-    { "name": "Home", "path": "/" },
-    { "name": "About", "path": "/about" },
     { "name": "Our Initiative", "path": "/our-initiative" },
+    { "name": "About", "path": "/about" },
     { "name": "Gallery", "path": "/gallery" },
     { "name": "Team", "path": "/team" },
     { "name": "Events", "path": "/events" },

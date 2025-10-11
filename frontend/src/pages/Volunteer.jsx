@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
@@ -8,6 +8,11 @@ import InputField from "../components/common/InputField";
 import { FaCheckCircle, FaHeart, FaClock, FaUsers, FaGift } from "react-icons/fa";
 
 const Volunteer = () => {
+    useEffect(() => {
+        // Scroll to top on mount
+        window.scrollTo(0, 0);
+    }, []);
+    
     const [formData, setFormData] = useState({
         // Personal Information
         firstName: "",
@@ -575,16 +580,16 @@ const Volunteer = () => {
                             <Button
                                 variant="primary"
                                 size="lg"
-                                className="bg-white text-green-600 hover:bg-gray-100"
+                                className="bg-green-700 text-white hover:bg-green-800"
                             >
                                 Email Us
                             </Button>
                         </a>
-                        <a href="tel:+919876543210">
+                        <a href="tel:+919930721145">
                             <Button
                                 variant="outline"
                                 size="lg"
-                                className="border-2 border-white text-white hover:bg-green-700"
+                                className="border border-white text-white hover:bg-green-700"
                             >
                                 Call Us
                             </Button>

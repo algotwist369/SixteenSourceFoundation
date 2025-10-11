@@ -3,11 +3,8 @@
   "tagline": "Empowering Communities, Creating Lasting Change",
   "established": "2015",
   "registrationNumber": "12345/2015",
-  
   "mission": "To empower underprivileged communities in rural India by providing access to quality education, healthcare, livelihood opportunities, and basic amenities. We strive to create sustainable, community-driven development that brings lasting positive change to people's lives.",
-  
   "vision": "A society where every individual, regardless of their economic or social background, has equal opportunities to live with dignity, access quality education and healthcare, and build a prosperous future for themselves and their families.",
-  
   "values": [
     {
       "icon": "FaHeart",
@@ -40,52 +37,74 @@
       "description": "We are committed to delivering high-quality programs and maintaining professional standards in all our work."
     }
   ],
-  
   "team": [
     {
-      "name": "Rajesh Kumar Singh",
-      "role": "Founder & Director",
-      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-      "bio": "With 15+ years of experience in rural development, Rajesh founded Sixteensource Foundation to address grassroots challenges in education and healthcare."
+      "name": "Sonal prakash Mungekar",
+      "role": "President",
+      "image": "public/assets/teams/sonal.jpeg",
+      "email": "sixteensource.ngo24@gmail.com",
+      "phone": "9930721145"
     },
     {
-      "name": "Dr. Priya Sharma",
-      "role": "Program Director",
-      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-      "bio": "Former government health official with expertise in community health programs and maternal child healthcare initiatives."
+      "name": " Sagar Sunil Jagtap",
+      "role": "Secretary",
+      "image": "public/assets/teams/Sagar Sunil Jagtap.jpeg",
+      "email": " sagarjagtap60@gmail.com",
+      "phone": "8898992162"
     },
     {
-      "name": "Amit Patel",
-      "role": "Operations Manager",
-      "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
-      "bio": "MBA with specialization in NGO management, overseeing field operations across 8 states and 42 villages."
+      "name": "Vandana Prabhakar Gamare",
+      "role": "Treasurer",
+      "image": "public/assets/teams/Vandana Prabhakar Gamare.jpeg",
+      "email": "vandanagamare01@gmail.com",
+      "phone": "9702368113"
     },
     {
-      "name": "Sneha Gupta",
-      "role": "Finance & Compliance Head",
-      "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-      "bio": "Chartered Accountant ensuring financial transparency, compliance with regulations, and efficient resource utilization."
+      "name": "Swapnil V. Vhatkar",
+      "role": "Member",
+      "image": "public/assets/teams/SWAPNIL V.VHATKAR.jpeg",
+      "email": "vhatkarswapnil121@gmail.com",
+      "phone": "9029199938"
+    },
+    {
+      "name": "Anjalee Sandip Palkar",
+      "role": "Member",
+      "image": "public/assets/teams/Anjalee Sandip Palkar.jpeg",
+      "email": "anjalee.palkar24@gmail.com",
+      "phone": "9372719068"
+    },
+    {
+      "name": "Sajiri Sandesh Trimbakkar",
+      "role": "Member",
+      "image": "public/assets/teams/Sajiri Sandesh Trimbakkar.jpeg",
+      "email": "sajiritrimbakkar@gmail.com",
+      "phone": "9324197934"
+    },
+    {
+      "name": "Pooja Gole",
+      "role": "Member",
+      "image": "public/assets/teams/Pooja Amit Gole.jpeg",
+      "email": "golepooja66@gmail.com",
+      "phone": "7021109323"
     }
   ],
-  
   "stats": {
     "livesImpacted": "25,000+",
     "childrenEducated": "5,200+",
     "volunteers": "2,800+",
     "communities": "42"
   },
-  
   "contact": {
-    "email": "info@sixteensource.org",
+    "email": "sixteensource.ngo24@gmail.com",
     "volunteerEmail": "volunteer@sixteensource.org",
-    "phone": "+91-9876543210",
+    "phone": "+91-9930721145",
     "alternatePhone": "+91-9876543211",
     "address": {
-      "street": "Plot No. 45, Sector 12",
-      "area": "Dwarka",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "pincode": "110075",
+      "street": "PMGP COLONY MANKHURD WEST MUMBAI- 400043",
+      "area": "Mumbai",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pincode": "400043",
       "country": "India"
     },
     "socialMedia": {
@@ -96,11 +115,9 @@
       "youtube": "https://youtube.com/@sixteensource"
     }
   },
-  
   "workingHours": {
     "weekdays": "Monday - Friday: 9:00 AM - 6:00 PM",
     "saturday": "Saturday: 10:00 AM - 4:00 PM",
     "sunday": "Sunday: Closed"
   }
 }
-

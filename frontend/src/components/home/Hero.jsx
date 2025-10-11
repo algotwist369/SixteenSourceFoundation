@@ -9,27 +9,21 @@ const Hero = () => {
     const [isHovered, setIsHovered] = useState(false);
     const { slides } = heroData;
 
-    // Auto slide every 5 seconds (pause on hover)
+    // Auto slide every 5s (pause on hover)
     useEffect(() => {
         if (isHovered) return;
-        
         const timer = setInterval(() => {
             setCurrent((prev) => (prev + 1) % slides.length);
         }, 5000);
         return () => clearInterval(timer);
     }, [isHovered, slides.length]);
 
-    const nextSlide = () => {
-        setCurrent((prev) => (prev + 1) % slides.length);
-    };
-
-    const prevSlide = () => {
-        setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+    const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
     return (
-        <section 
-            className="relative h-[80vh] w-full overflow-hidden group"
+        <section
+            className="relative w-full h-[90vh] sm:h-[85vh] md:h-[100vh] overflow-hidden group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             aria-label="Hero carousel"
@@ -42,35 +36,41 @@ const Hero = () => {
                     }`}
                     aria-hidden={index !== current}
                 >
-                    {/* Image with Ken Burns effect (subtle zoom) */}
-                    <div className="relative w-full h-full overflow-hidden">
+                    {/* Full Image */}
+                    <div className="relative w-full h-full">
                         <img
                             src={slide.image}
                             alt={slide.title}
                             loading="lazy"
-                            className={`w-full h-full object-cover transition-transform duration-[10000ms] ease-out ${
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out ${
                                 index === current ? "scale-110" : "scale-100"
                             }`}
                         />
-                        {/* Gradient overlay for better text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80"></div>
                     </div>
 
-                    {/* Content overlay */}
+                    {/* Text & Buttons */}
                     <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 z-20">
-                        <h1 className={`text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-2xl transition-all duration-700 ${
-                            index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                        }`}>
+                        <h1
+                            className={`text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl transition-all duration-700 ${
+                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                            }`}
+                        >
                             {slide.title}
                         </h1>
-                        <p className={`text-lg md:text-2xl text-gray-100 max-w-2xl mb-8 drop-shadow-lg transition-all duration-700 delay-200 ${
-                            index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                        }`}>
+                        <p
+                            className={`text-lg md:text-2xl text-gray-100 max-w-3xl mb-8 drop-shadow-lg transition-all duration-700 delay-200 ${
+                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                            }`}
+                        >
                             {slide.subtitle}
                         </p>
-                        <div className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-700 delay-400 ${
-                            index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                        }`}>
+                        <div
+                            className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-700 delay-400 ${
+                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                            }`}
+                        >
                             <Link to="/donate">
                                 <Button variant="primary" size="lg">
                                     Donate Now
@@ -90,7 +90,7 @@ const Hero = () => {
                 </div>
             ))}
 
-            {/* Previous Button */}
+            {/* Prev Button */}
             <button
                 onClick={prevSlide}
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
@@ -108,15 +108,15 @@ const Hero = () => {
                 <IoChevronForward size={24} />
             </button>
 
-            {/* Navigation Dots */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
+            {/* Dots */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-30">
                 {slides.map((_, index) => (
                     <button
                         key={index}
                         onClick={() => setCurrent(index)}
                         className={`transition-all duration-300 rounded-full ${
-                            index === current 
-                                ? "bg-white w-8 h-3" 
+                            index === current
+                                ? "bg-white w-8 h-3"
                                 : "bg-white/50 w-3 h-3 hover:bg-white/75"
                         }`}
                         aria-label={`Go to slide ${index + 1}`}

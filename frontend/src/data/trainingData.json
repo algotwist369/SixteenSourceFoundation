@@ -9,110 +9,23 @@
     {
       "id": 1,
       "name": "Free Beauty Parlour Training",
-      "tagline": "Learn professional skills, gain confidence, and secure a job. 100% free.",
-      "description": "Master the art of beauty and wellness. From basic grooming to advanced techniques, we train you to become a professional beautician.",
-      "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=300&fit=crop",
-      "duration": "3 Months",
-      "benefits": [
-        "Professional beauty techniques",
-        "Industry-standard equipment training", 
-        "Job placement assistance",
-        "Startup support for salon business"
-      ],
+      "image": "/public/assets/Courses/poster1.jpeg",
       "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
+      "enrollmentLink": "/enroll/beauty-training"
     },
     {
       "id": 2,
-      "name": "Computer Skills & Digital Literacy",
-      "tagline": "Master technology, unlock opportunities, and build a digital future.",
-      "description": "From basic computer operations to advanced software skills. Perfect for beginners and those looking to upgrade their tech knowledge.",
-      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
-      "duration": "4 Months",
-      "benefits": [
-        "Basic to advanced computer skills",
-        "Microsoft Office training",
-        "Internet and email proficiency",
-        "Digital marketing basics"
-      ],
-      "isNew": false,
-      "enrollmentLink": "/enroll/computer-skills",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
-    },
-    {
-      "id": 3,
-      "name": "Tailoring & Fashion Design",
-      "tagline": "Create beautiful garments, start your own business, and earn from home.",
-      "description": "Learn professional tailoring techniques, fashion design basics, and business skills to start your own fashion enterprise.",
-      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop",
-      "duration": "6 Months",
-      "benefits": [
-        "Professional tailoring techniques",
-        "Fashion design principles",
-        "Business management skills",
-        "Equipment and startup support"
-      ],
+      "name": "Free Beauty Training",
+      "image": "/public/assets/Courses/poster2.jpeg",
       "isNew": true,
-      "enrollmentLink": "/enroll/tailoring",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
+      "enrollmentLink": "/enroll/beauty-training"
     },
-    {
-      "id": 4,
-      "name": "Spoken English & Communication",
-      "tagline": "Build confidence, improve communication, and open doors to better opportunities.",
-      "description": "Master English speaking skills, improve your communication, and boost your confidence for interviews and professional growth.",
-      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
-      "duration": "2 Months",
-      "benefits": [
-        "Conversational English skills",
-        "Interview preparation",
-        "Public speaking confidence",
-        "Professional communication"
-      ],
-      "isNew": false,
-      "enrollmentLink": "/enroll/english-speaking",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
-    },
-    {
-      "id": 5,
-      "name": "Cooking & Culinary Arts",
-      "tagline": "Master the art of cooking, start a food business, and serve delicious meals.",
-      "description": "Learn professional cooking techniques, restaurant management, and culinary skills to start your own food business.",
-      "image": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
-      "duration": "4 Months",
-      "benefits": [
-        "Professional cooking techniques",
-        "Restaurant management basics",
-        "Food safety and hygiene",
-        "Business startup guidance"
-      ],
+      {
+      "id": 1,
+      "name": "Free Beauty Parlour Training",
+      "image": "/public/assets/Courses/poster1.jpeg",
       "isNew": true,
-      "enrollmentLink": "/enroll/cooking",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
-    },
-    {
-      "id": 6,
-      "name": "Mobile Repair & Electronics",
-      "tagline": "Fix phones, repair electronics, and build a profitable technical career.",
-      "description": "Learn mobile phone repair, basic electronics, and technical troubleshooting skills to start your own repair business.",
-      "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-      "duration": "5 Months",
-      "benefits": [
-        "Mobile phone repair skills",
-        "Basic electronics knowledge",
-        "Tools and equipment training",
-        "Business setup support"
-      ],
-      "isNew": false,
-      "enrollmentLink": "/enroll/mobile-repair",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
+      "enrollmentLink": "/enroll/beauty-training"
     }
   ],
   "stats": {

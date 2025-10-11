@@ -78,7 +78,7 @@ const OurInitiative = () => {
 
             {/* Hero Stats Section */}
             <Section bgColor="bg-gradient-to-br from-green-50 via-blue-50 to-green-100">
-                <div className="text-center max-w-4xl mx-auto">
+                <div className="text-center max-w-[99rem] mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                         Our Impact at a Glance
                     </h2>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
@@ -8,6 +8,10 @@ import InputField from "../components/common/InputField";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 const Contact = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -29,22 +33,17 @@ const Contact = () => {
         {
             icon: <FaMapMarkerAlt className="text-3xl text-green-600" />,
             title: "Visit Us",
-            details: ["123 NGO Street", "New Delhi, 110001", "India"]
-        },
-        {
-            icon: <FaPhone className="text-3xl text-green-600" />,
-            title: "Call Us",
-            details: ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9am-6pm"]
+            details: ["PMGP Colony", "Mankhurd West", "Mumbai - 400043, Maharashtra"]
         },
         {
             icon: <FaEnvelope className="text-3xl text-green-600" />,
             title: "Email Us",
-            details: ["info@sixteensource.org", "volunteer@sixteensource.org", "We reply within 24 hours"]
+            details: ["sixteensource.ngo24@gmail.com", "", "We reply within 48 hours"]
         },
         {
             icon: <FaClock className="text-3xl text-green-600" />,
             title: "Office Hours",
-            details: ["Monday - Friday: 9am - 6pm", "Saturday: 10am - 4pm", "Sunday: Closed"]
+            details: ["Monday - Saturday", "10:00 AM - 6:00 PM", "Sunday: Closed"]
         }
     ];
 
@@ -52,23 +51,23 @@ const Contact = () => {
     <div>
             <PageHeader
                 title="Contact Us"
-                subtitle="We'd love to hear from you. Let's connect!"
-                image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&h=400&fit=crop"
+                subtitle="We'd love to hear from you. Let's connect and make a difference together!"
+                image="/assets/GalleryImg/13.jpeg"
             />
 
             {/* Contact Information */}
             <Section>
                 <Heading
                     title="Get In Touch"
-                    subtitle="Reach out to us through any of these channels"
+                    subtitle="Reach out to us for any inquiries about our programs and initiatives"
                 />
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+                <div className="grid md:grid-cols-3 gap-8 mt-10 max-w-5xl mx-auto">
                     {contactInfo.map((info, index) => (
-                        <Card key={index} className="text-center">
+                        <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                             <div className="flex justify-center mb-4">{info.icon}</div>
                             <h3 className="text-lg font-bold mb-3">{info.title}</h3>
                             {info.details.map((detail, idx) => (
-                                <p key={idx} className="text-gray-600 text-sm">
+                                detail && <p key={idx} className="text-gray-600 text-sm">
                                     {detail}
                                 </p>
                             ))}
@@ -79,12 +78,12 @@ const Contact = () => {
 
             {/* Contact Form */}
             <Section bgColor="bg-gray-50">
-                <div className="grid md:grid-cols-2 gap-12">
+                <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     {/* Form */}
                     <div>
                         <Heading
                             title="Send Us a Message"
-                            subtitle="Fill out the form and we'll respond soon"
+                            subtitle="Fill out the form and we'll respond as soon as possible"
                             align="left"
                         />
                         <form onSubmit={handleSubmit} className="space-y-6 mt-6">
@@ -126,7 +125,7 @@ const Contact = () => {
                                 value={formData.message}
                                 onChange={handleChange}
                                 rows="5"
-                                placeholder="Tell us more..."
+                                placeholder="Tell us more about your inquiry..."
                                 required
                                 className="w-full px-4 py-2 border border-gray-300 
                                     rounded-lg shadow-sm focus:outline-none 
@@ -143,7 +142,7 @@ const Contact = () => {
                     <div>
                         <Heading
                             title="Find Us Here"
-                            subtitle="Our office location"
+                            subtitle="Our office location in Mumbai"
                             align="left"
                         />
                         <Card className="mt-6">
@@ -151,7 +150,7 @@ const Contact = () => {
                             <div className="w-full h-64 bg-gray-200 rounded-lg mb-4 overflow-hidden">
                                 <iframe
                                     title="Office Location"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0266552668436!2d77.2088744!3d28.6280638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd371d9e2b53%3A0x8e6b2be8d6a3b7e9!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1234567890"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7542.550864331699!2d72.92567569212524!3d19.051623978591604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6711969c0e7%3A0xbcd8df94de9b92ef!2sPMG%20COLONY%2C%20Mankhurd%2C%20Mumbai%2C%20Maharashtra%20400043!5e0!3m2!1sen!2sin!4v1760184416176!5m2!1sen!2sin"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
@@ -160,23 +159,17 @@ const Contact = () => {
                                 ></iframe>
                             </div>
                             <div className="space-y-3 text-gray-700">
-                                <p className="font-semibold">Sixteensource Foundation</p>
-                                <p className="text-sm">123 NGO Street, New Delhi, 110001, India</p>
-                                <p className="text-sm">Phone: +91 98765 43210</p>
-                                <p className="text-sm">Email: info@sixteensource.org</p>
-                            </div>
-                        </Card>
-
-                        {/* FAQ */}
-                        <Card className="mt-6">
-                            <h3 className="text-lg font-bold mb-3">Quick Questions?</h3>
-                            <div className="space-y-2 text-sm text-gray-600">
-                                <p><strong>Q: How can I volunteer?</strong></p>
-                                <p>Visit our Get Involved page or fill out the contact form above.</p>
-                                <p><strong>Q: Are donations tax-deductible?</strong></p>
-                                <p>Yes, we provide 80G tax exemption certificates.</p>
-                                <p><strong>Q: Can I visit your office?</strong></p>
-                                <p>Yes! Please call ahead to schedule a visit.</p>
+                                <p className="font-semibold text-lg">Sixteen Source Foundation</p>
+                                <div className="text-sm space-y-1">
+                                    <p className="flex items-start gap-2">
+                                        <FaMapMarkerAlt className="text-green-600 mt-1 flex-shrink-0" />
+                                        <span>PMGP Colony, Mankhurd West<br/>Mumbai - 400043, Maharashtra, India</span>
+                                    </p>
+                                    <p className="flex items-center gap-2">
+                                        <FaEnvelope className="text-green-600 flex-shrink-0" />
+                                        <span>sixteensource.ngo24@gmail.com</span>
+                                    </p>
+                                </div>
                             </div>
                         </Card>
                     </div>
@@ -184,20 +177,21 @@ const Contact = () => {
             </Section>
 
             {/* CTA Section */}
-            <Section bgColor="bg-green-600">
-                <div className="text-center text-white">
-                    <h2 className="text-3xl font-bold mb-4">Have a Partnership Idea?</h2>
-                    <p className="text-lg mb-6 max-w-2xl mx-auto">
-                        We're always looking for organizations and individuals who share our vision.
-                        Let's collaborate to create bigger impact!
-                    </p>
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        className="bg-white text-green-600 hover:bg-gray-100"
-                    >
-                        Schedule a Meeting
-                    </Button>
+            <Section>
+                <div className="max-w-4xl mx-auto text-center">
+                    <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-none shadow-lg">
+                        <h2 className="text-3xl font-bold mb-4 text-gray-800">Want to Partner With Us?</h2>
+                        <p className="text-lg mb-6 text-gray-700">
+                            We welcome collaborations with organizations and individuals who share our vision 
+                            of empowering rural communities. Let's work together to create lasting change!
+                        </p>
+                        <p className="text-gray-600 mb-6">
+                            For partnership inquiries, donations, or volunteer opportunities, please reach out to us 
+                            at <a href="mailto:sixteensource.ngo24@gmail.com" className="text-green-600 font-semibold hover:underline">
+                                sixteensource.ngo24@gmail.com
+                            </a>
+                        </p>
+                    </Card>
                 </div>
             </Section>
     </div>

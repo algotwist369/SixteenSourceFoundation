@@ -5,6 +5,9 @@ import Heading from "../components/common/Heading";
 import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import eventsData from "../data/eventsData.json";
+import pageHeaders from "../data/pageHeaders.json";
+
+
 
 const Events = () => {
     const [activeTab, setActiveTab] = useState('upcoming');
@@ -24,7 +27,7 @@ const Events = () => {
             <PageHeader
                 title={pageHeader.title}
                 subtitle={pageHeader.subtitle}
-                image={pageHeader.image}
+                image={pageHeaders.events}
             />
 
             <Section>

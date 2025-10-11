@@ -161,7 +161,7 @@ const ProgramDetails = () => {
 
             {/* Impact Metrics */}
             <div className="py-16 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
+                <div className="max-w-[99rem] mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-3">Program Impact</h2>
                         <p className="text-gray-600">Measurable results and community transformation</p>
@@ -188,7 +188,7 @@ const ProgramDetails = () => {
 
             {/* About Program */}
             <div className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-[99rem] mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <h2 className="text-3xl font-bold text-gray-900 mb-6">About This Initiative</h2>
@@ -230,7 +230,7 @@ const ProgramDetails = () => {
 
             {/* How Donations Create Impact */}
             <div className="py-16 bg-gray-50">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-[99rem] mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">How Your Support Creates Impact</h2>
                         <p className="text-gray-600 max-w-3xl mx-auto">
@@ -306,7 +306,7 @@ const ProgramDetails = () => {
 
             {/* Success Stories */}
             <div className="py-16 bg-white">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-[99rem] mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-gray-900 mb-3">Success Stories</h2>
                         <p className="text-gray-600">Real impact from program participants and beneficiaries</p>
@@ -366,7 +366,7 @@ const ProgramDetails = () => {
 
             {/* Call to Action */}
             <div className="py-16 bg-green-600">
-                <div className="max-w-6xl mx-auto px-6">
+                <div className="max-w-[99rem] mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-4xl font-bold text-white mb-4">
@@ -413,7 +413,7 @@ const ProgramDetails = () => {
             {/* Related Programs */}
             {relatedPrograms.length > 0 && (
                 <div className="py-16 bg-gray-50">
-                    <div className="max-w-7xl mx-auto px-6">
+                    <div className="max-w-[99rem] mx-auto px-6">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold text-gray-900 mb-3">Other Initiatives</h2>
                             <p className="text-gray-600">Explore more ways we're creating impact across communities</p>

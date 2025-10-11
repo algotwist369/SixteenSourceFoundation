@@ -2,13 +2,13 @@ import React from "react";
 
 const PageHeader = ({ title, subtitle, image }) => {
     return (
-        <div className="relative h-[40vh] w-full overflow-hidden">
+        <div className="relative h-[45vh] w-full overflow-hidden">
             {image && (
                 <>
                     <img
                         src={image}
                         alt={title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-fit"
                     />
                     <div className="absolute inset-0 bg-black/60"></div>
                 </>

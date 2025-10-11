@@ -9,57 +9,57 @@ import homeData from "../data/homeData.json";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-4xl md:text-5xl font-bold text-white mb-2" }) => {
-    const [count, setCount] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        const element = document.getElementById(`counter-${end}`);
-        if (element) {
-            observer.observe(element);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
         }
-
-        return () => {
-            if (element) {
-                observer.unobserve(element);
-            }
-        };
-    }, [end]);
-
-    useEffect(() => {
-        if (!isVisible) return;
-
-        let startTime = null;
-        const animate = (currentTime) => {
-            if (startTime === null) startTime = currentTime;
-            const progress = Math.min((currentTime - startTime) / duration, 1);
-            
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const currentCount = Math.floor(easeOutQuart * end);
-            
-            setCount(currentCount);
-            
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            }
-        };
-        
-        requestAnimationFrame(animate);
-    }, [isVisible, end, duration]);
-
-    return (
-        <span id={`counter-${end}`} className={className}>
-            {count.toLocaleString()}{suffix}
-        </span>
+      },
+      { threshold: 0.1 }
     );
+
+    const element = document.getElementById(`counter-${end}`);
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, [end]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime = null;
+    const animate = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(easeOutQuart * end);
+
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, end, duration]);
+
+  return (
+    <span id={`counter-${end}`} className={className}>
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
 };
 
 const Home = () => {
@@ -69,44 +69,21 @@ const Home = () => {
   const galleryImages = homeData.gallery.images;
   const faqs = homeData.faq.questions;
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openImage = (src) => {
+    setSelectedImage(src);
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div>
       {/* Hero Section */}
       <Hero />
 
-      {/* About Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            {tagline}
-          </h2>
-          <p className="text-xl text-gray-600 leading-relaxed mb-8">
-            {mission}
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/about">
-              <Button variant="primary" size="lg">
-                Learn About Us
-              </Button>
-            </Link>
-            <Link to="/our-initiative">
-              <Button variant="outline" size="lg">
-                Our Initiatives
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Training & Courses Section */}
-      <TrainingCourses />
-
-      {/* Our Initiative Section */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-[99rem] mx-auto">
-          <FeaturedPrograms />
-        </div>
-      </section>
 
       {/* Gallery Section */}
       <section className="py-20 px-6 bg-white">
@@ -119,16 +96,20 @@ const Home = () => {
               {homeData.gallery.description}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryImages.map((image) => (
-              <div key={image.id} className="relative group overflow-hidden rounded-xl shadow-lg">
+              <div
+                key={image.id}
+                className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer"
+                onClick={() => openImage(image.src)}
+              >
                 <img
                   src={image.src}
                   alt={image.title}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-64 object-fit transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
                   <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center font-semibold">
                     {image.title}
                   </h3>
@@ -136,7 +117,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-10">
             <Link to="/gallery">
               <Button variant="outline" size="lg">
@@ -146,6 +127,31 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox / Popup */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          onClick={closeImage}
+        >
+          <div className="relative">
+            <img
+              src={selectedImage}
+              alt="Enlarged view"
+              className="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl"
+            />
+            <button
+              onClick={closeImage}
+              className="absolute top-2 right-2 bg-white text-gray-800 px-3 py-1 rounded-full font-bold hover:bg-gray-200"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Training & Courses Section */}
+      <TrainingCourses />
 
       {/* Team Section */}
       <section className="py-20 px-6 bg-gray-50">
@@ -158,26 +164,35 @@ const Home = () => {
               {homeData.team.description}
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-8">
             {team.slice(0, 4).map((member) => (
-              <div key={member.name} className="bg-white rounded-xl shadow-md p-6 text-center">
+              <div
+                key={member.name}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center"
+              >
                 <div className="mb-4">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto object-cover"
+                    className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-green-100"
                   />
                 </div>
-                <h3 className="text-lg font-bold mb-1">{member.name}</h3>
-                <p className="text-green-600 font-semibold text-sm mb-3">{member.role}</p>
-                <p className="text-gray-600 text-xs leading-relaxed">
-                  {member.bio.substring(0, 100)}...
+                <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-green-600 font-medium text-sm mb-3">
+                  {member.role}
                 </p>
+                <div className="space-y-1 text-sm text-gray-500">
+                  <p className="truncate">{member.email}</p>
+                  <p>{member.phone}</p>
+                </div>
               </div>
             ))}
           </div>
-          
+
+
           <div className="text-center mt-10">
             <Link to="/team">
               <Button variant="outline" size="lg">
@@ -210,9 +225,9 @@ const Home = () => {
                 key={i}
                 className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl text-center hover:bg-white/20 transition-all"
               >
-                <AnimatedCounter 
-                  end={stat.number} 
-                  duration={2000 + i * 500} 
+                <AnimatedCounter
+                  end={stat.number}
+                  duration={2000 + i * 500}
                   suffix={stat.suffix}
                   className="text-4xl md:text-5xl font-bold text-white mb-2"
                 />
@@ -225,7 +240,7 @@ const Home = () => {
 
       {/* FAQ Section */}
       <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-[99rem] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               {homeData.faq.title}
@@ -234,7 +249,7 @@ const Home = () => {
               {homeData.faq.description}
             </p>
           </div>
-          
+
           <div className="space-y-4 max-w-4xl mx-auto">
             {faqs.map((faq, index) => (
               <div key={`faq-${index}`} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
@@ -259,7 +274,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Additional Help Section */}
           <div className="mt-16 text-center">
             <div className="bg-white rounded-xl shadow-md p-8 max-w-2xl mx-auto">
@@ -297,7 +312,7 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link to="/contact">
-              <Button variant="primary" size="lg" className="bg-green-600 hover:bg-green-700">
+              <Button variant="primary" size="lg" className="bg-green-700 hover:bg-green-800">
                 Contact Us
               </Button>
             </Link>

@@ -5,49 +5,49 @@
     "images": [
       {
         "id": 1,
-        "src": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop",
+        "src": "/public/assets/GalleryImg/2.jpeg",
         "title": "Education Program"
       },
       {
-        "id": 2,
-        "src": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=400&h=300&fit=crop",
-        "title": "Health Camp"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/3.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 3,
-        "src": "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=300&fit=crop",
-        "title": "Women Empowerment"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/4.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 4,
-        "src": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
-        "title": "Agriculture Training"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/6.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 5,
-        "src": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop",
-        "title": "Housing Project"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/8.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 6,
-        "src": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&h=300&fit=crop",
-        "title": "Water Project"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/9.jpeg",
+        "title": "Education Program"
+      },
+        {
+        "id": 1,
+        "src": "/public/assets/GalleryImg/10.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 7,
-        "src": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop",
-        "title": "Community Meeting"
+        "id": 1,
+        "src": "/public/assets/GalleryImg/11.jpeg",
+        "title": "Education Program"
       },
       {
-        "id": 8,
-        "src": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
-        "title": "Volunteer Work"
-      },
-      {
-        "id": 9,
-        "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
-        "title": "Team Meeting"
-      }
+        "id": 1,
+        "src": "/public/assets/GalleryImg/12.jpeg",
+        "title": "Education Program"
+      } 
     ]
   },
   "team": {
