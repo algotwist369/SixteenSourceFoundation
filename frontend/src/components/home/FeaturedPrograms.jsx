@@ -12,10 +12,10 @@ const FeaturedPrograms = () => {
             <div className="max-w-[99rem] mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                        Our Initiative
+                        Our Programs
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Transform lives and build stronger communities through our impactful initiatives.
+                        Transform lives and build stronger communities through our impactful programs.
                     </p>
                 </div>
 
@@ -61,9 +61,9 @@ const FeaturedPrograms = () => {
                 </div>
 
                 <div className="text-center mt-10">
-                    <Link to="/our-initiative">
+                    <Link to="/programs">
                         <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold text-lg">
-                            Explore All Initiatives
+                            Explore All Programs
                         </button>
                     </Link>
                 </div>

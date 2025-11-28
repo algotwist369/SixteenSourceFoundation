@@ -8,63 +8,225 @@
   "courses": [
     {
       "id": 1,
-      "name": "Free Beauty Parlour Training",
-      "tagline": "Learn professional skills, gain confidence, and secure a job. 100% free.",
-      "description": "Master the art of beauty and wellness. From basic grooming to advanced techniques, we train you to become a professional beautician.",
+      "name": "Basic Professional Beautician",
+      "tagline": "Start your beauty career with comprehensive foundational training",
+      "description": "Complete basic beautician training covering threading, waxing, manicure, pedicure, facial, clean up, bleach, head massage, hair cutting, and root touch up techniques.",
       "image": "/assets/Courses/poster1.jpeg",
       "duration": "3 Months",
-      "benefits": [
-        "Professional beauty techniques",
-        "Industry-standard equipment training", 
-        "Job placement assistance",
-        "Startup support for salon business"
+      "fee": "₹2,500",
+      "topics": [
+        "Threading",
+        "Waxing",
+        "Manicure & Pedicure",
+        "Facial & Clean up",
+        "Bleach",
+        "Head massage",
+        "Hair cutting",
+        "Root touch up"
       ],
-      "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training",
+      "benefits": [
+        "Hands-on training with professional equipment",
+        "Job placement assistance",
+        "Certificate upon completion",
+        "Startup guidance for own salon"
+      ],
+      "isNew": false,
+      "enrollmentLink": "/enroll/basic-beautician",
       "volunteerLink": "/volunteer",
       "donateLink": "/donate"
     },
     {
       "id": 2,
-      "name": "Free Beauty Parlour Training",
-      "tagline": "Learn professional skills, gain confidence, and secure a job. 100% free.",
-      "description": "Master the art of beauty and wellness. From basic grooming to advanced techniques, we train you to become a professional beautician.",
-      "image": "/assets/Courses/poster1.jpeg",
-      "duration": "3 Months",
-      "benefits": [
-        "Professional beauty techniques",
-        "Industry-standard equipment training", 
-        "Job placement assistance",
-        "Startup support for salon business"
-      ],
-      "isNew": true,
-      "enrollmentLink": "/enroll/beauty-training",
-      "volunteerLink": "/volunteer",
-      "donateLink": "/donate"
-    },
-    {
-      "id": 2,
-      "name": "Advanced Beauty Parlour Training",
-      "tagline": "Master advanced beauty techniques, start your own salon, and build a successful business.",
-      "description": "Advanced beauty training including bridal makeup, hair styling, and salon management. Perfect for those ready to start their own beauty business.",
+      "name": "Professional Beautician (Advanced)",
+      "tagline": "Master advanced beauty techniques and become industry-ready",
+      "description": "Comprehensive professional training covering full face threading, waxing techniques (Rica, Brazilian), body waxing, advanced manicure/pedicure, facial techniques, and more.",
       "image": "/assets/Courses/poster2.jpeg",
-      "duration": "4 Months",
+      "duration": "2 Months",
+      "fee": "₹12,000",
+      "topics": [
+        "Full face threading",
+        "Different types of wax (Rica, Brazilian Max)",
+        "Role on wax & Full face/body waxing",
+        "Vagina wax",
+        "Advanced & Classic manicure pedicure",
+        "Spa manicure pedicure",
+        "Product knowledge & Skin analysis",
+        "Layer of skin & Skin types",
+        "Skin care, problems and conditions",
+        "Types of acne, pimples, and pigmentation",
+        "Facial massage techniques & Skin PH level",
+        "Skin protection UV-A, UV-B, UV-C",
+        "Bridal facial & Peel off mask facial"
+      ],
       "benefits": [
-        "Advanced beauty techniques",
-        "Bridal makeup specialization",
-        "Hair styling and coloring",
-        "Salon business management"
+        "Advanced techniques for professional salons",
+        "In-depth skin science knowledge",
+        "Bridal beauty specialization",
+        "Industry-recognized certification"
       ],
       "isNew": true,
-      "enrollmentLink": "/enroll/advanced-beauty-training",
+      "enrollmentLink": "/enroll/professional-beautician",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 3,
+      "name": "Professional Hair Styling Course",
+      "tagline": "Transform into a professional hair artist",
+      "description": "Specialized hair styling course covering hair straightening, carrotting, botox, highlighting, and professional hair cutting techniques.",
+      "image": "/assets/Courses/poster3.jpeg",
+      "duration": "Included in Professional Beautician",
+      "topics": [
+        "Hair straightening",
+        "Carrotting",
+        "Botox treatment",
+        "Highlight techniques",
+        "Professional hair cutting"
+      ],
+      "benefits": [
+        "Modern hair styling techniques",
+        "Chemical treatment safety training",
+        "Latest trends and styles",
+        "Hands-on practice sessions"
+      ],
+      "isNew": false,
+      "enrollmentLink": "/enroll/hair-styling",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 4,
+      "name": "Professional Makeup Artist Course",
+      "tagline": "Master the art of makeup and create stunning transformations",
+      "description": "Complete makeup artistry training covering theory, face shapes, color correction, eye makeup, contouring, and all types of draping techniques.",
+      "image": "/assets/Courses/poster4.jpeg",
+      "duration": "2 Months",
+      "fee": "₹15,000",
+      "topics": [
+        "Makeup Theory & Face shapes",
+        "Colour wheel/colour correction",
+        "Brush Theory & Skin preparation",
+        "Product Knowledge & Skin correction",
+        "Eye makeup (Party, Bridal, cut crease)",
+        "Multi coloured & Smudged wing liner application",
+        "Eyebrow defining",
+        "Eye lashes and their application",
+        "Contouring and highlight",
+        "Cream and powder application",
+        "Blush application",
+        "Lip shapes, lipstick types and application",
+        "HD Makeup",
+        "Hair styling (Basics, Blow dry, Party & Bridal)",
+        "All types of draping"
+      ],
+      "benefits": [
+        "Professional makeup kit training",
+        "Bridal makeup specialization",
+        "Portfolio building support",
+        "Freelance career guidance"
+      ],
+      "isNew": true,
+      "enrollmentLink": "/enroll/makeup-artist",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 5,
+      "name": "Mehandi Professional Artist - Level 1",
+      "tagline": "Learn traditional and modern mehandi art from basics",
+      "description": "Foundational mehandi course covering basic elements, thick & thin lines, belts, grids, floral vines, Arabic design, Mandala style, and Indian bridal demonstration.",
+      "image": "/assets/Courses/poster5.jpeg",
+      "duration": "1 Month",
+      "fee": "₹2,000",
+      "topics": [
+        "Basic Elements",
+        "Thick & Thin Lines Techniques",
+        "Types of Belts",
+        "Types of Intricate Grids",
+        "Floral Vines",
+        "Types of Jhumkas",
+        "Shapes, Flowers & Paisley",
+        "Different types of Filling & Grids",
+        "Vines & Leaves",
+        "Arabic Design",
+        "Mandala Style",
+        "Indian bridal demonstration"
+      ],
+      "benefits": [
+        "Traditional and contemporary designs",
+        "Bridal mehandi expertise",
+        "Home-based business opportunity",
+        "Festival and event bookings guidance"
+      ],
+      "isNew": false,
+      "enrollmentLink": "/enroll/mehandi-level1",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 6,
+      "name": "Mehandi Professional Artist - Level 2",
+      "tagline": "Advanced mehandi designs for professional artists",
+      "description": "Advanced mehandi training focusing on intricate designs, peacock theme, cutwork, florals, bridal elements, and social media branding.",
+      "image": "/assets/Courses/poster6.jpeg",
+      "duration": "1 Month",
+      "fee": "₹5,000",
+      "topics": [
+        "Types of Belts",
+        "Peacock Theme",
+        "Cutwork Design",
+        "Florals, Indo Western",
+        "Bridal Shagun Elements",
+        "Elephant & its borders",
+        "Baby shower designs",
+        "Bridal hand demo",
+        "Leg Design",
+        "Groom And Bridal",
+        "Cone & paste Making",
+        "Social media handling"
+      ],
+      "benefits": [
+        "Professional bridal mehandi skills",
+        "Business and marketing training",
+        "Premium design portfolio",
+        "Social media promotion techniques"
+      ],
+      "isNew": true,
+      "enrollmentLink": "/enroll/mehandi-level2",
+      "volunteerLink": "/volunteer",
+      "donateLink": "/donate"
+    },
+    {
+      "id": 7,
+      "name": "Mehandi Professional Artist - Level 3",
+      "tagline": "Master level mehandi artistry for portrait and bridal work",
+      "description": "Expert-level mehandi training specializing in portrait mehandi and intricate bridal designs.",
+      "image": "/assets/Courses/poster7.jpeg",
+      "duration": "15 Days",
+      "fee": "₹3,000",
+      "topics": [
+        "Portrait mehandi",
+        "Bridal mehandi mastery",
+        "Advanced intricate patterns",
+        "Professional finishing techniques"
+      ],
+      "benefits": [
+        "Master artist certification",
+        "Premium client acquisition",
+        "Portfolio development",
+        "High-end event opportunities"
+      ],
+      "isNew": true,
+      "enrollmentLink": "/enroll/mehandi-level3",
       "volunteerLink": "/volunteer",
       "donateLink": "/donate"
     }
   ],
   "stats": {
-    "totalCourses": 2,
-    "studentsTrained": "2,500+",
+    "totalCourses": 7,
+    "studentsTrained": "3,500+",
     "jobPlacement": "85%",
-    "successStories": "1,200+"
+    "successStories": "1,800+",
+    "coursesOffered": "Beauty, Makeup, Mehandi, Hair Styling"
   }
 }

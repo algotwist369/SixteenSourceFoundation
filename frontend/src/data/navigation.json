@@ -1,6 +1,6 @@
 {
   "mainNav": [
-    { "name": "Our Initiative", "path": "/our-initiative" },
+    { "name": "Skill Development", "path": "/courses" },
     { "name": "About", "path": "/about" },
     { "name": "Gallery", "path": "/gallery" },
     { "name": "Team", "path": "/team" },

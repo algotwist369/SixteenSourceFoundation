@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/common/Button";
 import Hero from "../components/home/Hero";
-import FeaturedPrograms from "../components/home/FeaturedPrograms";
-import TrainingCourses from "../components/home/TrainingCourses";
 import DonateSection from "../components/home/DonateSection";
+import OurStory from "../components/home/OurStory";
+import CaseStudy from "../components/home/CaseStudy";
 import organizationData from "../data/organization.json";
 import homeData from "../data/homeData.json";
+import SuccessStories from "../components/home/SuccessStories";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-4xl md:text-5xl font-bold text-white mb-2" }) => {
@@ -85,6 +86,11 @@ const Home = () => {
       {/* Hero Section */}
       <Hero />
 
+      {/* Our Story Section */}
+      <OurStory />
+
+      {/* Case Study Section */}
+      <CaseStudy />
 
       {/* Gallery Section */}
       <section className="py-20 px-6 bg-white">
@@ -150,9 +156,6 @@ const Home = () => {
           </div>
         </div>
       )}
-
-      {/* Training & Courses Section */}
-      <TrainingCourses />
 
       {/* Team Section */}
       <section className="py-20 px-6 bg-gray-50">
@@ -239,6 +242,11 @@ const Home = () => {
         </div>
       </section>
 
+      <SuccessStories />
+
+      {/* Donate Section */}
+      <DonateSection />
+
       {/* FAQ Section */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-[99rem] mx-auto">
@@ -256,7 +264,7 @@ const Home = () => {
               <div key={`faq-${index}`} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <button
                   onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-green-50 transition-colors flex justify-between items-start"
+                  className="w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-green-50 transition-colors hover:text-white flex justify-between items-start"
                 >
                   <span className="text-left pr-4 leading-relaxed">{faq.question}</span>
                   <span className={`text-green-600 transform transition-transform duration-300 flex-shrink-0 mt-1 ${activeFaq === index ? 'rotate-180' : ''}`}>
@@ -275,35 +283,8 @@ const Home = () => {
               </div>
             ))}
           </div>
-
-          {/* Additional Help Section */}
-          <div className="mt-16 text-center">
-            <div className="bg-white rounded-xl shadow-md p-8 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Still have questions?
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Our team is here to help. Reach out to us for personalized assistance.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link to="/contact">
-                  <Button variant="primary" size="lg">
-                    Contact Us
-                  </Button>
-                </Link>
-                <Link to="/donate">
-                  <Button variant="outline" size="lg">
-                    Donate Now
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
-
-      {/* Donate Section */}
-      <DonateSection />
 
       {/* Contact Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-green-500 to-green-600 text-white">

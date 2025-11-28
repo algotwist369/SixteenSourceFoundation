@@ -132,11 +132,11 @@ const ProgramDetails = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="max-w-4xl mx-auto px-6 text-center">
                         <Link 
-                            to="/our-initiative" 
+                            to="/programs" 
                             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-8"
                         >
                             <FaArrowLeft className="text-sm" />
-                            <span className="text-sm">Back to Initiatives</span>
+                            <span className="text-sm">Back to Programs</span>
                         </Link>
                         
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -448,9 +448,9 @@ const ProgramDetails = () => {
                         </div>
                         
                         <div className="text-center mt-10">
-                            <Link to="/our-initiative">
+                            <Link to="/programs">
                                 <Button variant="outline" size="lg">
-                                    View All Initiatives
+                                    View All Programs
                                 </Button>
                             </Link>
                         </div>
