@@ -1,0 +1,37 @@
+const express = require("express");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+const { createTeam, getAllTeams, getTeamById, updateTeam, deleteTeam, uploadTeamPhoto } = require("../controllers/teamController");
+
+const router = express.Router();
+
+const uploadDir = path.join(__dirname, "..", "uploads", "profile");
+fs.mkdirSync(uploadDir, { recursive: true });
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname || "");
+        const name = Date.now().toString() + "-" + Math.random().toString(36).slice(2, 8) + ext;
+        cb(null, name);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype && file.mimetype.startsWith("image/")) cb(null, true);
+    else cb(null, false);
+};
+
+const upload = multer({ storage, fileFilter });
+
+router.post("/", createTeam);
+router.post("/upload", upload.single("photo"), uploadTeamPhoto);
+router.get("/", getAllTeams);
+router.get("/:id", getTeamById);
+router.put("/:id", updateTeam);
+router.delete("/:id", deleteTeam);
+
+module.exports = router;

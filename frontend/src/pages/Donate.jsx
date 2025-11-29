@@ -5,6 +5,7 @@ import Card from "../components/common/Card";
 import Heading from "../components/common/Heading";
 import Button from "../components/common/Button";
 import { FaHeart, FaGraduationCap, FaHeartbeat, FaHome, FaCheckCircle } from "react-icons/fa";
+import DonateSection from "../components/home/DonateSection";
 
 const Donate = () => {
     const [selectedAmount, setSelectedAmount] = useState(null);
@@ -67,102 +68,8 @@ const Donate = () => {
 
             {/* Donation Form */}
             <Section>
-                <Heading
-                    title="Choose Your Donation"
-                    subtitle="Select an amount or enter your own"
-                />
-                <Card className="max-w-3xl mx-auto mt-10">
-                    {/* Donation Type */}
-                    <div className="flex justify-center gap-4 mb-6">
-                        <button
-                            onClick={() => setDonationType("one-time")}
-                            className={`px-6 py-3 rounded-lg font-semibold transition ${
-                                donationType === "one-time"
-                                    ? "bg-green-600 text-white"
-                                    : "bg-gray-200 text-gray-700"
-                            }`}
-                        >
-                            One-Time
-                        </button>
-                        <button
-                            onClick={() => setDonationType("monthly")}
-                            className={`px-6 py-3 rounded-lg font-semibold transition ${
-                                donationType === "monthly"
-                                    ? "bg-green-600 text-white"
-                                    : "bg-gray-200 text-gray-700"
-                            }`}
-                        >
-                            Monthly
-                        </button>
-                    </div>
+                <DonateSection />
 
-                    {/* Preset Amounts */}
-                    <div className="grid grid-cols-3 md:grid-cols-5 gap-4 mb-6">
-                        {amounts.map((amount) => (
-                            <button
-                                key={amount}
-                                onClick={() => {
-                                    setSelectedAmount(amount);
-                                    setCustomAmount("");
-                                }}
-                                className={`p-4 rounded-lg font-semibold border-2 transition ${
-                                    selectedAmount === amount
-                                        ? "border-green-600 bg-green-50 text-green-600"
-                                        : "border-gray-300 hover:border-green-400"
-                                }`}
-                            >
-                                ₹{amount}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Custom Amount */}
-                    <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Or enter custom amount
-                        </label>
-                        <input
-                            type="number"
-                            value={customAmount}
-                            onChange={(e) => {
-                                setCustomAmount(e.target.value);
-                                setSelectedAmount(null);
-                            }}
-                            placeholder="Enter amount in ₹"
-                            className="w-full px-4 py-3 border-2 border-gray-300 
-                                rounded-lg shadow-sm focus:outline-none 
-                                focus:ring-2 focus:ring-green-500 text-lg"
-                        />
-                    </div>
-
-                    {/* Selected Amount Display */}
-                    {(selectedAmount || customAmount) && (
-                        <div className="bg-green-50 p-4 rounded-lg mb-6 text-center">
-                            <p className="text-gray-600 mb-1">You are donating</p>
-                            <p className="text-3xl font-bold text-green-600">
-                                ₹{selectedAmount || customAmount}
-                            </p>
-                            {donationType === "monthly" && (
-                                <p className="text-sm text-gray-500 mt-1">per month</p>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Donate Button */}
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full"
-                        onClick={handleDonate}
-                    >
-                        Proceed to Payment
-                    </Button>
-
-                    {/* Security Note */}
-                    <p className="text-center text-sm text-gray-500 mt-4">
-                        🔒 Secure payment gateway • 100% safe & encrypted
-                    </p>
-                </Card>
             </Section>
 
             {/* Where Your Money Goes */}
