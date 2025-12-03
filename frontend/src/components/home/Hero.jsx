@@ -31,9 +31,8 @@ const Hero = () => {
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${
-                        index === current ? "opacity-100 z-10" : "opacity-0 z-0"
-                    }`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${index === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                        }`}
                     aria-hidden={index !== current}
                 >
                     {/* Full Image */}
@@ -42,9 +41,8 @@ const Hero = () => {
                             src={slide.image}
                             alt={slide.title}
                             loading="lazy"
-                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out ${
-                                index === current ? "scale-110" : "scale-100"
-                            }`}
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out ${index === current ? "scale-110" : "scale-100"
+                                }`}
                         />
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80"></div>
@@ -53,23 +51,20 @@ const Hero = () => {
                     {/* Text & Buttons */}
                     <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 z-20">
                         <h1
-                            className={`text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl transition-all duration-700 ${
-                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                            }`}
+                            className={`text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl transition-all duration-700 ${index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                                }`}
                         >
                             {slide.title}
                         </h1>
                         <p
-                            className={`text-lg md:text-2xl text-gray-100 max-w-3xl mb-8 drop-shadow-lg transition-all duration-700 delay-200 ${
-                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                            }`}
+                            className={`text-lg md:text-2xl text-gray-100 max-w-3xl mb-8 drop-shadow-lg transition-all duration-700 delay-200 ${index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                                }`}
                         >
                             {slide.subtitle}
                         </p>
                         <div
-                            className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-700 delay-400 ${
-                                index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                            }`}
+                            className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-700 delay-400 ${index === current ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                                }`}
                         >
                             <Link to="/donate">
                                 <Button variant="primary" size="lg">
@@ -114,11 +109,10 @@ const Hero = () => {
                     <button
                         key={index}
                         onClick={() => setCurrent(index)}
-                        className={`transition-all duration-300 rounded-full ${
-                            index === current
+                        className={`transition-all duration-300 rounded-full ${index === current
                                 ? "bg-white w-8 h-3"
                                 : "bg-white/50 w-3 h-3 hover:bg-white/75"
-                        }`}
+                            }`}
                         aria-label={`Go to slide ${index + 1}`}
                         aria-current={index === current}
                     />

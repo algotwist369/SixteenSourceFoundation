@@ -3,12 +3,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Button from "./Button";
 import navigationData from "../../data/navigation.json";
-import organizationData from "../../data/organization.json";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { mainNav } = navigationData;
-    const { name } = organizationData;
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -31,9 +29,9 @@ const Navbar = () => {
                         className="flex items-center gap-2 text-2xl font-semibold text-green-700 hover:text-green-800 transition"
                     >
                         <img
-                            src={'/assets/logo/mainlogo.jpeg'}
+                            src={'/assets/logo/logos.png'}
                             alt="Organization Logo"
-                            className="h-20 w-32 object-contain rounded-md"
+                            className="h-20 w-[19rem] object-contain rounded-md"
                         />
                     </button>
 

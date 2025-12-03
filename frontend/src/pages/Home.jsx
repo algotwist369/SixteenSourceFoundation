@@ -8,6 +8,7 @@ import CaseStudy from "../components/home/CaseStudy";
 import organizationData from "../data/organization.json";
 import homeData from "../data/homeData.json";
 import SuccessStories from "../components/home/SuccessStories";
+import { getAllFaqs } from "../admin/services/faq";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-4xl md:text-5xl font-bold text-white mb-2" }) => {
@@ -65,11 +66,29 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-
 };
 
 const Home = () => {
+
+  // get all faqs
+  const [faqs, setFaqs] = useState([]);
+
+  // get all faqs
+  useEffect(() => {
+    const getFaqs = async () => {
+      try {
+        const response = await getAllFaqs();
+        if (response && response.data) {
+          setFaqs(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching FAQs:", error);
+      }
+    }
+    getFaqs();
+  }, []);
+
+
   const { tagline, mission, stats, team, values } = organizationData;
   const [activeFaq, setActiveFaq] = useState(null);
-
   const galleryImages = homeData.gallery.images;
-  const faqs = homeData.faq.questions;
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -252,36 +271,40 @@ const Home = () => {
         <div className="max-w-[99rem] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              {homeData.faq.title}
+              Frequently Asked Questions
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {homeData.faq.description}
+              Get answers to common questions about donating, volunteering, and supporting our mission
             </p>
           </div>
 
           <div className="space-y-4 max-w-4xl mx-auto">
-            {faqs.map((faq, index) => (
-              <div key={`faq-${index}`} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                <button
-                  onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-green-50 transition-colors hover:text-white flex justify-between items-start"
-                >
-                  <span className="text-left pr-4 leading-relaxed">{faq.question}</span>
-                  <span className={`text-green-600 transform transition-transform duration-300 flex-shrink-0 mt-1 ${activeFaq === index ? 'rotate-180' : ''}`}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </button>
-                {activeFaq === index && (
-                  <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100">
-                    <div className="pt-4">
-                      {faq.answer}
+            {faqs.length > 0 ? (
+              faqs.map((faq, index) => (
+                <div key={faq._id || index} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                  <button
+                    onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                    className="w-full px-6 py-5 text-left font-semibold text-gray-800 hover:bg-green-50 transition-colors flex justify-between items-start"
+                  >
+                    <span className="text-left pr-4 leading-relaxed">{faq.question}</span>
+                    <span className={`text-green-600 transform transition-transform duration-300 flex-shrink-0 mt-1 ${activeFaq === index ? 'rotate-180' : ''}`}>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </button>
+                  {activeFaq === index && (
+                    <div className="px-6 pb-5 text-gray-600 leading-relaxed border-t border-gray-100">
+                      <div className="pt-4">
+                        {faq.answer}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No FAQs available at the moment.</p>
+            )}
           </div>
         </div>
       </section>

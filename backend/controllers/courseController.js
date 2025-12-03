@@ -44,7 +44,7 @@ const createCourse = async (req, res) => {
             duration,
             topics,
             benefits,
-            isNew,
+            isNewCourse,
             number
         } = req.body;
 
@@ -64,7 +64,7 @@ const createCourse = async (req, res) => {
             duration,
             topics: Array.isArray(topics) ? topics : [],
             benefits: Array.isArray(benefits) ? benefits : [],
-            isNew: isNew || false,
+            isNewCourse: isNewCourse || false,
             number: number || 0
         });
 
@@ -191,10 +191,34 @@ const deleteCourse = async (req, res) => {
     }
 };
 
+// Upload Course Image
+const uploadCourseImage = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "No image file uploaded"
+            });
+        }
+
+        const imagePath = `uploads/courses/${req.file.filename}`;
+
+        res.status(200).json({
+            success: true,
+            message: "Image uploaded successfully",
+            image: imagePath
+        });
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};
+
 module.exports = {
     getAllCourses,
     createCourse,
     deleteCourse,
     updateCourse,
-    getCourseById
-}
+    getCourseById,
+    uploadCourseImage
+};

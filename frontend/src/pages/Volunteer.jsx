@@ -128,7 +128,7 @@ const Volunteer = () => {
                 <PageHeader
                     title="Application Submitted!"
                     subtitle="Thank you for your interest in volunteering with us"
-                    image="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=400&fit=crop"
+                    image="/assets/newbanner.png"
                 />
                 <Section>
                     <div className="max-w-3xl mx-auto text-center">

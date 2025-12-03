@@ -11,6 +11,7 @@ const getAllFaqs = async (req, res) => {
 
         return res.status(200).json({ success: true, total, page, totalPages: Math.ceil(total / limit), limit, data: items });
     } catch (error) {
+        console.error("Error in getAllFaqs:", error);
         return res.status(500).json({ message: "Server Error" });
     }
 };

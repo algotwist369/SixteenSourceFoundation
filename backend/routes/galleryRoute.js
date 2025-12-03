@@ -7,7 +7,9 @@ const { uploadSingleImage, uploadMultipleImages, getAllGalleries, getGalleryById
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, "..", "uploads", "gallery");
-fs.mkdirSync(uploadDir, { recursive: true });
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {

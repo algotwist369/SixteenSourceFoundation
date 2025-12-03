@@ -70,4 +70,26 @@ const deleteCaseStudy = async (req, res) => {
     }
 };
 
-module.exports = { getAllCaseStudies, createCaseStudy, getCaseStudyById, updateCaseStudy, deleteCaseStudy };
+const uploadCaseStudyImage = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "No image file uploaded"
+            });
+        }
+
+        const imagePath = `uploads/caseStudies/${req.file.filename}`;
+
+        res.status(200).json({
+            success: true,
+            message: "Image uploaded successfully",
+            image: imagePath
+        });
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        res.status(500).json({ message: "Server Error" });
+    }
+};
+
+module.exports = { getAllCaseStudies, createCaseStudy, getCaseStudyById, updateCaseStudy, deleteCaseStudy, uploadCaseStudyImage };

@@ -2,7 +2,7 @@ import React from "react";
 
 const PageHeader = ({ title, subtitle, image }) => {
     return (
-        <div className="relative h-[45vh] w-full overflow-hidden">
+        <div className="relative h-[60vh] w-full overflow-hidden">
             {image && (
                 <>
                     <img

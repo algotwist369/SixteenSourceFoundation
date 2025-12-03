@@ -41,7 +41,7 @@ const DonateSection = () => {
                             <FaUniversity className="text-3xl text-green-600" />
                             <h3 className="text-2xl font-bold text-gray-800">Bank Transfer</h3>
                         </div>
-                        
+
                         <div className="space-y-4">
                             <div className="bg-gray-50 rounded-lg p-4">
                                 <div className="flex justify-between items-center">
@@ -49,7 +49,7 @@ const DonateSection = () => {
                                         <p className="text-sm text-gray-600 mb-1">Account Name</p>
                                         <p className="font-semibold text-gray-800">{bankDetails.accountName}</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => copyToClipboard(bankDetails.accountName, "Account Name")}
                                         className="text-green-600 hover:text-green-700"
                                     >
@@ -64,7 +64,7 @@ const DonateSection = () => {
                                         <p className="text-sm text-gray-600 mb-1">Account Number</p>
                                         <p className="font-semibold text-gray-800 text-lg">{bankDetails.accountNumber}</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => copyToClipboard(bankDetails.accountNumber, "Account Number")}
                                         className="text-green-600 hover:text-green-700"
                                     >
@@ -79,7 +79,7 @@ const DonateSection = () => {
                                         <p className="text-sm text-gray-600 mb-1">IFSC Code</p>
                                         <p className="font-semibold text-gray-800 text-lg">{bankDetails.ifscCode}</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => copyToClipboard(bankDetails.ifscCode, "IFSC Code")}
                                         className="text-green-600 hover:text-green-700"
                                     >
@@ -112,7 +112,7 @@ const DonateSection = () => {
                             <FaQrcode className="text-3xl text-green-600" />
                             <h3 className="text-2xl font-bold text-gray-800">UPI / QR Code</h3>
                         </div>
-                        
+
                         <div className="text-center">
                             <div className="bg-gray-100 rounded-2xl p-8 mb-6 inline-block">
                                 <div className="w-64 h-64 bg-white rounded-xl flex items-center justify-center">
@@ -124,14 +124,14 @@ const DonateSection = () => {
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div className="bg-gray-50 rounded-lg p-4 mb-6">
                                 <div className="flex justify-between items-center">
                                     <div className="text-left">
                                         <p className="text-sm text-gray-600 mb-1">UPI ID</p>
                                         <p className="font-semibold text-gray-800 text-lg">{bankDetails.upiId}</p>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => copyToClipboard(bankDetails.upiId, "UPI ID")}
                                         className="text-green-600 hover:text-green-700"
                                     >

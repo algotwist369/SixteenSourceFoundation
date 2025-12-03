@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 const BankTransfer = require("../models/bankTransfer");
 
 const uploadQrCode = async (req, res) => {
@@ -60,8 +62,18 @@ const updateBankTransfer = async (req, res) => {
         if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
             return res.status(400).json({ success: false, message: "Invalid bank transfer ID" });
         }
+
+        const existingDoc = await BankTransfer.findById(id);
+        if (!existingDoc) return res.status(404).json({ success: false, message: "Bank transfer not found" });
+
+        if (req.body.qrCodeImage && existingDoc.qrCodeImage && req.body.qrCodeImage !== existingDoc.qrCodeImage) {
+            if (existingDoc.qrCodeImage.startsWith("uploads/")) {
+                const absPath = path.join(__dirname, "..", existingDoc.qrCodeImage);
+                try { await fs.promises.unlink(absPath); } catch (err) { console.error("Failed to delete old image:", err); }
+            }
+        }
+
         const updated = await BankTransfer.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
-        if (!updated) return res.status(404).json({ success: false, message: "Bank transfer not found" });
         return res.status(200).json({ success: true, message: "Bank transfer updated", data: updated });
     } catch (error) {
         return res.status(500).json({ success: false, message: "Server Error" });
@@ -74,8 +86,16 @@ const deleteBankTransfer = async (req, res) => {
         if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
             return res.status(400).json({ success: false, message: "Invalid bank transfer ID" });
         }
-        const deleted = await BankTransfer.findByIdAndDelete(id);
-        if (!deleted) return res.status(404).json({ success: false, message: "Bank transfer not found" });
+
+        const doc = await BankTransfer.findById(id);
+        if (!doc) return res.status(404).json({ success: false, message: "Bank transfer not found" });
+
+        if (doc.qrCodeImage && doc.qrCodeImage.startsWith("uploads/")) {
+            const absPath = path.join(__dirname, "..", doc.qrCodeImage);
+            try { await fs.promises.unlink(absPath); } catch (err) { console.error("Failed to delete image:", err); }
+        }
+
+        await BankTransfer.findByIdAndDelete(id);
         return res.status(200).json({ success: true, message: "Bank transfer deleted" });
     } catch (error) {
         return res.status(500).json({ success: false, message: "Server Error" });

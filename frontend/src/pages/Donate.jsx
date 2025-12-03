@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
 import Heading from "../components/common/Heading";
-import Button from "../components/common/Button";
 import { FaHeart, FaGraduationCap, FaHeartbeat, FaHome, FaCheckCircle } from "react-icons/fa";
 import DonateSection from "../components/home/DonateSection";
 
 const Donate = () => {
     const [selectedAmount, setSelectedAmount] = useState(null);
     const [customAmount, setCustomAmount] = useState("");
-    const [donationType, setDonationType] = useState("one-time");
-
-    const amounts = [500, 1000, 2500, 5000, 10000];
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const causes = [
         {
@@ -61,9 +60,9 @@ const Donate = () => {
     return (
         <div>
             <PageHeader
-                title="Make a Donation"
-                subtitle="Your generosity changes lives. Every rupee counts."
-                image="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&h=400&fit=crop"
+                // title="Make a Donation"
+                // subtitle="Your generosity changes lives. Every rupee counts."
+                image="/assets/sbanner.jpg"
             />
 
             {/* Donation Form */}

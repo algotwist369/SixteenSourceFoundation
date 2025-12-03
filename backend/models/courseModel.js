@@ -7,7 +7,7 @@ const courseSchema = new mongoose.Schema({
     duration: String,
     topics: [String],
     benefits: [String],
-    isNew: Boolean,
+    isNewCourse: Boolean,
     number: Number,
     createdAt: {
         type: Date,
