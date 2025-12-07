@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Button from "./Button";
 import navigationData from "../../data/navigation.json";
+import GoogleTranslate from "./GoogleTranslate";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +65,8 @@ const Navbar = () => {
                         >
                             Donate
                         </Button>
+                    {/* <GoogleTranslate /> */}
+
                     </div>
 
                     {/* Mobile Toggle Button */}
@@ -123,6 +126,7 @@ const Navbar = () => {
                     >
                         Donate
                     </Button>
+                    {/* <GoogleTranslate /> */}
                 </div>
             </div>
         </nav>

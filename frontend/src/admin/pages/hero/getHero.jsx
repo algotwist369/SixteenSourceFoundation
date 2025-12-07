@@ -2,7 +2,6 @@ import React, { useRef, memo, useCallback } from 'react';
 import useHero from '../../hooks/useHero';
 import { Link } from 'react-router-dom';
 import { HiPencil, HiTrash } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
 
 const GetHero = memo(() => {
     const { heroSlides, loading, error, removeHeroSlide, fetchHeroSlides } = useHero();
@@ -28,6 +27,11 @@ const GetHero = memo(() => {
         return <div className="text-center py-10 text-red-600">{error}</div>;
     }
 
+    const imageSrc = (image) => {
+        if (!image) return 'https://via.placeholder.com/300x200';
+        return image.startsWith('http') ? image : `${SERVER_URL}/${image}`;
+    };
+
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
@@ -49,7 +53,7 @@ const GetHero = memo(() => {
                             <div className="relative h-48">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={slide.image ? `${SERVER_URL}/${slide.image}` : 'https://via.placeholder.com/300x200'}
+                                    src={imageSrc(slide.image)}
                                     alt={slide.title || 'Hero Slide'}
                                     loading="lazy"
                                 />

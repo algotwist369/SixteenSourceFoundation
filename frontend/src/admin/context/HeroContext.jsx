@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback } from 'react';
 import { getAllHeroSlides, getHeroSlideById, createHeroSlide, updateHeroSlide, deleteHeroSlide, uploadHeroImage } from '../services/hero';
+import { SERVER_URL } from '../../env';
 
 export const HeroContext = createContext();
 
@@ -8,12 +9,36 @@ export const HeroProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const normalizeSlides = (rawList) => {
+        return rawList.map((slide, idx) => {
+            const image = slide?.image
+                ? (slide.image.startsWith('http') ? slide.image : `${SERVER_URL}/${slide.image}`)
+                : 'https://via.placeholder.com/800x400?text=Hero';
+
+            return {
+                ...slide,
+                _id: slide?._id || slide?.id || idx,
+                title: slide?.title || '',
+                subtitle: slide?.subtitle || '',
+                image
+            };
+        });
+    };
+
+    const extractList = (data) => {
+        if (Array.isArray(data?.data)) return data.data;
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data?.data?.data)) return data.data.data;
+        return [];
+    };
+
     const fetchHeroSlides = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
             const data = await getAllHeroSlides();
-            setHeroSlides(data.data || []);
+            const list = extractList(data);
+            setHeroSlides(normalizeSlides(list));
         } catch (err) {
             setError(err.message || 'Failed to fetch hero slides');
         } finally {
@@ -40,7 +65,9 @@ export const HeroProvider = ({ children }) => {
         setError(null);
         try {
             const newSlide = await createHeroSlide(heroData);
-            setHeroSlides((prev) => [newSlide.data, ...prev]);
+            const list = extractList(newSlide);
+            const normalized = list.length > 0 ? normalizeSlides(list) : [normalizeSlides([newSlide.data || newSlide])[0]];
+            setHeroSlides((prev) => [...normalized, ...prev]);
             return newSlide;
         } catch (err) {
             setError(err.message || 'Failed to create hero slide');
@@ -55,7 +82,9 @@ export const HeroProvider = ({ children }) => {
         setError(null);
         try {
             const updatedSlide = await updateHeroSlide(id, heroData);
-            setHeroSlides((prev) => prev.map((slide) => (slide._id === id ? updatedSlide.data : slide)));
+            const list = extractList(updatedSlide);
+            const normalized = list.length > 0 ? normalizeSlides(list)[0] : normalizeSlides([updatedSlide.data || updatedSlide])[0];
+            setHeroSlides((prev) => prev.map((slide) => (slide._id === id ? normalized : slide)));
             return updatedSlide;
         } catch (err) {
             setError(err.message || 'Failed to update hero slide');

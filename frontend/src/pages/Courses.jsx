@@ -1,9 +1,9 @@
-import React, { useMemo, memo, useEffect } from "react";
+import React, { useMemo, memo, useEffect, useState, useRef } from "react";
 import Section from "../components/common/Section";
 import Heading from "../components/common/Heading";
 import Button from "../components/common/Button";
-import trainingData from "../data/trainingData.json";
-import organizationData from "../data/organization.json";
+import { getAllCourses } from "../admin/services/course";
+import { SERVER_URL } from "../env";
 
 // WhatsApp phone number (from organization data)
 const WHATSAPP_PHONE = "919930721145"; // +91-9930721145 without dashes
@@ -117,11 +117,92 @@ const CourseCard = memo(({ course }) => {
 CourseCard.displayName = "CourseCard";
 
 const Courses = memo(() => {
-  const { section, courses } = useMemo(() => trainingData, []);
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
+
+  const section = {
+    title: "Training & Courses We Offer",
+    description: "Every skill you learn here is a step toward independence and lifelong impact.",
+    subtitle: "Learn new skills, become job-ready, and transform your future"
+  };
+
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const fetchCourses = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await getAllCourses();
+        const rawList = Array.isArray(response?.data)
+          ? response.data
+          : Array.isArray(response)
+            ? response
+            : Array.isArray(response?.data?.data)
+              ? response.data.data
+              : [];
+
+        const normalized = rawList.map((course, index) => {
+          const img = course?.image;
+          const imageSrc = img
+            ? (img.startsWith("http") ? img : `${SERVER_URL}/${img}`)
+            : "https://via.placeholder.com/600x400?text=Course";
+
+          const topics = Array.isArray(course?.topics) ? course.topics : [];
+
+          return {
+            id: course?._id || course?.id || index,
+            name: course?.name || course?.title || `Course ${index + 1}`,
+            tagline: course?.tagline || "",
+            description: course?.description || "",
+            duration: course?.duration || "Duration not specified",
+            topics,
+            image: imageSrc,
+            isNew: Boolean(course?.isNewCourse || course?.isNew)
+          };
+        });
+
+        setCourses(normalized);
+      } catch (err) {
+        setError(err?.response?.data?.message || "Unable to load courses right now.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  }, []);
+
+  if (loading && courses.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20 pb-12 sm:pb-16 flex items-center justify-center">
+        <p className="text-gray-600">Loading courses...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20 pb-12 sm:pb-16 flex items-center justify-center">
+        <p className="text-red-600">{error}</p>
+      </div>
+    );
+  }
+
+  if (courses.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20 pb-12 sm:pb-16 flex items-center justify-center">
+        <p className="text-gray-600">No courses available right now. Please check back soon.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16 sm:pt-20 pb-12 sm:pb-16">

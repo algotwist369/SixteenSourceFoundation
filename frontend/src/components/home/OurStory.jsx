@@ -1,15 +1,109 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
+import { getAllOurStories } from "../../admin/services/ourStory";
+import { SERVER_URL } from "../../env";
 import organizationData from "../../data/organization.json";
 
 const OurStory = memo(() => {
-    const { name, tagline, mission, vision, established, stats } = organizationData;
-    const yearsOfImpact = new Date().getFullYear() - parseInt(established);
+    const [story, setStory] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const hasFetched = useRef(false);
 
-    // YouTube video ID
-    const youtubeVideoId = "bRrSjQSE8mA";
-    const embedUrl = `https://www.youtube.com/embed/${youtubeVideoId}`;
+    const { established, stats } = organizationData;
+    const yearsOfImpact = new Date().getFullYear() - parseInt(established, 10);
+
+    useEffect(() => {
+        if (hasFetched.current) return;
+        hasFetched.current = true;
+
+        const fetchStories = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await getAllOurStories(1, 1);
+                const rawList = Array.isArray(response?.data)
+                    ? response.data
+                    : Array.isArray(response)
+                        ? response
+                        : Array.isArray(response?.data?.data)
+                            ? response.data.data
+                            : [];
+
+                const first = rawList[0] || null;
+
+                if (first) {
+                    setStory({
+                        title: first.title || "Our Story",
+                        ourJourney: first.ourJourney || "",
+                        ourMission: first.ourMission || "",
+                        ourStrategy: Array.isArray(first.ourStrategy) ? first.ourStrategy : [],
+                        video: first.video ? `${SERVER_URL}/${first.video}` : null,
+                        number: first.number
+                    });
+                } else {
+                    setStory(null);
+                }
+            } catch (err) {
+                setError(err?.response?.data?.message || "Unable to load our story right now.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStories();
+    }, []);
+
+    const journeyText = useMemo(() => {
+        if (story?.ourJourney) return story.ourJourney;
+        return `Established in ${established}, we have been transforming lives and building stronger communities for over ${yearsOfImpact} years.`;
+    }, [established, story?.ourJourney, yearsOfImpact]);
+
+    const missionText = story?.ourMission || organizationData.mission;
+    const strategyPoints = story?.ourStrategy || [];
+
+    const videoContent = story?.video
+        ? (
+            <video
+                src={story.video}
+                className="absolute top-0 left-0 w-full h-full"
+                controls
+                preload="metadata"
+            />
+        ) : (
+            <iframe
+                src="https://www.youtube.com/embed/bRrSjQSE8mA"
+                title="Our Story Video"
+                className="absolute top-0 left-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+            />
+        );
+
+    if (loading && !story) {
+        return (
+            <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
+                <div className="max-w-[99rem] mx-auto text-center text-gray-600">
+                    Loading our story...
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
+                <div className="max-w-[99rem] mx-auto text-center text-red-600">
+                    {error}
+                </div>
+            </section>
+        );
+    }
+
+    const headingTitle = story?.title || "Our Story";
+    const tagline = story?.ourMission?.slice(0, 120) || organizationData.tagline;
 
     return (
         <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
@@ -17,10 +111,10 @@ const OurStory = memo(() => {
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Our Story
+                        {headingTitle}
                     </h2>
                     <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                        Transforming lives and building stronger communities since {established}
+                        {tagline || `Transforming lives and building stronger communities since ${established}`}
                     </p>
                 </div>
 
@@ -28,14 +122,7 @@ const OurStory = memo(() => {
                     {/* YouTube Video Section */}
                     <div className="order-2 lg:order-1 flex flex-col h-full">
                         <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl border-4 border-green-100 flex-shrink-0">
-                            <iframe
-                                src={embedUrl}
-                                title="Our Story Video"
-                                className="absolute top-0 left-0 w-full h-full"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                loading="lazy"
-                            />
+                            {videoContent}
                         </div>
                         
                         {/* Buttons below video */}
@@ -70,7 +157,10 @@ const OurStory = memo(() => {
                                         Our Journey
                                     </h3>
                                     <p className="text-gray-700 leading-relaxed">
-                                        Established in {established}, we have been transforming lives and building stronger communities for over {yearsOfImpact} years. Through our dedicated programs in education, healthcare, skill development, and community empowerment, we have reached {stats.communities}+ communities and impacted {stats.livesImpacted} lives across India.
+                                        {journeyText}
+                                        {stats?.communities && stats?.livesImpacted && (
+                                            <> Through our dedicated programs in education, healthcare, skill development, and community empowerment, we have reached {stats.communities}+ communities and impacted {stats.livesImpacted} lives across India.</>
+                                        )}
                                     </p>
                                 </div>
 
@@ -80,7 +170,7 @@ const OurStory = memo(() => {
                                         Our Mission
                                     </h3>
                                     <p className="text-gray-700 leading-relaxed">
-                                        {mission}
+                                        {missionText || "Our mission details will be shared soon."}
                                     </p>
                                 </div>
 
@@ -89,27 +179,25 @@ const OurStory = memo(() => {
                                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                                         Our Strategy
                                     </h3>
-                                    <p className="text-gray-700 leading-relaxed mb-3">
-                                        We work with a holistic approach focusing on:
-                                    </p>
-                                    <ul className="space-y-2 text-gray-700">
-                                        <li className="flex items-start gap-2">
-                                            <span className="text-green-600 font-bold mt-1">•</span>
-                                            <span>Community-driven development programs that create sustainable impact</span>
-                                        </li>
-                                        <li className="flex items-start gap-2">
-                                            <span className="text-green-600 font-bold mt-1">•</span>
-                                            <span>Skill development and vocational training to enhance livelihood opportunities</span>
-                                        </li>
-                                        <li className="flex items-start gap-2">
-                                            <span className="text-green-600 font-bold mt-1">•</span>
-                                            <span>Partnerships with communities, government, and corporates for greater reach</span>
-                                        </li>
-                                        <li className="flex items-start gap-2">
-                                            <span className="text-green-600 font-bold mt-1">•</span>
-                                            <span>Transparent operations and measurable impact reporting</span>
-                                        </li>
-                                    </ul>
+                                    {strategyPoints.length > 0 ? (
+                                        <>
+                                            <p className="text-gray-700 leading-relaxed mb-3">
+                                                We work with a holistic approach focusing on:
+                                            </p>
+                                            <ul className="space-y-2 text-gray-700">
+                                                {strategyPoints.map((point, index) => (
+                                                    <li key={index} className="flex items-start gap-2">
+                                                        <span className="text-green-600 font-bold mt-1">•</span>
+                                                        <span>{point}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </>
+                                    ) : (
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Strategy details will be shared soon.
+                                        </p>
+                                    )}
                                 </div>
                             </div>
 

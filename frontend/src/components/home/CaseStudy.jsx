@@ -1,13 +1,61 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import caseStudiesData from "../../data/caseStudies.json";
+import { getAllCaseStudies } from "../../admin/services/caseStudy";
+import { SERVER_URL } from "../../env";
 
 const CaseStudy = memo(() => {
-    const { caseStudies } = caseStudiesData;
+    const [caseStudies, setCaseStudies] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const hasFetched = useRef(false);
+
+    useEffect(() => {
+        if (hasFetched.current) return;
+        hasFetched.current = true;
+
+        const fetchCaseStudies = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await getAllCaseStudies(1, 6); // fetch a few for the carousel
+                const rawList = Array.isArray(response?.data)
+                    ? response.data
+                    : Array.isArray(response)
+                        ? response
+                        : Array.isArray(response?.data?.data)
+                            ? response.data.data
+                            : [];
+
+                const normalized = rawList.map((item, index) => ({
+                    ...item,
+                    number: item?.number || `${index + 1}`,
+                    image: item?.image
+                        ? (item.image.startsWith("http") ? item.image : `${SERVER_URL}/${item.image}`)
+                        : null
+                }));
+
+                setCaseStudies(normalized);
+                setCurrentIndex(0);
+            } catch (err) {
+                setError(err?.response?.data?.message || "Unable to load case studies right now.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCaseStudies();
+    }, []);
 
     const caseStudy = caseStudies[currentIndex] || caseStudies[0];
+
+    useEffect(() => {
+        if (caseStudies.length === 0) return;
+        if (currentIndex > caseStudies.length - 1) {
+            setCurrentIndex(0);
+        }
+    }, [caseStudies.length, currentIndex]);
 
     // Auto-sliding functionality
     useEffect(() => {
@@ -27,9 +75,32 @@ const CaseStudy = memo(() => {
         setCurrentIndex(index);
     };
 
+    if (loading && caseStudies.length === 0) {
+        return (
+            <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+                <div className="max-w-11/12 mx-auto text-center text-gray-600">
+                    Loading case studies...
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+                <div className="max-w-11/12 mx-auto text-center text-red-600">
+                    {error}
+                </div>
+            </section>
+        );
+    }
+
     if (!caseStudy || caseStudies.length === 0) {
         return null;
     }
+
+    const caseStudyContent = (caseStudy?.content || "").split('\n\n').filter(Boolean);
+    const imageSrc = caseStudy?.image || "https://via.placeholder.com/800x600?text=Case+Study";
 
     return (
         <section
@@ -61,12 +132,10 @@ const CaseStudy = memo(() => {
 
                             {/* Content */}
                             <div className="text-white/90 leading-relaxed space-y-4 max-h-[380px] overflow-y-auto pr-3" style={{ scrollbarWidth: 'thin', scrollbarColor: '#60A5FA #1E3A8A' }}>
-                                {caseStudy.content.split('\n\n').map((paragraph, index) => (
-                                    paragraph.trim() && (
-                                        <p key={index} className="text-sm sm:text-base transition-opacity duration-500">
-                                            {paragraph.trim()}
-                                        </p>
-                                    )
+                                {caseStudyContent.map((paragraph, index) => (
+                                    <p key={index} className="text-sm sm:text-base transition-opacity duration-500">
+                                        {paragraph.trim()}
+                                    </p>
                                 ))}
                             </div>
                         </div>
@@ -84,7 +153,7 @@ const CaseStudy = memo(() => {
                     {/* Image Section */}
                     <div className="relative h-[400px] lg:h-full order-1 lg:order-2 overflow-hidden">
                         <img
-                            src={caseStudy.image}
+                            src={imageSrc}
                             alt={caseStudy.title}
                             className="w-full h-full object-cover transition-opacity duration-500"
                             loading="lazy"

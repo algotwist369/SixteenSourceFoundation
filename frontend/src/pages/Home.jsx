@@ -9,6 +9,8 @@ import organizationData from "../data/organization.json";
 import homeData from "../data/homeData.json";
 import SuccessStories from "../components/home/SuccessStories";
 import { getAllFaqs } from "../admin/services/faq";
+import { getAllGalleries } from "../admin/services/gallery";
+import { SERVER_URL } from "../env";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-4xl md:text-5xl font-bold text-white mb-2" }) => {
@@ -88,7 +90,28 @@ const Home = () => {
 
   const { tagline, mission, stats, team, values } = organizationData;
   const [activeFaq, setActiveFaq] = useState(null);
-  const galleryImages = homeData.gallery.images;
+  const [galleryImages, setGalleryImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await getAllGalleries();
+        if (response.success && response.data) {
+          const mappedImages = response.data.map(img => ({
+            id: img._id,
+            src: `${SERVER_URL}${img.imageUrl}`,
+            title: img.title || "Gallery Image"
+          }));
+          // Show only first 6 images for home page
+          setGalleryImages(mappedImages.slice(0, 6));
+        }
+      } catch (error) {
+        console.error("Failed to load gallery images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
