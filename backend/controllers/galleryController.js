@@ -1,12 +1,17 @@
 const Gallery = require("../models/galleryModel");
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
 
 // Helper to delete file from filesystem
-const deleteFile = (filePath) => {
-    const fullPath = path.join(__dirname, "..", "uploads", "gallery", path.basename(filePath));
-    if (fs.existsSync(fullPath)) {
-        fs.unlinkSync(fullPath);
+const deleteFile = async (filePath) => {
+    try {
+        const fullPath = path.join(__dirname, "..", "uploads", "gallery", path.basename(filePath));
+        await fs.unlink(fullPath);
+    } catch (error) {
+        // If file doesn't exist, we don't care
+        if (error.code !== "ENOENT") {
+            console.error("Error deleting file:", error);
+        }
     }
 };
 
@@ -74,7 +79,7 @@ const deleteSingleImage = async (req, res) => {
         if (!image) return res.status(404).json({ success: false, message: "Image not found" });
 
         // Delete from filesystem
-        deleteFile(image.imageUrl);
+        await deleteFile(image.imageUrl);
 
         // Delete from DB
         await Gallery.findByIdAndDelete(id);
@@ -96,7 +101,7 @@ const deleteMultipleImages = async (req, res) => {
         const images = await Gallery.find({ _id: { $in: ids } });
 
         // Delete files
-        images.forEach(img => deleteFile(img.imageUrl));
+        await Promise.all(images.map(img => deleteFile(img.imageUrl)));
 
         // Delete from DB
         await Gallery.deleteMany({ _id: { $in: ids } });

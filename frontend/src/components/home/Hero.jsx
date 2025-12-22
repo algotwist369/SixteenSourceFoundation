@@ -126,7 +126,7 @@ const Hero = () => {
 
     return (
         <section
-            className="relative overflow-hidden group w-full min-h-[30vh] sm:min-h-[85vh] md:min-h-[100vh]"
+            className="relative overflow-hidden group w-full min-h-[30vh] sm:min-h-[85vh] md:min-h-[90vh]"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             aria-label="Hero carousel"
@@ -142,7 +142,7 @@ const Hero = () => {
                         aria-hidden={!isActive}
                     >
                         {/* Background Image */}
-                        <div className="relative w-full h-full">
+                        <div className="relative w-full h-full overflow-hidden ">
                             <img
                                 src={slide.image}
                                 alt={slide.title || "Hero slide"}

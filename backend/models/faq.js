@@ -5,7 +5,8 @@ const faqSchema = new mongoose.Schema({
     answer: String,
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        index: true
     }
 })
 

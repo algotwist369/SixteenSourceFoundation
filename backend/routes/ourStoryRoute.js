@@ -7,7 +7,7 @@ const { uploadVideo, getAllOurStories, createOurStory, getOurStoryById, updateOu
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, "..", "uploads", "video");
-fs.mkdirSync(uploadDir, { recursive: true });
+fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => { });
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -25,7 +25,13 @@ const fileFilter = (req, file, cb) => {
     else cb(null, false);
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 50 * 1024 * 1024, // 50MB limit for video
+    }
+});
 
 router.post("/upload", upload.single("video"), uploadVideo);
 router.post("/", createOurStory);

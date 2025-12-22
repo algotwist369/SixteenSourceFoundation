@@ -29,9 +29,11 @@ const volunteerSchema = new mongoose.Schema({
     },
     message: {
         type: String,
-        required: true  
+        required: true
     }
-});
+}, { timestamps: true });
+
+volunteerSchema.index({ createdAt: -1 });
 
 const Volunteer = mongoose.model("Volunteer", volunteerSchema);
 

@@ -9,7 +9,8 @@ const ourStorySchema = new mongoose.Schema({
     video: String,
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        index: true
     }
 })
 

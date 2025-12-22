@@ -11,7 +11,8 @@ const bankTransferSchema = new mongoose.Schema({
     qrCodeImage: String,
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        index: true
     }
 })
 

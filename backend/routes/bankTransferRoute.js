@@ -7,7 +7,7 @@ const { uploadQrCode, getAllBankTransfers, createBankTransfer, getBankTransferBy
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, "..", "uploads", "banckQR");
-fs.mkdirSync(uploadDir, { recursive: true });
+fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => { });
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -25,7 +25,13 @@ const fileFilter = (req, file, cb) => {
     else cb(null, false);
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 2 * 1024 * 1024, // 2MB limit for QR
+    }
+});
 
 router.post("/upload", upload.single("qrCodeImage"), uploadQrCode);
 router.post("/", createBankTransfer);

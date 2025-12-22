@@ -7,7 +7,8 @@ const caseStudySchema = new mongoose.Schema({
     number: Number,
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        index: true
     }
 })
 

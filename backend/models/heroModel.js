@@ -11,7 +11,11 @@ const heroSchema = new mongoose.Schema({
     subtitle: {
         type: String,
     }
-}, { timestamps: true });
+}, {
+    timestamps: true
+});
+
+heroSchema.index({ createdAt: -1 });
 
 const Hero = mongoose.model("Hero", heroSchema);
 

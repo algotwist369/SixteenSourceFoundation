@@ -7,9 +7,7 @@ const { createCourse, getAllCourses, getCourseById, updateCourse, deleteCourse, 
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, "..", "uploads", "courses");
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
+fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => { });
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +25,13 @@ const fileFilter = (req, file, cb) => {
     else cb(null, false);
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 5 * 1024 * 1024, // 5MB limit per file
+    }
+});
 
 router.post("/", createCourse);
 router.post("/upload", upload.single("image"), uploadCourseImage);

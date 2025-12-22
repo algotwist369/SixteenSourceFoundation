@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
 const BankTransfer = require("../models/bankTransfer");
 
@@ -69,7 +69,7 @@ const updateBankTransfer = async (req, res) => {
         if (req.body.qrCodeImage && existingDoc.qrCodeImage && req.body.qrCodeImage !== existingDoc.qrCodeImage) {
             if (existingDoc.qrCodeImage.startsWith("uploads/")) {
                 const absPath = path.join(__dirname, "..", existingDoc.qrCodeImage);
-                try { await fs.promises.unlink(absPath); } catch (err) { console.error("Failed to delete old image:", err); }
+                try { await fs.unlink(absPath); } catch (err) { if (err.code !== "ENOENT") console.error("Failed to delete old image:", err); }
             }
         }
 
@@ -92,7 +92,7 @@ const deleteBankTransfer = async (req, res) => {
 
         if (doc.qrCodeImage && doc.qrCodeImage.startsWith("uploads/")) {
             const absPath = path.join(__dirname, "..", doc.qrCodeImage);
-            try { await fs.promises.unlink(absPath); } catch (err) { console.error("Failed to delete image:", err); }
+            try { await fs.unlink(absPath); } catch (err) { if (err.code !== "ENOENT") console.error("Failed to delete image:", err); }
         }
 
         await BankTransfer.findByIdAndDelete(id);

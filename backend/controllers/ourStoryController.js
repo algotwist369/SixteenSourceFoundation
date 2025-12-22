@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
 const OurStory = require("../models/ourStoryModel");
 
@@ -80,7 +80,7 @@ const deleteOurStory = async (req, res) => {
         if (!doc) return res.status(404).json({ success: false, message: "Our story not found" });
         if (doc.video && doc.video.startsWith("uploads/")) {
             const abs = path.join(__dirname, "..", doc.video);
-            try { await fs.promises.unlink(abs); } catch { }
+            try { await fs.unlink(abs); } catch (err) { if (err.code !== "ENOENT") console.error("Failed to delete video:", err); }
         }
         await OurStory.findByIdAndDelete(id);
         return res.status(200).json({ success: true, message: "Our story deleted" });

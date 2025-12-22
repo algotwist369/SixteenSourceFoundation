@@ -7,9 +7,10 @@ const { uploadSingleImage, uploadMultipleImages, getAllGalleries, getGalleryById
 const router = express.Router();
 
 const uploadDir = path.join(__dirname, "..", "uploads", "gallery");
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
+// Create directory asynchronously
+fs.promises.mkdir(uploadDir, { recursive: true }).catch(err => {
+    if (err.code !== "EEXIST") console.error("Could not create upload directory", err);
+});
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +28,13 @@ const fileFilter = (req, file, cb) => {
     else cb(null, false);
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+    storage,
+    fileFilter,
+    limits: {
+        fileSize: 5 * 1024 * 1024, // 5MB limit per file
+    }
+});
 
 router.post("/upload", upload.single("image"), uploadSingleImage);
 router.post("/uploads", upload.array("images", 20), uploadMultipleImages);
