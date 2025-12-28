@@ -48,23 +48,9 @@ const Donate = () => {
         "Invitation to annual events"
     ];
 
-    const handleDonate = () => {
-        const amount = selectedAmount || customAmount;
-        if (!amount || amount <= 0) {
-            alert("Please select or enter a valid donation amount");
-            return;
-        }
-        alert(`Thank you for your donation of ₹${amount}! Redirecting to payment gateway...`);
-    };
 
     return (
         <div>
-            <PageHeader
-                // title="Make a Donation"
-                // subtitle="Your generosity changes lives. Every rupee counts."
-                image="/assets/sbanner.jpg"
-            />
-
             {/* Donation Form */}
             <Section>
                 <DonateSection />

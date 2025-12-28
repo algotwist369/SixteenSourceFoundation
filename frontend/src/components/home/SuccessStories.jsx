@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getAllSuccessStories } from "../../admin/services/successStories";
-import { SERVER_URL } from "../../env";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 export default function SuccessStories() {
@@ -10,6 +9,13 @@ export default function SuccessStories() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const hasFetched = useRef(false);
+
+    const getYouTubeEmbedUrl = (url) => {
+        if (!url) return null;
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
+    };
 
     useEffect(() => {
         if (hasFetched.current) return;
@@ -29,15 +35,11 @@ export default function SuccessStories() {
                             : [];
 
                 const normalized = rawList.map((item, idx) => {
-                    const video = item?.video
-                        ? (item.video.startsWith("http") ? item.video : `${SERVER_URL}/${item.video}`)
-                        : null;
-
                     return {
                         id: item?._id || item?.id || idx,
                         name: item?.title || item?.name || "Anonymous",
                         story: item?.description || item?.story || "Story coming soon.",
-                        video,
+                        video: getYouTubeEmbedUrl(item?.video),
                         achievement: item?.designation || item?.achievement || ""
                     };
                 });
@@ -115,12 +117,26 @@ export default function SuccessStories() {
                     {/* Video */}
                     <div className="flex justify-center md:justify-end">
                         <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-3 shadow-2xl max-w-[420px] w-full">
-                            <video
-                                src={active.video || ""}
-                                controls
-                                className="w-full h-[500px] object-cover rounded-xl"
-                                poster={!active.video ? "https://via.placeholder.com/800x600?text=Success+Story" : undefined}
-                            ></video>
+                            <div className="w-full h-[500px] bg-black rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
+                                {active.video ? (
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src={active.video}
+                                        title={`${active.name}'s Success Story`}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        className="w-full h-full object-cover"
+                                    ></iframe>
+                                ) : (
+                                    <img
+                                        src="https://via.placeholder.com/800x600?text=Success+Story"
+                                        alt="Success Story Placeholder"
+                                        className="w-full h-full object-cover rounded-xl"
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
 
@@ -134,7 +150,6 @@ export default function SuccessStories() {
                             <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-light italic">
                                 {active.story}
                             </p>
-                            {/* <FaQuoteRight className="text-green-500 text-4xl mt-4 ml-auto opacity-30" /> */}
                         </div>
 
                         <div className="border-l-4 border-green-500 pl-6 py-2">

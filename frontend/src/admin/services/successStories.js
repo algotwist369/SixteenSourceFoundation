@@ -58,7 +58,8 @@ export const uploadSuccessStoryVideo = async (formData) => {
         const response = await axios.post(`${API_URL}/upload`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }
+            },
+            timeout: 600000 // 10 minutes
         });
         return response.data;
     } catch (error) {

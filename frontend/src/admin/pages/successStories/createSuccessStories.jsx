@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSuccessStories from '../../hooks/useSuccessStories';
-import { HiUpload } from 'react-icons/hi';
+import { HiLink } from 'react-icons/hi';
 
 const CreateSuccessStories = () => {
     const navigate = useNavigate();
-    const { addSuccessStory, uploadVideo, loading, error } = useSuccessStories();
+    const { addSuccessStory, loading, error } = useSuccessStories();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -13,52 +13,45 @@ const CreateSuccessStories = () => {
         description: '',
         video: ''
     });
-    const [videoFile, setVideoFile] = useState(null);
+    const [localError, setLocalError] = useState(null);
 
     const handleChange = (e) => {
         const value = e.target.value;
         setFormData({ ...formData, [e.target.name]: value });
     };
 
-    const handleVideoChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setVideoFile(file);
-        }
+    const getYouTubeId = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            let videoPath = '';
-            if (videoFile) {
-                const uploadData = new FormData();
-                uploadData.append('video', videoFile);
-                const uploadRes = await uploadVideo(uploadData);
-                videoPath = uploadRes.video;
+            if (formData.video && !getYouTubeId(formData.video)) {
+                setLocalError('Please enter a valid YouTube URL');
+                return;
             }
 
-            const storyData = {
-                ...formData,
-                video: videoPath
-            };
-
-            await addSuccessStory(storyData);
+            await addSuccessStory(formData);
             navigate('/admin');
         } catch (err) {
             console.error("Failed to create success story", err);
         }
     };
 
+    const videoId = formData.video ? getYouTubeId(formData.video) : null;
+
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Success Story</h2>
 
-                {error && (
+                {(error || localError) && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                        {error}
+                        {localError || error}
                     </div>
                 )}
 
@@ -101,14 +94,37 @@ const CreateSuccessStories = () => {
                     </div>
 
                     <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Video Upload</label>
-                        <div className="mt-2">
-                            <label className="cursor-pointer bg-blue-50 text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-lg transition-colors inline-flex items-center">
-                                <HiUpload className="mr-2" />
-                                {videoFile ? videoFile.name : 'Select Video File'}
-                                <input type="file" className="hidden" accept="video/*" onChange={handleVideoChange} />
-                            </label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">YouTube Video URL</label>
+                        <div className="relative">
+                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <HiLink className="text-gray-400" />
+                            </span>
+                            <input
+                                type="url"
+                                name="video"
+                                value={formData.video}
+                                onChange={handleChange}
+                                placeholder="https://www.youtube.com/watch?v=..."
+                                className="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required
+                            />
                         </div>
+                        {videoId && (
+                            <div className="mt-4">
+                                <p className="text-sm text-gray-500 mb-2">Preview:</p>
+                                <div className="aspect-video w-full max-w-md bg-black rounded shadow-inner overflow-hidden">
+                                    <iframe
+                                        width="100%"
+                                        height="100%"
+                                        src={`https://www.youtube.com/embed/${videoId}`}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center justify-end pt-4 border-t border-gray-100">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
@@ -14,7 +14,6 @@ import {
 import { getAllOurStories } from "../admin/services/ourStory";
 import { getAllTeams } from "../admin/services/team";
 import { SERVER_URL } from "../env";
-import organizationData from "../data/organization.json";
 
 const About = () => {
     const [story, setStory] = useState(null);
@@ -88,12 +87,6 @@ const About = () => {
 
     return (
         <div>
-            <PageHeader
-                title="About Sixteen Source Foundation"
-                subtitle="Empowering rural communities towards self-reliance and sustainable development"
-                image="/assets/GalleryImg/13.jpeg"
-            />
-
             {/* Mission Statement */}
             <Section>
                 <div className="max-w-4xl mx-auto">
@@ -233,7 +226,7 @@ const About = () => {
                                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                                     <div className="flex flex-col items-center">
                                         <img
-                                            src={`${SERVER_URL}${member.photo}`}
+                                            src={member.photo?.startsWith('http') ? member.photo : `${SERVER_URL}/${member.photo?.startsWith('/') ? member.photo.substring(1) : member.photo}`}
                                             alt={member.name}
                                             className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-gray-200"
                                         />
@@ -261,9 +254,9 @@ const About = () => {
                                 <div>
                                     <h4 className="font-bold text-lg mb-3">Registered Address</h4>
                                     <p className="text-gray-700 leading-relaxed">
-                                        PMGP Colony, Mankhurd West<br />
-                                        Mumbai - 400043<br />
-                                        Maharashtra, India
+                                        Room no.386, building no.12, West, tail gali,<br />
+                                        PMG COLONY, Mankhurd, Mumbai,<br />
+                                        Maharashtra 400088
                                     </p>
                                 </div>
                             </div>

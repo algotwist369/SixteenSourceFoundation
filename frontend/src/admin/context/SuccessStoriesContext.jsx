@@ -105,7 +105,11 @@ export const SuccessStoriesProvider = ({ children }) => {
             const response = await uploadSuccessStoryVideo(formData);
             return response;
         } catch (err) {
-            setError(err.message || 'Failed to upload video');
+            if (err.response?.status === 413) {
+                setError('The video file is too large for the server. Please check your Nginx client_max_body_size setting.');
+            } else {
+                setError(err.message || 'Failed to upload video');
+            }
             throw err;
         } finally {
             setLoading(false);

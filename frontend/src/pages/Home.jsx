@@ -118,13 +118,18 @@ const Home = () => {
         if (response.success && response.data) {
           const mappedImages = response.data.map(img => ({
             id: img._id,
-            src: `${SERVER_URL}${img.imageUrl}`,
+            src: img.imageUrl.startsWith("http")
+              ? img.imageUrl
+              : `${SERVER_URL.replace(/\/+$/, "")}/${img.imageUrl.replace(/^\/+/, "")}`,
             title: img.title || "Gallery Image"
           }));
           // Show only first 6 images for home page
           setGalleryImages(mappedImages.slice(0, 9));
         }
       } catch (error) {
+        if (error.response?.status === 413) {
+          console.error("Gallery payload too large. Please reduce image sizes.");
+        }
         console.error("Failed to load gallery images:", error);
       }
     };
@@ -240,7 +245,9 @@ const Home = () => {
                 >
                   <div className="mb-4">
                     <img
-                      src={`${SERVER_URL}${member.photo}`}
+                      src={member.photo.startsWith("http")
+                        ? member.photo
+                        : `${SERVER_URL.replace(/\/+$/, "")}/${member.photo.replace(/^\/+/, "")}`}
                       alt={member.name}
                       className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-green-100"
                     />

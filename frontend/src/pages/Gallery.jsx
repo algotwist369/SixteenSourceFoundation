@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Heading from "../components/common/Heading";
 import galleryData from "../data/galleryData.json";
@@ -22,7 +21,9 @@ const Gallery = () => {
                 if (response.success && response.data) {
                     const mappedImages = response.data.map(img => ({
                         id: img._id,
-                        src: `${SERVER_URL}${img.imageUrl}`,
+                        src: img.imageUrl.startsWith("http")
+                            ? img.imageUrl
+                            : `${SERVER_URL.replace(/\/+$/, "")}/${img.imageUrl.replace(/^\/+/, "")}`,
                         alt: img.title || "Gallery Image"
                     }));
                     setGalleryImages(mappedImages);

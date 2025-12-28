@@ -33,7 +33,7 @@ const Contact = () => {
         {
             icon: <FaMapMarkerAlt className="text-3xl text-green-600" />,
             title: "Visit Us",
-            details: ["PMGP Colony", "Mankhurd West", "Mumbai - 400043, Maharashtra"]
+            details: ["Room no.386, building no.12", "West, tail gali, PMG COLONY", "Mankhurd, Mumbai, Maharashtra 400088"]
         },
         {
             icon: <FaEnvelope className="text-3xl text-green-600" />,
@@ -47,14 +47,8 @@ const Contact = () => {
         }
     ];
 
-  return (
-    <div>
-            <PageHeader
-                title="Contact Us"
-                subtitle="We'd love to hear from you. Let's connect and make a difference together!"
-                image="/assets/GalleryImg/13.jpeg"
-            />
-
+    return (
+        <div>
             {/* Contact Information */}
             <Section>
                 <Heading
@@ -113,24 +107,24 @@ const Contact = () => {
                                 required
                             />
                             <div className="mb-4">
-                            <label
-                                htmlFor="message"
-                                className="block text-sm font-medium text-gray-700 mb-1"
-                            >
-                                Your Message
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows="5"
-                                placeholder="Tell us more about your inquiry..."
-                                required
-                                className="w-full px-4 py-2 border border-gray-300 
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-medium text-gray-700 mb-1"
+                                >
+                                    Your Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="5"
+                                    placeholder="Tell us more about your inquiry..."
+                                    required
+                                    className="w-full px-4 py-2 border border-gray-300 
                                     rounded-lg shadow-sm focus:outline-none 
                                     focus:ring-2 focus:ring-green-500"
-                            />
+                                />
                             </div>
                             <Button type="submit" variant="primary" size="lg" className="w-full">
                                 Send Message
@@ -150,7 +144,7 @@ const Contact = () => {
                             <div className="w-full h-64 bg-gray-200 rounded-lg mb-4 overflow-hidden">
                                 <iframe
                                     title="Office Location"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7542.550864331699!2d72.92567569212524!3d19.051623978591604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6711969c0e7%3A0xbcd8df94de9b92ef!2sPMG%20COLONY%2C%20Mankhurd%2C%20Mumbai%2C%20Maharashtra%20400043!5e0!3m2!1sen!2sin!4v1760184416176!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.3080690833267!2d72.9394897!3d19.050188100000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c70018e70ef5%3A0x649b83097185e6fd!2sSixteen%20Source%20Foundation!5e0!3m2!1sen!2sin!4v1766926994237!5m2!1sen!2sin"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
@@ -163,7 +157,7 @@ const Contact = () => {
                                 <div className="text-sm space-y-1">
                                     <p className="flex items-start gap-2">
                                         <FaMapMarkerAlt className="text-green-600 mt-1 flex-shrink-0" />
-                                        <span>PMGP Colony, Mankhurd West<br/>Mumbai - 400043, Maharashtra, India</span>
+                                        <span>Room no.386, building no.12, West, tail gali,<br />PMG COLONY, Mankhurd, Mumbai, Maharashtra 400088</span>
                                     </p>
                                     <p className="flex items-center gap-2">
                                         <FaEnvelope className="text-green-600 flex-shrink-0" />
@@ -182,11 +176,11 @@ const Contact = () => {
                     <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-none shadow-lg">
                         <h2 className="text-3xl font-bold mb-4 text-gray-800">Want to Partner With Us?</h2>
                         <p className="text-lg mb-6 text-gray-700">
-                            We welcome collaborations with organizations and individuals who share our vision 
+                            We welcome collaborations with organizations and individuals who share our vision
                             of empowering rural communities. Let's work together to create lasting change!
                         </p>
                         <p className="text-gray-600 mb-6">
-                            For partnership inquiries, donations, or volunteer opportunities, please reach out to us 
+                            For partnership inquiries, donations, or volunteer opportunities, please reach out to us
                             at <a href="mailto:sixteensource.ngo24@gmail.com" className="text-green-600 font-semibold hover:underline">
                                 sixteensource.ngo24@gmail.com
                             </a>
@@ -194,7 +188,7 @@ const Contact = () => {
                     </Card>
                 </div>
             </Section>
-    </div>
+        </div>
     );
 };
 

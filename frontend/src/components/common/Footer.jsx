@@ -11,7 +11,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: <FaFacebookF />, url: contact.socialMedia.facebook, name: "Facebook" },
     { icon: <FaTwitter />, url: contact.socialMedia.twitter, name: "Twitter" },
-    { icon: <FaInstagram />, url: contact.socialMedia.instagram, name: "Instagram" },
+    { icon: <FaInstagram />, url: 'https://www.instagram.com/sixteen.sourcefoundation/', name: "Instagram" },
     { icon: <FaLinkedin />, url: contact.socialMedia.linkedin, name: "LinkedIn" },
     { icon: <FaYoutube />, url: contact.socialMedia.youtube, name: "YouTube" },
   ];

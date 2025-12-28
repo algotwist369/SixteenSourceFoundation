@@ -15,6 +15,21 @@ const OurStory = memo(() => {
     const { established, stats } = organizationData;
     const yearsOfImpact = new Date().getFullYear() - parseInt(established, 10);
 
+    const getYouTubeEmbedUrl = (url) => {
+        if (!url) return null;
+        let videoId = '';
+        if (url.includes('v=')) {
+            videoId = url.split('v=')[1].split('&')[0];
+        } else if (url.includes('youtu.be/')) {
+            videoId = url.split('youtu.be/')[1].split('?')[0];
+        } else if (url.includes('shorts/')) {
+            videoId = url.split('shorts/')[1].split('?')[0];
+        } else if (url.includes('embed/')) {
+            videoId = url.split('embed/')[1].split('?')[0];
+        }
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    };
+
     useEffect(() => {
         if (hasFetched.current) return;
         hasFetched.current = true;
@@ -40,7 +55,7 @@ const OurStory = memo(() => {
                         ourJourney: first.ourJourney || "",
                         ourMission: first.ourMission || "",
                         ourStrategy: Array.isArray(first.ourStrategy) ? first.ourStrategy : [],
-                        video: first.video ? (first.video.startsWith('http') ? first.video : `${SERVER_URL}/${first.video}`) : null,
+                        video: first.video || null,
                         number: first.number
                     });
                 } else {
@@ -61,14 +76,18 @@ const OurStory = memo(() => {
     const missionText = story?.ourMission || "";
     const strategyPoints = story?.ourStrategy || [];
 
-    const videoContent = story?.video
+    const embedUrl = getYouTubeEmbedUrl(story?.video);
+
+    const videoContent = embedUrl
         ? (
-            <video
-                src={story.video}
+            <iframe
+                src={embedUrl}
                 className="absolute top-0 left-0 w-full h-full"
-                controls
-                preload="metadata"
-            />
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+            ></iframe>
         ) : null;
 
     if (loading) {

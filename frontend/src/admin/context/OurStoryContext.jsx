@@ -4,8 +4,7 @@ import {
     getOurStoryById,
     createOurStory,
     updateOurStory,
-    deleteOurStory,
-    uploadOurStoryVideo
+    deleteOurStory
 } from '../services/ourStory';
 
 export const OurStoryContext = createContext();
@@ -98,20 +97,6 @@ export const OurStoryProvider = ({ children }) => {
         }
     }, []);
 
-    const uploadVideo = useCallback(async (formData) => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await uploadOurStoryVideo(formData);
-            return response;
-        } catch (err) {
-            setError(err.message || 'Failed to upload video');
-            throw err;
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
     return (
         <OurStoryContext.Provider
             value={{
@@ -123,8 +108,7 @@ export const OurStoryProvider = ({ children }) => {
                 fetchOurStoryById,
                 addOurStory,
                 editOurStory,
-                removeOurStory,
-                uploadVideo
+                removeOurStory
             }}
         >
             {children}

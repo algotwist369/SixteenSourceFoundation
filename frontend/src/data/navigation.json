@@ -10,15 +10,11 @@
   "footerLinks": {
     "quickLinks": [
       { "name": "About Us", "path": "/about" },
-      { "name": "Our Programs", "path": "/programs" },
-      { "name": "Impact Stories", "path": "/impact" },
       { "name": "Contact Us", "path": "/contact" }
     ],
     "getInvolved": [
       { "name": "Donate", "path": "/donate" },
-      { "name": "Volunteer", "path": "/volunteer" },
-      { "name": "Partner With Us", "path": "/get-involved" },
-      { "name": "Corporate CSR", "path": "/get-involved" }
+      { "name": "Volunteer", "path": "/volunteer" }
     ],
     "legal": [
       { "name": "Privacy Policy", "path": "/privacy-policy" },
