@@ -113,11 +113,33 @@ const deleteMultipleImages = async (req, res) => {
     }
 };
 
+const deleteAllImages = async (req, res) => {
+    try {
+        const images = await Gallery.find();
+
+        if (images.length === 0) {
+            return res.status(200).json({ success: true, message: "No images to delete" });
+        }
+
+        // Delete all files from filesystem
+        await Promise.all(images.map(img => deleteFile(img.imageUrl)));
+
+        // Delete all records from DB
+        await Gallery.deleteMany({});
+
+        return res.status(200).json({ success: true, message: "All images deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting all images:", error);
+        return res.status(500).json({ message: "Server Error" });
+    }
+};
+
 module.exports = {
     uploadSingleImage,
     uploadMultipleImages,
     getAllGalleries,
     getGalleryById,
     deleteSingleImage,
-    deleteMultipleImages
+    deleteMultipleImages,
+    deleteAllImages
 };

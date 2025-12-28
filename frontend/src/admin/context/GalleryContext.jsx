@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback } from 'react';
-import { getAllGalleries, uploadSingleImage, uploadMultipleImages, deleteSingleImage, deleteMultipleImages } from '../services/gallery';
+import { getAllGalleries, uploadSingleImage, uploadMultipleImages, deleteSingleImage, deleteMultipleImages, deleteAllGalleryImages } from '../services/gallery';
 
 export const GalleryContext = createContext();
 
@@ -79,6 +79,20 @@ export const GalleryProvider = ({ children }) => {
         }
     }, []);
 
+    const deleteAllImages = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            await deleteAllGalleryImages();
+            setImages([]);
+        } catch (err) {
+            setError(err.message || 'Failed to delete all images');
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
     return (
         <GalleryContext.Provider
             value={{
@@ -89,7 +103,8 @@ export const GalleryProvider = ({ children }) => {
                 uploadImage,
                 uploadImages,
                 deleteImage,
-                deleteImages
+                deleteImages,
+                deleteAllImages
             }}
         >
             {children}

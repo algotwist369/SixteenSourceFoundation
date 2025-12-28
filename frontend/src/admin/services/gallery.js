@@ -22,7 +22,8 @@ export const uploadMultipleImages = async (formData) => {
         const response = await axios.post(`${API_URL}/uploads`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }
+            },
+            timeout: 600000 // 10 minutes for large bulk uploads
         });
         return response.data;
     } catch (error) {
@@ -57,6 +58,15 @@ export const deleteMultipleImages = async (ids) => {
         return response.data;
     } catch (error) {
         console.error("Error deleting images:", error);
+        throw error;
+    }
+};
+export const deleteAllGalleryImages = async () => {
+    try {
+        const response = await axios.delete(`${API_URL}/all`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting all images:", error);
         throw error;
     }
 };

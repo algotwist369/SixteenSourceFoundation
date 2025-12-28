@@ -2,9 +2,11 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const { uploadSingleImage, uploadMultipleImages, getAllGalleries, getGalleryById, deleteSingleImage, deleteMultipleImages } = require("../controllers/galleryController");
+const { uploadSingleImage, uploadMultipleImages, getAllGalleries, getGalleryById, deleteSingleImage, deleteMultipleImages, deleteAllImages } = require("../controllers/galleryController");
 
 const router = express.Router();
+// ... (omitting middleware lines if they don't change, but I need to be careful with replace_file_content)
+
 
 const uploadDir = path.join(__dirname, "..", "uploads", "gallery");
 // Create directory asynchronously
@@ -37,9 +39,10 @@ const upload = multer({
 });
 
 router.post("/upload", upload.single("image"), uploadSingleImage);
-router.post("/uploads", upload.array("images", 20), uploadMultipleImages);
+router.post("/uploads", upload.array("images", 500), uploadMultipleImages);
 router.get("/", getAllGalleries);
 router.get("/:id", getGalleryById);
+router.delete("/all", deleteAllImages);
 router.delete("/:id", deleteSingleImage);
 router.delete("/", deleteMultipleImages);
 
