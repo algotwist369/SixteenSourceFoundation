@@ -36,13 +36,23 @@ export const GalleryProvider = ({ children }) => {
         }
     }, []);
 
-    const uploadImages = useCallback(async (formData) => {
+    const uploadImages = useCallback(async (files) => {
         setLoading(true);
         setError(null);
         try {
-            const newImages = await uploadMultipleImages(formData);
-            setImages((prev) => [...newImages.data, ...prev]);
-            return newImages;
+            const batchSize = 5; // Smaller batches to avoid Nginx 413 errors
+            const allResults = [];
+
+            for (let i = 0; i < files.length; i += batchSize) {
+                const batch = files.slice(i, i + batchSize);
+                const formData = new FormData();
+                batch.forEach(file => formData.append('images', file));
+
+                const response = await uploadMultipleImages(formData);
+                setImages((prev) => [...response.data, ...prev]);
+                allResults.push(response);
+            }
+            return allResults;
         } catch (err) {
             setError(err.message || 'Failed to upload images');
             throw err;

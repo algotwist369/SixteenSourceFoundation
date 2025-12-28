@@ -3,18 +3,47 @@ import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
 import Heading from "../components/common/Heading";
-import { 
-    FaGraduationCap, 
-    FaHandsHelping, 
+import {
+    FaGraduationCap,
+    FaHandsHelping,
     FaBalanceScale,
     FaMapMarkerAlt,
     FaFileAlt,
     FaCheckCircle
 } from "react-icons/fa";
+import { getAllOurStories } from "../admin/services/ourStory";
+import { getAllTeams } from "../admin/services/team";
+import { SERVER_URL } from "../env";
+import organizationData from "../data/organization.json";
 
 const About = () => {
+    const [story, setStory] = useState(null);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+        const fetchData = async () => {
+            try {
+                const [storyRes, teamRes] = await Promise.all([
+                    getAllOurStories(1, 1),
+                    getAllTeams()
+                ]);
+
+                if (storyRes.data && storyRes.data.length > 0) {
+                    setStory(storyRes.data[0]);
+                }
+
+                if (teamRes.data) {
+                    setTeamMembers(teamRes.data);
+                }
+            } catch (error) {
+                console.error("Error fetching about page data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
     }, []);
 
     const visionPoints = [
@@ -50,43 +79,6 @@ const About = () => {
         "Professional Certification"
     ];
 
-    const managementCommittee = [
-        {
-            name: "Sonal Mungekar",
-            designation: "President",
-            image: "/assets/teams/sonal.jpeg"
-        },
-        {
-            name: "Sagar Jagtap",
-            designation: "Secretary",
-            image: "/assets/teams/Sagar Sunil Jagtap.jpeg"
-        },
-        {
-            name: "Vandana Gamare",
-            designation: "Treasurer",
-            image: "/assets/teams/Vandana Prabhakar Gamare.jpeg"
-        },
-        {
-            name: "Pooja Gole",
-            designation: "Member",
-            image: "/assets/teams/Pooja Amit Gole.jpeg"
-        },
-        {
-            name: "Sajiri Trimbakkar",
-            designation: "Member",
-            image: "/assets/teams/Sajiri Sandesh Trimbakkar.jpeg"
-        },
-        {
-            name: "Anjali Palkar",
-            designation: "Member",
-            image: "/assets/teams/Anjalee Sandip Palkar.jpeg"
-        },
-        {
-            name: "Swapnil Vhatkar",
-            designation: "Member",
-            image: "/assets/teams/SWAPNIL V.VHATKAR.jpeg"
-        }
-    ];
 
     const legalRegistrations = [
         "Registered under 1860 Act",
@@ -105,12 +97,9 @@ const About = () => {
             {/* Mission Statement */}
             <Section>
                 <div className="max-w-4xl mx-auto">
-                    <Heading title="Our Mission" />
+                    <Heading title={story?.title || "Our Mission"} />
                     <p className="text-gray-700 leading-relaxed text-lg mt-6">
-                        The Sixteen Source Foundation is a non-profit organization dedicated to providing support 
-                        and resources to underprivileged communities, focusing on education, healthcare, and 
-                        environmental sustainability. We strive to create opportunities for marginalized individuals 
-                        to achieve economic independence and social dignity.
+                        {story?.ourMission || ""}
                     </p>
                     <div className="mt-6 flex items-center justify-center gap-2 text-gray-700">
                         <FaMapMarkerAlt className="text-green-600" />
@@ -123,9 +112,9 @@ const About = () => {
             {/* Vision */}
             <Section bgColor="bg-gray-50">
                 <div className="max-w-5xl mx-auto">
-                    <Heading 
-                        title="Our Vision" 
-                        subtitle="Enabling poor rural households and communities to be self-reliant and sustainable" 
+                    <Heading
+                        title="Our Vision"
+                        subtitle="Enabling poor rural households and communities to be self-reliant and sustainable"
                     />
                     <div className="grid md:grid-cols-3 gap-8 mt-10">
                         {visionPoints.map((point, index) => (
@@ -139,22 +128,62 @@ const About = () => {
                 </div>
             </Section>
 
+            {/* Our Journey Section (Dynamic) */}
+            <Section>
+                <div className="max-w-5xl mx-auto">
+                    <Heading
+                        title="Our Journey"
+                        subtitle={story?.title || "Transforming lives and building stronger communities"}
+                    />
+
+                    <div className="grid md:grid-cols-2 gap-12 mt-10 items-center">
+                        <div className="space-y-6">
+                            <p className="text-gray-700 leading-relaxed text-lg">
+                                {story?.ourJourney || ""}
+                            </p>
+                            {story?.ourStrategy && story.ourStrategy.length > 0 && (
+                                <div className="space-y-4">
+                                    <h4 className="font-bold text-xl text-gray-800">Our Strategy</h4>
+                                    <ul className="space-y-3">
+                                        {story.ourStrategy.map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-3 text-gray-700">
+                                                <FaCheckCircle className="text-green-600 mt-1 flex-shrink-0" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                        {story?.video && (
+                            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                                <video
+                                    src={story.video.startsWith('http') ? story.video : `${SERVER_URL}/${story.video}`}
+                                    className="w-full h-full object-cover"
+                                    controls
+                                />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </Section>
+
             {/* Main Program */}
             <Section>
                 <div className="max-w-5xl mx-auto">
-                    <Heading 
-                        title="Beauty & Wellness Training Program" 
+                    <Heading
+                        title="Beauty & Wellness Training Program"
                         subtitle="Our flagship program for skill development and employment"
                     />
-                    
+
                     <Card className="mt-8">
                         <div className="border-l-4 border-green-600 pl-6">
                             <p className="text-gray-700 leading-relaxed mb-6">
-                                We provide quality training in beauty and wellness, enabling participants 
-                                to secure employment or establish their own businesses. Our goal is to help 
+                                We provide quality training in beauty and wellness, enabling participants
+                                to secure employment or establish their own businesses. Our goal is to help
                                 them achieve economic independence and social dignity.
                             </p>
-                            
+
                             <div className="grid md:grid-cols-2 gap-8">
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
@@ -170,7 +199,7 @@ const About = () => {
                                         ))}
                                     </ul>
                                 </div>
-                                
+
                                 <div>
                                     <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
                                         <FaCheckCircle className="text-green-600" />
@@ -192,35 +221,37 @@ const About = () => {
             </Section>
 
             {/* Management Committee */}
-            <Section bgColor="bg-gray-50">
-                <div className="max-w-6xl mx-auto">
-                    <Heading 
-                        title="Management Committee" 
-                        subtitle="Dedicated leaders driving our mission"
-                    />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-                        {managementCommittee.map((member, index) => (
-                            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                                <div className="flex flex-col items-center">
-                                    <img
-                                        src={member.image}
-                                        alt={member.name}
-                                        className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-gray-200"
-                                    />
-                                    <h4 className="font-bold text-gray-800 mb-1">{member.name}</h4>
-                                    <p className="text-green-600 font-medium text-sm">{member.designation}</p>
-                                </div>
-                            </Card>
-                        ))}
+            {teamMembers.length > 0 && (
+                <Section bgColor="bg-gray-50">
+                    <div className="max-w-6xl mx-auto">
+                        <Heading
+                            title="Management Committee"
+                            subtitle="Dedicated leaders driving our mission"
+                        />
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+                            {teamMembers.map((member, index) => (
+                                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                                    <div className="flex flex-col items-center">
+                                        <img
+                                            src={`${SERVER_URL}${member.photo}`}
+                                            alt={member.name}
+                                            className="w-28 h-28 rounded-full object-cover mb-4 border-2 border-gray-200"
+                                        />
+                                        <h4 className="font-bold text-gray-800 mb-1">{member.name}</h4>
+                                        <p className="text-green-600 font-medium text-sm">{member.designation}</p>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </Section>
+                </Section>
+            )}
 
             {/* Contact Information */}
             <Section>
                 <div className="max-w-5xl mx-auto">
-                    <Heading 
-                        title="Contact & Registration Details" 
+                    <Heading
+                        title="Contact & Registration Details"
                         subtitle="Legally registered and committed to transparency"
                     />
                     <div className="grid md:grid-cols-2 gap-8 mt-10">

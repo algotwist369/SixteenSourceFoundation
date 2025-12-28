@@ -11,6 +11,7 @@ const OurStory = memo(() => {
     const [error, setError] = useState(null);
     const hasFetched = useRef(false);
 
+    const tagline = story?.ourMission?.slice(0, 120);
     const { established, stats } = organizationData;
     const yearsOfImpact = new Date().getFullYear() - parseInt(established, 10);
 
@@ -39,7 +40,7 @@ const OurStory = memo(() => {
                         ourJourney: first.ourJourney || "",
                         ourMission: first.ourMission || "",
                         ourStrategy: Array.isArray(first.ourStrategy) ? first.ourStrategy : [],
-                        video: first.video ? `${SERVER_URL}/${first.video}` : null,
+                        video: first.video ? (first.video.startsWith('http') ? first.video : `${SERVER_URL}/${first.video}`) : null,
                         number: first.number
                     });
                 } else {
@@ -55,12 +56,9 @@ const OurStory = memo(() => {
         fetchStories();
     }, []);
 
-    const journeyText = useMemo(() => {
-        if (story?.ourJourney) return story.ourJourney;
-        return `Established in ${established}, we have been transforming lives and building stronger communities for over ${yearsOfImpact} years.`;
-    }, [established, story?.ourJourney, yearsOfImpact]);
+    const journeyText = story?.ourJourney || "";
 
-    const missionText = story?.ourMission || organizationData.mission;
+    const missionText = story?.ourMission || "";
     const strategyPoints = story?.ourStrategy || [];
 
     const videoContent = story?.video
@@ -71,18 +69,9 @@ const OurStory = memo(() => {
                 controls
                 preload="metadata"
             />
-        ) : (
-            <iframe
-                src="https://www.youtube.com/embed/bRrSjQSE8mA"
-                title="Our Story Video"
-                className="absolute top-0 left-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-            />
-        );
+        ) : null;
 
-    if (loading && !story) {
+    if (loading) {
         return (
             <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
                 <div className="max-w-[99rem] mx-auto text-center text-gray-600">
@@ -102,8 +91,7 @@ const OurStory = memo(() => {
         );
     }
 
-    const headingTitle = story?.title || "Our Story";
-    const tagline = story?.ourMission?.slice(0, 120) || organizationData.tagline;
+    if (!story) return null;
 
     return (
         <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gray-50">
@@ -111,20 +99,24 @@ const OurStory = memo(() => {
                 {/* Section Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        {headingTitle}
+                        {story.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                        {tagline || `Transforming lives and building stronger communities since ${established}`}
-                    </p>
+                    {tagline && (
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                            {tagline}
+                        </p>
+                    )}
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:h-[700px]">
                     {/* YouTube Video Section */}
                     <div className="order-2 lg:order-1 flex flex-col h-full">
-                        <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl border-4 border-green-100 flex-shrink-0">
-                            {videoContent}
-                        </div>
-                        
+                        {videoContent && (
+                            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-xl border-4 border-green-100 flex-shrink-0">
+                                {videoContent}
+                            </div>
+                        )}
+
                         {/* Buttons below video */}
                         <div className="mt-6 flex flex-col sm:flex-row gap-4">
                             <Link to="/donate" className="flex-1">
@@ -146,9 +138,11 @@ const OurStory = memo(() => {
                             <div className="space-y-6 flex-grow overflow-y-auto">
                                 {/* Tagline */}
                                 <div className="pb-4 border-b border-gray-200">
-                                    <p className="text-lg sm:text-xl text-green-700 font-semibold">
-                                        {tagline}
-                                    </p>
+                                    {tagline && (
+                                        <p className="text-lg sm:text-xl text-green-700 font-semibold">
+                                            {tagline}
+                                        </p>
+                                    )}
                                 </div>
 
                                 {/* Our Journey */}

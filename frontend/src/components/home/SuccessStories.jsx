@@ -98,13 +98,7 @@ export default function SuccessStories() {
     }
 
     if (!active) {
-        return (
-            <section className="w-full bg-gradient-to-b from-gray-50 to-white py-20" id="success-stories">
-                <div className="max-w-7xl mx-auto px-4 text-center text-gray-600">
-                    No success stories available right now. Please check back soon.
-                </div>
-            </section>
-        );
+        return null;
     }
 
 
@@ -179,8 +173,8 @@ export default function SuccessStories() {
                                 onClick={() => setIndex(i)}
                                 aria-label={`Go to story ${i + 1}`}
                                 className={`transition-all duration-300 rounded-full ${i === index
-                                        ? "w-12 h-3 bg-green-500"
-                                        : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
+                                    ? "w-12 h-3 bg-green-500"
+                                    : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
                                     }`}
                             ></button>
                         ))}

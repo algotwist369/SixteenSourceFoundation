@@ -69,13 +69,8 @@ const CreateGallery = () => {
         e.preventDefault();
         if (selectedFiles.length === 0) return;
 
-        const formData = new FormData();
-        selectedFiles.forEach(file => {
-            formData.append('images', file);
-        });
-
         try {
-            await uploadImages(formData);
+            await uploadImages(selectedFiles);
             navigate('/admin'); // Redirect to dashboard
         } catch (err) {
             console.error("Upload failed", err);

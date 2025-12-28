@@ -10,6 +10,7 @@ import homeData from "../data/homeData.json";
 import SuccessStories from "../components/home/SuccessStories";
 import { getAllFaqs } from "../admin/services/faq";
 import { getAllGalleries } from "../admin/services/gallery";
+import { getAllTeams } from "../admin/services/team";
 import { SERVER_URL } from "../env";
 
 // Animated Counter Component
@@ -91,6 +92,24 @@ const Home = () => {
   const { tagline, mission, stats, team, values } = organizationData;
   const [activeFaq, setActiveFaq] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [loadingTeam, setLoadingTeam] = useState(true);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const response = await getAllTeams();
+        if (response && response.data) {
+          setTeamMembers(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching team:", error);
+      } finally {
+        setLoadingTeam(false);
+      }
+    };
+    fetchTeam();
+  }, []);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -103,7 +122,7 @@ const Home = () => {
             title: img.title || "Gallery Image"
           }));
           // Show only first 6 images for home page
-          setGalleryImages(mappedImages.slice(0, 6));
+          setGalleryImages(mappedImages.slice(0, 9));
         }
       } catch (error) {
         console.error("Failed to load gallery images:", error);
@@ -146,20 +165,21 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
             {galleryImages.map((image) => (
               <div
                 key={image.id}
-                className="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer"
+                className="break-inside-avoid relative group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer bg-gray-100"
                 onClick={() => openImage(image.src)}
               >
                 <img
                   src={image.src}
                   alt={image.title}
-                  className="w-full h-64 object-fit transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                  <h3 className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center font-semibold">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center p-6">
+                  <h3 className="text-white transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 text-center font-bold tracking-wide">
                     {image.title}
                   </h3>
                 </div>
@@ -200,54 +220,56 @@ const Home = () => {
       )}
 
       {/* Team Section */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-[99rem] mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              {homeData.team.title}
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {homeData.team.description}
-            </p>
-          </div>
+      {!loadingTeam && teamMembers.length > 0 && (
+        <section className="py-20 px-6 bg-gray-50">
+          <div className="max-w-[99rem] mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                {homeData.team.title}
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                {homeData.team.description}
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-8">
-            {team.slice(0, 4).map((member) => (
-              <div
-                key={member.name}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center"
-              >
-                <div className="mb-4">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-green-100"
-                  />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-8">
+              {teamMembers.slice(0, 4).map((member) => (
+                <div
+                  key={member._id}
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center"
+                >
+                  <div className="mb-4">
+                    <img
+                      src={`${SERVER_URL}${member.photo}`}
+                      alt={member.name}
+                      className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-green-100"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-green-600 font-medium text-sm mb-3">
+                    {member.designation}
+                  </p>
+                  <div className="space-y-1 text-sm text-gray-500">
+                    <p className="truncate">{member.email}</p>
+                    <p>{member.phone}</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-green-600 font-medium text-sm mb-3">
-                  {member.role}
-                </p>
-                <div className="space-y-1 text-sm text-gray-500">
-                  <p className="truncate">{member.email}</p>
-                  <p>{member.phone}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
 
-          <div className="text-center mt-10">
-            <Link to="/team">
-              <Button variant="outline" size="lg">
-                Meet Full Team
-              </Button>
-            </Link>
+            <div className="text-center mt-10">
+              <Link to="/team">
+                <Button variant="outline" size="lg">
+                  Meet Full Team
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Impact Stats */}
       <section className="py-20 px-6 bg-gradient-to-r from-green-500 to-green-600">
