@@ -45,11 +45,20 @@ const allowedOrigins = [
 app.use(
     cors({
         origin: (origin, callback) => {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error("Not allowed by CORS"));
+            // Allow requests with no origin (like mobile apps or curl requests)
+            if (!origin) return callback(null, true);
+
+            if (allowedOrigins.includes(origin)) {
+                return callback(null, true);
             }
+
+            // Allow local IP addresses for testing on same network
+            const localIpPattern = /^(http|https):\/\/(192\.168\.|10\.|172\.(1[6-9]|2\d|3[0-1]))/;
+            if (localIpPattern.test(origin)) {
+                return callback(null, true);
+            }
+
+            callback(new Error("Not allowed by CORS"));
         },
         credentials: true
     })
@@ -70,7 +79,7 @@ dbConnection();
 ========================= */
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 1000,               // allow bulk uploads
+    max: 5000,               // allow bulk uploads
     standardHeaders: true,
     legacyHeaders: false,
     message: {

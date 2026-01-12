@@ -9,11 +9,11 @@ const Footer = () => {
   const { name, mission, contact } = organizationData;
 
   const socialLinks = [
-    { icon: <FaFacebookF />, url: contact.socialMedia.facebook, name: "Facebook" },
-    { icon: <FaTwitter />, url: contact.socialMedia.twitter, name: "Twitter" },
     { icon: <FaInstagram />, url: 'https://www.instagram.com/sixteen.sourcefoundation/', name: "Instagram" },
-    { icon: <FaLinkedin />, url: contact.socialMedia.linkedin, name: "LinkedIn" },
-    { icon: <FaYoutube />, url: contact.socialMedia.youtube, name: "YouTube" },
+    { icon: <FaFacebookF />, url: 'https://www.facebook.com/sixteen16.2025?rdid=2o1GX7ePCQwzIUfI&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17qWbmjwKp%2F#', name: "Facebook" },
+    // { icon: <FaTwitter />, url: contact.socialMedia.twitter, name: "Twitter" },
+    // { icon: <FaLinkedin />, url: contact.socialMedia.linkedin, name: "LinkedIn" },
+    // { icon: <FaYoutube />, url: contact.socialMedia.youtube, name: "YouTube" },
   ];
 
   return (
