@@ -20,6 +20,8 @@ const ourStoryRoute = require("./routes/ourStoryRoute");
 const caseStudyRoute = require("./routes/caseStudyRoute");
 const volunteerRoute = require("./routes/volunteerRoutes");
 const heroRoute = require("./routes/heroRoutes");
+const eventRoutes = require("./routes/eventRoutes");
+
 
 /* =========================
    Trust proxy (IMPORTANT for Nginx + rate limit)
@@ -37,6 +39,7 @@ app.use(express.urlencoded({ extended: true, limit: "500mb" }));
 ========================= */
 const allowedOrigins = [
     "https://sixteensourcefoundation.com",
+    "https://www.sixteensourcefoundation.com",
     "https://api.sixteensourcefoundation.com",
     "http://localhost:3000",
     "http://localhost:5173"
@@ -111,6 +114,7 @@ app.use("/api/our-story", ourStoryRoute);
 app.use("/api/case-study", caseStudyRoute);
 app.use("/api/volunteer", volunteerRoute);
 app.use("/api/hero", heroRoute);
+app.use("/api/events", eventRoutes);
 
 /* =========================
    404 Handler

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import PageHeader from "../components/common/PageHeader";
 import Section from "../components/common/Section";
 import Heading from "../components/common/Heading";
@@ -6,142 +7,160 @@ import Card from "../components/common/Card";
 import Button from "../components/common/Button";
 import eventsData from "../data/eventsData.json";
 import pageHeaders from "../data/pageHeaders.json";
-
-
+import { fetchEvents } from "../admin/services/event_api";
+import { SERVER_URL } from "../env";
 
 const Events = () => {
-    const [activeTab, setActiveTab] = useState('upcoming');
-    const { pageHeader, content, upcoming, past } = eventsData;
+    const { pageHeader, content } = eventsData;
+    const [events, setEvents] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const didFetchRef = useRef(false);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
         });
     };
 
+    const getImageSrc = (event) => {
+        const img = event.img_gallery && event.img_gallery[0];
+        if (!img) return pageHeaders.events;
+        return img.startsWith("http") ? img : `${SERVER_URL}/${img}`;
+    };
+
+    useEffect(() => {
+        if (didFetchRef.current) return;
+        didFetchRef.current = true;
+
+        const loadEvents = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                
+                // Fetch all events (we'll filter for upcoming dates on the frontend)
+                const { data } = await fetchEvents({
+                    page: 1,
+                    limit: 100, // Get more events to filter client-side
+                    sortBy: "date",
+                    order: "asc"
+                });
+                
+                console.log("All events response:", data);
+                console.log("Total events received:", data.data?.length || 0);
+                
+                // For now, show all events to verify they render correctly
+                // TODO: Re-enable filtering once we confirm rendering works
+                let eventsToShow = data.data || [];
+                
+                // Filter for events with future dates (upcoming events)
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Reset time to start of day
+                console.log("Today's date (for comparison):", today.toISOString());
+                
+                const upcomingEvents = eventsToShow.filter(event => {
+                    if (!event.date) {
+                        console.log("Event missing date:", event.title);
+                        return false;
+                    }
+                    const eventDate = new Date(event.date);
+                    eventDate.setHours(0, 0, 0, 0);
+                    const isUpcoming = eventDate >= today;
+                    console.log(`Event: ${event.title}, Date: ${eventDate.toISOString()}, Is Upcoming: ${isUpcoming}`);
+                    return isUpcoming; // Include events from today onwards
+                });
+                
+                console.log(`Filtered ${upcomingEvents.length} upcoming events from ${eventsToShow.length} total events`);
+                console.log("Upcoming events:", upcomingEvents);
+                
+                // Use filtered events, or all events if filtering returns empty (for debugging)
+                const finalEvents = upcomingEvents.length > 0 ? upcomingEvents : eventsToShow;
+                console.log("Final events to display:", finalEvents.length, finalEvents);
+                
+                setEvents(finalEvents);
+            } catch (err) {
+                console.error("Error loading events:", err);
+                setError("Failed to load events");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadEvents();
+    }, []);
+
     return (
         <div>
-            <PageHeader
-                title={pageHeader.title}
-                subtitle={pageHeader.subtitle}
-                image={pageHeaders.events}
-            />
-
             <Section>
                 <Heading
                     title={content.title}
                     subtitle={content.subtitle}
                 />
 
-                {/* Event Tabs */}
-                <div className="flex justify-center mb-8">
-                    <div className="bg-gray-100 rounded-lg p-1">
-                        <button
-                            onClick={() => setActiveTab('upcoming')}
-                            className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                                activeTab === 'upcoming'
-                                    ? 'bg-green-600 text-white'
-                                    : 'text-gray-600 hover:text-green-600'
-                            }`}
-                        >
-                            Upcoming Events
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('past')}
-                            className={`px-6 py-2 rounded-md font-medium transition-colors ${
-                                activeTab === 'past'
-                                    ? 'bg-green-600 text-white'
-                                    : 'text-gray-600 hover:text-green-600'
-                            }`}
-                        >
-                            Past Events
-                        </button>
+                {loading && (
+                    <div className="text-center py-12">
+                        <p className="text-gray-500 text-lg">Loading events...</p>
                     </div>
-                </div>
+                )}
 
-                {/* Events Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {(activeTab === 'upcoming' ? upcoming : past).map((event) => (
-                        <Card key={event.id} className="p-0 overflow-hidden">
-                            <div className="relative">
-                                <img
-                                    src={event.image}
-                                    alt={event.title}
-                                    className="w-full h-48 object-cover"
-                                />
-                                <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                                    {formatDate(event.date)}
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                                {event.time && (
-                                    <p className="text-gray-600 text-sm mb-1">
-                                        ⏰ {event.time}
-                                    </p>
-                                )}
-                                <p className="text-gray-600 text-sm mb-3">
-                                    📍 {event.location}
-                                </p>
-                                <p className="text-gray-700 text-sm mb-4">
-                                    {event.description}
-                                </p>
-                                {activeTab === 'upcoming' && (
-                                    <Button variant="primary" size="sm" className="w-full">
-                                        Register Interest
-                                    </Button>
-                                )}
-                            </div>
-                        </Card>
-                    ))}
-                </div>
+                {error && !loading && (
+                    <div className="text-center py-12">
+                        <p className="text-red-500 text-lg">{error}</p>
+                    </div>
+                )}
 
-                {(activeTab === 'upcoming' ? upcoming : past).length === 0 && (
+                {!loading && !error && (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {events.map((event) => {
+                            const id = event._id || event.id;
+                            return (
+                                <Link
+                                    key={id}
+                                    to={`/events/${id}`}
+                                    className="block"
+                                >
+                                    <Card className="p-0 overflow-hidden">
+                                        <div className="relative">
+                                            <img
+                                                src={getImageSrc(event)}
+                                                alt={event.title}
+                                                className="w-full h-48 object-cover"
+                                            />
+                                            <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                                {formatDate(event.date)}
+                                            </div>
+                                        </div>
+                                        <div className="p-6">
+                                            <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                                            {event.time && (
+                                                <p className="text-gray-600 text-sm mb-1">
+                                                    ⏰ {event.time}
+                                                </p>
+                                            )}
+                                            <p className="text-gray-600 text-sm mb-3">
+                                                {event.location}
+                                            </p>
+                                            <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                                                {event.description}
+                                            </p>
+                                        </div>
+                                    </Card>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                )}
+
+                {!loading && !error && events.length === 0 && (
                     <div className="text-center py-12">
                         <p className="text-gray-500 text-lg">
-                            No {activeTab} events at the moment. Check back soon!
+                            No upcoming events at the moment. Check back soon!
                         </p>
                     </div>
                 )}
-            </Section>
-
-            <Section bgColor="bg-gray-50">
-                <Heading
-                    title="Event Updates"
-                    subtitle="Stay informed about our upcoming activities"
-                />
-                <div className="grid md:grid-cols-2 gap-8 mt-10 max-w-4xl mx-auto">
-                    <Card>
-                        <h3 className="text-lg font-bold mb-3">📧 Newsletter</h3>
-                        <p className="text-gray-600 text-sm mb-4">
-                            Subscribe to our newsletter for regular updates about events, programs, and impact stories.
-                        </p>
-                        <div className="flex gap-2">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                            />
-                            <Button variant="primary" size="sm">
-                                Subscribe
-                            </Button>
-                        </div>
-                    </Card>
-                    <Card>
-                        <h3 className="text-lg font-bold mb-3">📱 Follow Us</h3>
-                        <p className="text-gray-600 text-sm mb-4">
-                            Follow us on social media for real-time updates about our events and community activities.
-                        </p>
-                        <div className="flex space-x-3">
-                            <Button variant="outline" size="sm">Facebook</Button>
-                            <Button variant="outline" size="sm">Instagram</Button>
-                            <Button variant="outline" size="sm">Twitter</Button>
-                        </div>
-                    </Card>
-                </div>
             </Section>
         </div>
     );

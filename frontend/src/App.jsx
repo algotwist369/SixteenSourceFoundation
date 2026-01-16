@@ -18,6 +18,8 @@ import Impact from "./pages/Impact";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
+import EventForm from "./admin/pages/events/EventForm";
+import EventDetails from "./pages/EventDetails";
 
 // Admin Pages
 import DashboardFAQ from "./admin/pages/adminDashboard";
@@ -66,6 +68,7 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/team" element={<Team />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/events/:id" element={<EventDetails />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/programs/:slug" element={<ProgramDetails />} />
           <Route path="/get-involved" element={<GetInvolved />} />
@@ -121,6 +124,10 @@ const App = () => {
               </FAQProvider>
             }
           />
+
+          {/* Admin Event standalone routes */}
+          <Route path="/admin/event/create" element={<EventForm />} />
+          <Route path="/admin/event/edit/:id" element={<EventForm />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -2,7 +2,7 @@
   "pageHeader": {
     "title": "Events",
     "subtitle": "Stay updated with our latest events and community activities",
-    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=400&fit=crop"
+    "image": "http://localhost:5000/uploads/event/1768563382735-mu1l6m.jpeg"
   },
   "content": {
     "title": "Our Events",

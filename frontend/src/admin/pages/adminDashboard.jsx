@@ -13,6 +13,7 @@ const GetHero = lazy(() => import('./hero/getHero'));
 const GetOurStory = lazy(() => import('./ourStory/getOurStory'));
 const GetSuccessStories = lazy(() => import('./successStories/getSuccessStories'));
 const GetVolunteer = lazy(() => import('./volunteer/getVolunteer'));
+const GetEvents = lazy(() => import('../../pages/EventList'));
 
 // Loading component for Suspense fallback
 const LoadingSpinner = () => (
@@ -82,6 +83,12 @@ const TAB_CONFIG = [
         component: GetVolunteer,
         createLink: '/admin/volunteer/create',
         createLabel: 'Add Volunteer'
+    },
+    {
+        name: 'Events',
+        component: GetEvents,
+        createLink: '/admin/event/create',
+        createLabel: 'Add Event'
     }
 ];
 
