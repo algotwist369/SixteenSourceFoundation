@@ -3,6 +3,7 @@ import useSuccessStories from '../../hooks/useSuccessStories';
 import { Link } from 'react-router-dom';
 import { HiPencil, HiTrash, HiVideoCamera } from 'react-icons/hi';
 import { SERVER_URL } from '../../../env';
+import { getYouTubeEmbedUrl } from '../../../utils/youtube';
 
 const GetSuccessStories = memo(() => {
     const { successStories, loading, error, removeSuccessStory, fetchSuccessStories, pagination } = useSuccessStories();
@@ -51,13 +52,26 @@ const GetSuccessStories = memo(() => {
                     {successStories.map((story) => (
                         <div key={story._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
                             <div className="relative h-48 bg-gray-100 flex items-center justify-center">
-                                {story.video ? (
-                                    <video
-                                        src={`${SERVER_URL}/${story.video}`}
-                                        className="w-full h-full object-cover"
-                                        controls
-                                    />
-                                ) : (
+                                {story.video ? (() => {
+                                    const embedUrl = getYouTubeEmbedUrl(story.video);
+                                    const isYouTube = embedUrl && embedUrl.includes('youtube.com/embed/');
+                                    return isYouTube ? (
+                                        <iframe
+                                            src={embedUrl}
+                                            className="w-full h-full"
+                                            title="YouTube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    ) : (
+                                        <video
+                                            src={`${SERVER_URL}/${story.video}`}
+                                            className="w-full h-full object-cover"
+                                            controls
+                                        />
+                                    );
+                                })() : (
                                     <div className="text-gray-400 flex flex-col items-center">
                                         <HiVideoCamera className="w-12 h-12 mb-2" />
                                         <span>No Video</span>

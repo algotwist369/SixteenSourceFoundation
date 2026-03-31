@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import impactData from "../../data/impact.json";
 import { FaPlay, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { getYouTubeEmbedUrl } from "../../utils/youtube";
 
 const OurImpact = () => {
     const [selectedMedia, setSelectedMedia] = useState(null);
@@ -184,7 +185,7 @@ const OurImpact = () => {
                         {selectedMedia.type === 'video' ? (
                             <div className="relative aspect-video">
                                 <iframe
-                                    src={selectedMedia.media}
+                                    src={getYouTubeEmbedUrl(selectedMedia.media)}
                                     title={selectedMedia.title}
                                     className="w-full h-full"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

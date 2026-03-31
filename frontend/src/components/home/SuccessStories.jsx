@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { getAllSuccessStories } from "../../admin/services/successStories";
 import { FaQuoteLeft } from "react-icons/fa";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { getYouTubeEmbedUrl } from "../../utils/youtube";
 
 export default function SuccessStories() {
     const [testimonials, setTestimonials] = useState([]);
@@ -9,13 +10,6 @@ export default function SuccessStories() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const hasFetched = useRef(false);
-
-    const getYouTubeEmbedUrl = (url) => {
-        if (!url) return null;
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : url;
-    };
 
     useEffect(() => {
         if (hasFetched.current) return;

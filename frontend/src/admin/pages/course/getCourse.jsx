@@ -2,7 +2,7 @@ import React, { useRef, memo, useCallback } from 'react';
 import useCourse from '../../hooks/useCourse';
 import { Link } from 'react-router-dom';
 import { HiPencil, HiTrash, HiClock } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const GetCourse = memo(() => {
     const { courses, loading, error, removeCourse, fetchCourses } = useCourse();
@@ -39,7 +39,7 @@ const GetCourse = memo(() => {
                             <div className="relative h-48">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={course.image ? `${SERVER_URL}/${course.image}` : 'https://via.placeholder.com/300x200'}
+                                    src={getImageUrl(course.image) || 'https://via.placeholder.com/300x200'}
                                     alt={course.title}
                                     loading="lazy"
                                 />

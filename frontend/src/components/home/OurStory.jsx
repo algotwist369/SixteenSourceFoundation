@@ -4,6 +4,7 @@ import Button from "../common/Button";
 import { getAllOurStories } from "../../admin/services/ourStory";
 import { SERVER_URL } from "../../env";
 import organizationData from "../../data/organization.json";
+import { getYouTubeEmbedUrl } from "../../utils/youtube";
 
 const OurStory = memo(() => {
     const [story, setStory] = useState(null);
@@ -14,21 +15,6 @@ const OurStory = memo(() => {
     const tagline = story?.ourMission?.slice(0, 120);
     const { established, stats } = organizationData;
     const yearsOfImpact = new Date().getFullYear() - parseInt(established, 10);
-
-    const getYouTubeEmbedUrl = (url) => {
-        if (!url) return null;
-        let videoId = '';
-        if (url.includes('v=')) {
-            videoId = url.split('v=')[1].split('&')[0];
-        } else if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1].split('?')[0];
-        } else if (url.includes('shorts/')) {
-            videoId = url.split('shorts/')[1].split('?')[0];
-        } else if (url.includes('embed/')) {
-            videoId = url.split('embed/')[1].split('?')[0];
-        }
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    };
 
     useEffect(() => {
         if (hasFetched.current) return;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { createEvent, updateEvent, fetchEvent, uploadEventGallery } from "../../services/event_api";
+import { getImageUrl } from "../../../utils/image";
+import { HiX } from "react-icons/hi";
 
 const EventForm = ({ eventId, onSuccess }) => {
     const params = useParams();
@@ -21,7 +23,12 @@ const EventForm = ({ eventId, onSuccess }) => {
     const [pointsText, setPointsText] = useState("");
     const [audienceText, setAudienceText] = useState("");
     const [imageFiles, setImageFiles] = useState([]);
+    const [previews, setPreviews] = useState([]);
     const didFetchRef = useRef(false);
+
+    useEffect(() => {
+        return () => previews.forEach(url => URL.revokeObjectURL(url));
+    }, [previews]);
 
     useEffect(() => {
         if (!currentEventId || didFetchRef.current) return;
@@ -53,6 +60,29 @@ const EventForm = ({ eventId, onSuccess }) => {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files || []);
         setImageFiles(files);
+        
+        // Revoke old previews
+        previews.forEach(url => URL.revokeObjectURL(url));
+        
+        // Create new previews
+        const newPreviews = files.map(file => URL.createObjectURL(file));
+        setPreviews(newPreviews);
+    };
+
+    const removeImage = (index) => {
+        const newImages = imageFiles.filter((_, i) => i !== index);
+        setImageFiles(newImages);
+        
+        const newPreviews = previews.filter((_, i) => i !== index);
+        URL.revokeObjectURL(previews[index]);
+        setPreviews(newPreviews);
+    };
+
+    const removeExistingImage = (index) => {
+        setFormData(prev => ({
+            ...prev,
+            img_gallery: prev.img_gallery.filter((_, i) => i !== index)
+        }));
     };
 
     const handleSubmit = async (e) => {
@@ -173,6 +203,56 @@ const EventForm = ({ eventId, onSuccess }) => {
                 onChange={handleImageChange}
                 className="w-full border px-3 py-2 rounded mb-3"
             />
+
+            {/* Existing Images */}
+            {formData.img_gallery.length > 0 && (
+                <div className="mb-4">
+                    <p className="text-sm font-semibold mb-2">Existing Images:</p>
+                    <div className="grid grid-cols-4 gap-2">
+                        {formData.img_gallery.map((img, i) => (
+                            <div key={i} className="relative group">
+                                <img
+                                    src={getImageUrl(img)}
+                                    alt="gallery"
+                                    className="w-full h-20 object-cover rounded border"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => removeExistingImage(i)}
+                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <HiX className="w-3 h-3" />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* New Previews */}
+            {previews.length > 0 && (
+                <div className="mb-4">
+                    <p className="text-sm font-semibold mb-2">New Images to Upload:</p>
+                    <div className="grid grid-cols-4 gap-2">
+                        {previews.map((src, i) => (
+                            <div key={i} className="relative group">
+                                <img
+                                    src={src}
+                                    alt="preview"
+                                    className="w-full h-20 object-cover rounded border"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => removeImage(i)}
+                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <HiX className="w-3 h-3" />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <button
                 type="submit"

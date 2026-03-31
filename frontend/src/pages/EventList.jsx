@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchEvents, deleteEvent } from "../admin/services/event_api";
-import { SERVER_URL } from "../env";
+import { getImageUrl } from "../utils/image";
 
 const EventList = () => {
     const [events, setEvents] = useState([]);
@@ -91,7 +91,7 @@ const EventList = () => {
                                 {event.img_gallery.map((img, i) => (
                                     <img
                                         key={i}
-                                        src={img && img.startsWith("http") ? img : `${SERVER_URL}/${img}`}
+                                        src={getImageUrl(img)}
                                         alt="gallery"
                                         className="w-20 h-20 object-cover rounded"
                                     />

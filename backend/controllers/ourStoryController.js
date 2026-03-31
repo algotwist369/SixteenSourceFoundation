@@ -1,6 +1,7 @@
 const fs = require("fs").promises;
 const path = require("path");
 const OurStory = require("../models/ourStoryModel");
+const { extractYouTubeId } = require("../utils/youtube");
 
 const uploadVideo = async (req, res) => {
     try {
@@ -35,7 +36,11 @@ const createOurStory = async (req, res) => {
         if (!title) {
             return res.status(400).json({ success: false, message: "Title is required" });
         }
-        const created = await OurStory.create({ title, ourJourney, ourMission, ourStrategy: Array.isArray(ourStrategy) ? ourStrategy : [], number, video });
+        
+        // Extract YouTube ID if it's a YouTube URL
+        const videoId = video ? extractYouTubeId(video) : video;
+        
+        const created = await OurStory.create({ title, ourJourney, ourMission, ourStrategy: Array.isArray(ourStrategy) ? ourStrategy : [], number, video: videoId });
         return res.status(201).json({ success: true, message: "Our story created", data: created });
     } catch (error) {
         return res.status(500).json({ success: false, message: "Server Error" });
@@ -62,7 +67,13 @@ const updateOurStory = async (req, res) => {
         if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
             return res.status(400).json({ success: false, message: "Invalid our story ID" });
         }
-        const updated = await OurStory.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+
+        const data = { ...req.body };
+        if (data.video) {
+            data.video = extractYouTubeId(data.video);
+        }
+
+        const updated = await OurStory.findByIdAndUpdate(id, data, { new: true, runValidators: true });
         if (!updated) return res.status(404).json({ success: false, message: "Our story not found" });
         return res.status(200).json({ success: true, message: "Our story updated", data: updated });
     } catch (error) {

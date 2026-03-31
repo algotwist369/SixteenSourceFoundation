@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCourse from '../../hooks/useCourse';
 import { HiUpload, HiPlus, HiX } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const UpdateCourse = () => {
     const { id } = useParams();
@@ -36,7 +36,7 @@ const UpdateCourse = () => {
             setTopics(course.topics && course.topics.length > 0 ? course.topics : ['']);
             setBenefits(course.benefits && course.benefits.length > 0 ? course.benefits : ['']);
             if (course.image) {
-                setPreview(`${SERVER_URL}/${course.image}`);
+                setPreview(getImageUrl(course.image));
             }
         }
     }, [id, courses]);

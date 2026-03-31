@@ -14,6 +14,7 @@ import {
 import { getAllOurStories } from "../admin/services/ourStory";
 import { getAllTeams } from "../admin/services/team";
 import { SERVER_URL } from "../env";
+import { getYouTubeEmbedUrl } from "../utils/youtube";
 
 const About = () => {
     const [story, setStory] = useState(null);
@@ -148,15 +149,30 @@ const About = () => {
                                 </div>
                             )}
                         </div>
-                        {story?.video && (
-                            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                                <video
-                                    src={story.video.startsWith('http') ? story.video : `${SERVER_URL}/${story.video}`}
-                                    className="w-full h-full object-cover"
-                                    controls
-                                />
-                            </div>
-                        )}
+                        {story?.video && (() => {
+                            const embedUrl = getYouTubeEmbedUrl(story.video);
+                            const isYouTube = embedUrl && embedUrl.includes('youtube.com/embed/');
+                            return (
+                                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                                    {isYouTube ? (
+                                        <iframe
+                                            src={embedUrl}
+                                            className="w-full h-full"
+                                            title="YouTube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                        ></iframe>
+                                    ) : (
+                                        <video
+                                            src={story.video.startsWith('http') ? story.video : `${SERVER_URL}/${story.video}`}
+                                            className="w-full h-full object-cover"
+                                            controls
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })()}
                     </div>
                 </div>
             </Section>
