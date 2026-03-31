@@ -2,7 +2,7 @@ import React, { useRef, memo, useCallback } from 'react';
 import useCaseStudy from '../../hooks/useCaseStudy';
 import { Link } from 'react-router-dom';
 import { HiPencil, HiTrash, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const GetCaseStudy = memo(() => {
     const { caseStudies, loading, error, pagination, removeCaseStudy, fetchCaseStudies } = useCaseStudy();
@@ -54,7 +54,7 @@ const GetCaseStudy = memo(() => {
                                 <div className="relative h-48">
                                     <img
                                         className="w-full h-full object-cover"
-                                        src={caseStudy.image ? `${SERVER_URL}/${caseStudy.image}` : 'https://via.placeholder.com/300x200'}
+                                        src={getImageUrl(caseStudy.image) || 'https://via.placeholder.com/300x200'}
                                         alt={caseStudy.title}
                                         loading="lazy"
                                     />

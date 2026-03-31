@@ -1,7 +1,7 @@
 import React, { useRef, memo, useCallback } from 'react';
 import useGallery from '../../hooks/useGallery';
 import { HiTrash } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const GetGallery = memo(() => {
     const { images, loading, error, deleteImage, fetchGallery, deleteAllImages } = useGallery();
@@ -65,7 +65,7 @@ const GetGallery = memo(() => {
                     {images.map((image) => (
                         <div key={image._id} className="relative group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
                             <img
-                                src={`${SERVER_URL}${image.imageUrl}`}
+                                src={getImageUrl(image.imageUrl)}
                                 alt="Gallery photo"
                                 className="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500"
                                 loading="lazy"

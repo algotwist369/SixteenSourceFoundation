@@ -21,7 +21,7 @@ const getAllTeams = async (req, res) => {
         const teams = await Team.find()
             .skip(skip)
             .limit(limit)
-            .sort({ createdAt: -1 });
+            .sort({ position: 1, createdAt: -1 });
 
         const total = await Team.countDocuments();
 
@@ -40,13 +40,21 @@ const getAllTeams = async (req, res) => {
 
 const createTeam = async (req, res) => {
     try {
-        const { photo, name, role, email, number } = req.body;
+        const { photo, name, role, email, number, position, details } = req.body;
 
         if (!name || !role) {
             return res.status(400).json({ success: false, message: "Name and role are required" });
         }
 
-        const newTeam = await Team.create({ photo, name, role, email, number });
+        const newTeam = await Team.create({ 
+            photo, 
+            name, 
+            role, 
+            email, 
+            number, 
+            position: position !== undefined ? position : 999, 
+            details: Array.isArray(details) ? details : [] 
+        });
 
         res.status(201).json({ success: true, message: "Team member created successfully", data: newTeam });
     } catch (error) {
@@ -81,7 +89,12 @@ const updateTeam = async (req, res) => {
             return res.status(400).json({ success: false, message: "Name cannot be empty" });
         }
 
-        const updated = await Team.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+        const data = { ...req.body };
+        if (data.position !== undefined) {
+            data.position = parseInt(data.position) || 999;
+        }
+
+        const updated = await Team.findByIdAndUpdate(id, data, { new: true, runValidators: true });
         if (!updated) {
             return res.status(404).json({ success: false, message: "Team member not found" });
         }

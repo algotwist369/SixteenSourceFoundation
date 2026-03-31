@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCaseStudy from '../../hooks/useCaseStudy';
 import { HiUpload } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const UpdateCaseStudy = () => {
     const { id } = useParams();
@@ -158,7 +158,7 @@ const UpdateCaseStudy = () => {
                                 {preview ? (
                                     <img src={preview} alt="Preview" className="w-full h-full object-cover" />
                                 ) : existingImage ? (
-                                    <img src={`${SERVER_URL}/${existingImage}`} alt="Current" className="w-full h-full object-cover" />
+                                    <img src={getImageUrl(existingImage)} alt="Current" className="w-full h-full object-cover" />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
                                         No Image

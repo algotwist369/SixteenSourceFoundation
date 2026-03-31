@@ -7,7 +7,7 @@ import { MdOutlineMail } from "react-icons/md";
 import Button from "../components/common/Button";
 import { FaPhoneAlt } from "react-icons/fa";
 import { getAllTeams } from "../admin/services/team";
-import { SERVER_URL } from "../env";
+import { getImageUrl } from "../utils/image";
 
 const Team = () => {
     const [team, setTeam] = useState([]);
@@ -37,17 +37,14 @@ const Team = () => {
                             : [];
 
                 const normalized = rawList.map((member, idx) => {
-                    const photo = member?.photo
-                        ? (member.photo.startsWith("http") ? member.photo : `${SERVER_URL}/${member.photo}`)
-                        : "https://via.placeholder.com/200x200?text=Team";
-
                     return {
                         id: member?._id || member?.id || idx,
                         name: member?.name || "Team Member",
                         role: member?.role || "Team",
                         email: member?.email || "",
                         number: member?.number || member?.phone || "",
-                        photo
+                        photo: getImageUrl(member?.photo) || "https://via.placeholder.com/200x200?text=Team",
+                        details: Array.isArray(member?.details) ? member.details : []
                     };
                 });
 
@@ -101,24 +98,35 @@ const Team = () => {
                     {team.map((member) => (
                         <Card
                             key={member.id}
-                            className="text-center bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 border border-gray-100"
+                            className="text-center bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 p-6 border border-gray-100 flex flex-col h-full"
                         >
                             <div className="mb-5">
                                 <img
                                     src={member.photo}
                                     alt={member.name}
-                                    className="w-32 h-32 rounded-full mx-auto object-fit border-4 border-green-200 shadow-sm"
+                                    className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-green-200 shadow-sm"
                                 />
                             </div>
                             <h3 className="text-lg font-semibold text-gray-800">
                                 {member.name}
                             </h3>
-                            <p className="text-green-600 font-medium mb-2 text-sm tracking-wide">
+                            <p className="text-green-600 font-medium mb-4 text-sm tracking-wide">
                                 {member.role}
                             </p>
-                            <div className="text-gray-600 text-sm space-y-1">
-                                {member.email && <p><MdOutlineMail className="inline mr-1" /> {member.email}</p>}
-                                {member.number && <p><FaPhoneAlt className="inline mr-1" /> {member.number}</p>}
+                            
+                            <div className="text-gray-600 text-sm space-y-2 mb-4 flex-grow">
+                                {member.email && <p className="flex items-center justify-center"><MdOutlineMail className="mr-1" /> {member.email}</p>}
+                                {member.number && <p className="flex items-center justify-center"><FaPhoneAlt className="mr-1" /> {member.number}</p>}
+                                
+                                {member.details.length > 0 && (
+                                    <div className="pt-4 border-t border-gray-50 mt-4 space-y-1">
+                                        {member.details.map((detail, dIdx) => (
+                                            <p key={dIdx} className="text-xs">
+                                                <span className="font-semibold text-gray-500">{detail.label}:</span> {detail.value}
+                                            </p>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </Card>
                     ))}

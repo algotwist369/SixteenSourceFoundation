@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useSuccessStories from '../../hooks/useSuccessStories';
 import { HiLink } from 'react-icons/hi';
+import { getYouTubeEmbedUrl } from '../../../utils/youtube';
 
 const UpdateSuccessStories = () => {
     const { id } = useParams();
@@ -41,17 +42,11 @@ const UpdateSuccessStories = () => {
         setFormData({ ...formData, [e.target.name]: value });
     };
 
-    const getYouTubeId = (url) => {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? match[2] : null;
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            if (formData.video && !getYouTubeId(formData.video)) {
+            if (formData.video && !getYouTubeEmbedUrl(formData.video)) {
                 setLocalError('Please enter a valid YouTube URL');
                 return;
             }
@@ -85,7 +80,7 @@ const UpdateSuccessStories = () => {
         return <div className="text-center py-10">Loading success story...</div>;
     }
 
-    const videoId = formData.video ? getYouTubeId(formData.video) : null;
+    const embedUrl = formData.video ? getYouTubeEmbedUrl(formData.video) : null;
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -152,14 +147,14 @@ const UpdateSuccessStories = () => {
                                 required
                             />
                         </div>
-                        {videoId && (
+                        {embedUrl && (
                             <div className="mt-4">
                                 <p className="text-sm text-gray-500 mb-2">Preview:</p>
                                 <div className="aspect-video w-full max-w-md bg-black rounded shadow-inner overflow-hidden">
                                     <iframe
                                         width="100%"
                                         height="100%"
-                                        src={`https://www.youtube.com/embed/${videoId}`}
+                                        src={embedUrl}
                                         title="YouTube video player"
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

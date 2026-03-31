@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useTeam from '../../hooks/useTeam';
-import { HiUpload } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { HiUpload, HiPlus, HiTrash } from 'react-icons/hi';
+import { getImageUrl } from '../../../utils/image';
 
 const UpdateTeam = () => {
     const { id } = useParams();
@@ -14,8 +14,10 @@ const UpdateTeam = () => {
         role: '',
         email: '',
         number: '',
-        photo: ''
+        photo: '',
+        position: 999
     });
+    const [details, setDetails] = useState([{ label: '', value: '' }]);
     const [photoFile, setPhotoFile] = useState(null);
     const [preview, setPreview] = useState(null);
 
@@ -27,16 +29,37 @@ const UpdateTeam = () => {
                 role: teamMember.role || '',
                 email: teamMember.email || '',
                 number: teamMember.number || '',
-                photo: teamMember.photo || ''
+                photo: teamMember.photo || '',
+                position: teamMember.position || 0
             });
+            if (teamMember.details && teamMember.details.length > 0) {
+                setDetails(teamMember.details);
+            } else {
+                setDetails([{ label: '', value: '' }]);
+            }
             if (teamMember.photo) {
-                setPreview(`${SERVER_URL}/${teamMember.photo}`);
+                setPreview(getImageUrl(teamMember.photo));
             }
         }
     }, [id, teams]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: name === 'position' ? parseInt(value) || 0 : value });
+    };
+
+    const handleDetailChange = (index, field, value) => {
+        const newDetails = [...details];
+        newDetails[index][field] = value;
+        setDetails(newDetails);
+    };
+
+    const addDetail = () => {
+        setDetails([...details, { label: '', value: '' }]);
+    };
+
+    const removeDetail = (index) => {
+        setDetails(details.filter((_, i) => i !== index));
     };
 
     const handlePhotoChange = (e) => {
@@ -59,7 +82,10 @@ const UpdateTeam = () => {
                 photoPath = uploadRes.photo;
             }
 
-            await editTeam(id, { ...formData, photo: photoPath });
+            // Filter out empty details
+            const filteredDetails = details.filter(d => d.label.trim() !== '' && d.value.trim() !== '');
+
+            await editTeam(id, { ...formData, photo: photoPath, details: filteredDetails });
             navigate('/admin');
         } catch (err) {
             console.error("Failed to update team member", err);
@@ -68,7 +94,7 @@ const UpdateTeam = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Edit Team Member</h2>
 
                 {error && (
@@ -121,6 +147,16 @@ const UpdateTeam = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
+                        <div>
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Display Position (Lower shows first)</label>
+                            <input
+                                type="number"
+                                name="position"
+                                value={formData.position}
+                                onChange={handleChange}
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                        </div>
                     </div>
 
                     <div className="mb-6">
@@ -130,7 +166,7 @@ const UpdateTeam = () => {
                                 {preview ? (
                                     <img src={preview} alt="Preview" className="w-full h-full object-cover" />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
                                         No Photo
                                     </div>
                                 )}
@@ -143,7 +179,49 @@ const UpdateTeam = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-end">
+                    <div className="mb-6 border-t pt-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <label className="block text-gray-700 text-sm font-bold">Custom Details</label>
+                            <button
+                                type="button"
+                                onClick={addDetail}
+                                className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-bold"
+                            >
+                                <HiPlus className="mr-1" /> Add Detail
+                            </button>
+                        </div>
+                        {details.map((detail, index) => (
+                            <div key={index} className="flex gap-4 mb-3 items-start">
+                                <div className="flex-1">
+                                    <input
+                                        type="text"
+                                        placeholder="Label (e.g. Experience)"
+                                        value={detail.label}
+                                        onChange={(e) => handleDetailChange(index, 'label', e.target.value)}
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    />
+                                </div>
+                                <div className="flex-[2]">
+                                    <input
+                                        type="text"
+                                        placeholder="Value (e.g. 5+ Years)"
+                                        value={detail.value}
+                                        onChange={(e) => handleDetailChange(index, 'value', e.target.value)}
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => removeDetail(index)}
+                                    className="bg-red-100 text-red-600 hover:bg-red-200 p-2 rounded"
+                                >
+                                    <HiTrash />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex items-center justify-end pt-6 border-t">
                         <button
                             type="button"
                             onClick={() => navigate('/admin')}

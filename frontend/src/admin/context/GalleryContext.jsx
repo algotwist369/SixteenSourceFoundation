@@ -40,21 +40,30 @@ export const GalleryProvider = ({ children }) => {
         setLoading(true);
         setError(null);
         try {
-            const batchSize = 5; // Smaller batches to avoid Nginx 413 errors
-            const allResults = [];
+            const batchSize = 5; // Process 5 images at a time
+            let allResults = [];
 
             for (let i = 0; i < files.length; i += batchSize) {
                 const batch = files.slice(i, i + batchSize);
                 const formData = new FormData();
                 batch.forEach(file => formData.append('images', file));
 
-                const response = await uploadMultipleImages(formData);
-                setImages((prev) => [...response.data, ...prev]);
-                allResults.push(response);
+                try {
+                    const response = await uploadMultipleImages(formData);
+                    if (response.data) {
+                        setImages((prev) => [...response.data, ...prev]);
+                        allResults = [...allResults, ...response.data];
+                    }
+                } catch (batchError) {
+                    console.error(`Batch upload failed:`, batchError);
+                    // Continue to next batch, but report error
+                    setError(`An error occurred during upload. Some images may have failed.`);
+                }
             }
             return allResults;
         } catch (err) {
-            setError(err.message || 'Failed to upload images');
+            console.error("Error in uploadImages function:", err);
+            setError(err.message || 'A critical error occurred while uploading images.');
             throw err;
         } finally {
             setLoading(false);

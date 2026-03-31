@@ -3,12 +3,11 @@ import Section from "../components/common/Section";
 import Heading from "../components/common/Heading";
 import galleryData from "../data/galleryData.json";
 import { getAllGalleries } from "../admin/services/gallery";
-import { SERVER_URL } from "../env";
+import { getImageUrl } from "../utils/image";
 
 const Gallery = () => {
-    const { pageHeader, content } = galleryData;
+    const { content } = galleryData;
     const [selectedImage, setSelectedImage] = useState(null);
-    const [loadedImages, setLoadedImages] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [galleryImages, setGalleryImages] = useState([]);
 
@@ -18,12 +17,11 @@ const Gallery = () => {
         const fetchImages = async () => {
             try {
                 const response = await getAllGalleries();
-                if (response.success && response.data) {
-                    const mappedImages = response.data.map(img => ({
+                const images = response?.data || [];
+                if (Array.isArray(images)) {
+                    const mappedImages = images.map(img => ({
                         id: img._id,
-                        src: img.imageUrl.startsWith("http")
-                            ? img.imageUrl
-                            : `${SERVER_URL.replace(/\/+$/, "")}/${img.imageUrl.replace(/^\/+/, "")}`,
+                        src: getImageUrl(img.imageUrl),
                         alt: img.title || "Gallery Image"
                     }));
                     setGalleryImages(mappedImages);
@@ -38,13 +36,6 @@ const Gallery = () => {
         fetchImages();
     }, []);
 
-    const handleImageLoad = (imageId) => {
-        setLoadedImages(prev => ({
-            ...prev,
-            [imageId]: true
-        }));
-    };
-
     return (
         <div>
             <Section>
@@ -53,14 +44,10 @@ const Gallery = () => {
                     subtitle={content.subtitle}
                 />
 
-                {/* Loading Skeleton */}
                 {isLoading ? (
                     <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 mt-10">
                         {Array.from({ length: 12 }).map((_, index) => (
-                            <div
-                                key={`skeleton-${index}`}
-                                className="break-inside-avoid mb-4"
-                            >
+                            <div key={`skeleton-${index}`} className="break-inside-avoid mb-4">
                                 <div className="relative overflow-hidden rounded-lg shadow-md bg-gray-200 animate-pulse">
                                     <div className="w-full h-64" />
                                 </div>
@@ -68,7 +55,6 @@ const Gallery = () => {
                         ))}
                     </div>
                 ) : (
-                    /* Masonry Grid Layout for Different Sized Images */
                     <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 mt-10">
                         {galleryImages.map((image) => (
                             <div
@@ -77,16 +63,10 @@ const Gallery = () => {
                                 onClick={() => setSelectedImage(image)}
                             >
                                 <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                                    {/* Image Loading Shimmer */}
-                                    {!loadedImages[image.id] && (
-                                        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                                    )}
                                     <img
                                         src={image.src}
                                         alt={image.alt}
-                                        className={`w-full h-auto object-cover transition-all duration-300 group-hover:scale-105 ${loadedImages[image.id] ? 'opacity-100' : 'opacity-0'
-                                            }`}
-                                        onLoad={() => handleImageLoad(image.id)}
+                                        className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300" />
                                 </div>
@@ -95,7 +75,6 @@ const Gallery = () => {
                     </div>
                 )}
 
-                {/* Lightbox Modal */}
                 {selectedImage && (
                     <div
                         className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"

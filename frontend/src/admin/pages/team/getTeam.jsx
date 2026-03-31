@@ -2,7 +2,7 @@ import React, { useRef, memo, useCallback } from 'react';
 import useTeam from '../../hooks/useTeam';
 import { Link } from 'react-router-dom';
 import { HiPencil, HiTrash } from 'react-icons/hi';
-import { SERVER_URL } from '../../../env';
+import { getImageUrl } from '../../../utils/image';
 
 const GetTeam = memo(() => {
     const { teams, loading, error, removeTeam, fetchTeams } = useTeam();
@@ -40,7 +40,7 @@ const GetTeam = memo(() => {
                                 <div className="md:flex-shrink-0">
                                     <img
                                         className="h-48 w-full object-cover md:w-48"
-                                        src={member.photo ? `${SERVER_URL}/${member.photo}` : 'https://via.placeholder.com/150'}
+                                        src={getImageUrl(member.photo) || 'https://via.placeholder.com/150'}
                                         alt={member.name}
                                         loading="lazy"
                                     />

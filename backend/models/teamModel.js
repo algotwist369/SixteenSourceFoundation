@@ -5,7 +5,17 @@ const teamSchema = new mongoose.Schema({
     name: String,
     role: String,
     email: String,
-    number: Number,
+    number: String,
+    position: {
+        type: Number,
+        default: 999
+    },
+    details: [
+        {
+            label: String,
+            value: String
+        }
+    ],
     createdAt: {
         type: Date,
         default: Date.now,
