@@ -33,7 +33,7 @@ const Contact = () => {
         {
             icon: <FaMapMarkerAlt className="text-3xl text-green-600" />,
             title: "Visit Us",
-            details: ["Room no.386, building no.12", "West, tail gali, PMG COLONY", "Mankhurd, Mumbai, Maharashtra 400088"]
+            details: ["Dr. Hedgewar Vidyalaya, Building No. 106, behind New MHADA Colony,  PMGP, Mankhurd west mumbai no. 400043 Maharashtra"]
         },
         {
             icon: <FaEnvelope className="text-3xl text-green-600" />,
@@ -157,7 +157,8 @@ const Contact = () => {
                                 <div className="text-sm space-y-1">
                                     <p className="flex items-start gap-2">
                                         <FaMapMarkerAlt className="text-green-600 mt-1 flex-shrink-0" />
-                                        <span>Room no.386, building no.12, West, tail gali,<br />PMG COLONY, Mankhurd, Mumbai, Maharashtra 400088</span>
+                                        <span> Dr. Hedgewar Vidyalaya, Building No. 106, behind New MHADA Colony,  PMGP, Mankhurd west mumbai no. 400043
+                                            Maharashtra</span>
                                     </p>
                                     <p className="flex items-center gap-2">
                                         <FaEnvelope className="text-green-600 flex-shrink-0" />
