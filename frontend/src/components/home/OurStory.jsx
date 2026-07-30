@@ -389,7 +389,7 @@ const OurStory = memo(() => {
                         {story.title}
                     </h2>
 
-                    
+
                 </div>
 
 
@@ -464,7 +464,7 @@ const OurStory = memo(() => {
                                         key={stat.label}
                                         value={stat.value}
                                         label={stat.label}
-                                        // description={stat.description}
+                                    // description={stat.description}
                                     />
                                 ))}
                             </div>
@@ -513,6 +513,7 @@ const OurStory = memo(() => {
                                 OUR JOURNEY
                             ===================================== */}
 
+                            <p className="p-1">The sixteen source foundation is a non-profit organization dedicated to providing, support and resources to underprivile</p>
                             <article className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4 transition-colors duration-200 hover:border-orange-100 hover:bg-orange-50/30 sm:p-5">
                                 <div className="mb-3 flex items-center gap-3">
                                     <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-orange-100 text-sm font-bold text-orange-600">
