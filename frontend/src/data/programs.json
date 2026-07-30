@@ -9,7 +9,7 @@
       "image": "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&h=600&fit=crop",
       "icon": "FaBook",
       "impact": {
-        "number": "5,200+",
+        "number": "100+",
         "text": "children educated annually"
       },
       "color": "blue",
@@ -22,7 +22,7 @@
         "Teacher training and capacity building"
       ],
       "stats": [
-        { "label": "Students", "value": "5,200+" },
+        { "label": "Students", "value": "100+" },
         { "label": "Schools", "value": "28" },
         { "label": "Scholarships", "value": "512" }
       ]
