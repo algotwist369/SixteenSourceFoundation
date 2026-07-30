@@ -69,7 +69,9 @@ const About = () => {
         "Advanced Beautician Course",
         "Mehndi Artist Training",
         "Makeup Artist Training",
-        "Life Skills with Leadership Development"
+        "Life Skills with Leadership Development",
+        "Tailoring Training",
+        "Aari work Training"
     ];
 
     const programBenefits = [
