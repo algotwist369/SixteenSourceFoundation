@@ -176,7 +176,7 @@ const Impact = () => {
                             <p className="text-lg">Villages Reached</p>
                         </div>
                         <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                            <h3 className="text-4xl font-bold mb-2">25,000+</h3>
+                            <h3 className="text-4xl font-bold mb-2">125+</h3>
                             <p className="text-lg">Lives Touched</p>
                         </div>
                     </div>

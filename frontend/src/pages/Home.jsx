@@ -289,12 +289,12 @@ const Home = () => {
               {homeData.impact.description}
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {[
               { number: parseInt(stats.livesImpacted.replace(/[^\d]/g, '')), label: "Lives Impacted", suffix: "+" },
-              { number: parseInt(stats.childrenEducated.replace(/[^\d]/g, '')), label: "Children Educated", suffix: "+" },
-              { number: parseInt(stats.volunteers.replace(/[^\d]/g, '')), label: "Volunteers", suffix: "+" },
-              { number: parseInt(stats.communities.replace(/[^\d]/g, '')), label: "Villages", suffix: "+" },
+              { number: parseInt(stats.childrenEducated.replace(/[^\d]/g, '')), label: " Last  year impact", suffix: "+" },
+              { number: parseInt(stats.volunteers.replace(/[^\d]/g, '')), label: "Self employment and jobs", suffix: "+" },
+              // { number: parseInt(stats.communities.replace(/[^\d]/g, '')), label: "Villages", suffix: "+" },
             ].map((stat, i) => (
               <div
                 key={i}
