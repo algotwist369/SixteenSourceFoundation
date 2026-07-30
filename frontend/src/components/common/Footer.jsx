@@ -58,8 +58,7 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
-          <p className="text-sm">{contact.address.street}, {contact.address.area}</p>
-          <p className="text-sm">{contact.address.city} - {contact.address.pincode}</p>
+          <p className="text-sm">Dr. Hedgewar Vidyalaya, Building No. 106, behind New MHADA Colony, PMGP, Mankhurd west mumbai no. 400043 Maharashtra</p>
           <p className="text-sm">Email: {contact.email}</p>
           <p className="text-sm">Phone: {contact.phone}</p>
           <div className="flex space-x-3 mt-3 text-lg">
