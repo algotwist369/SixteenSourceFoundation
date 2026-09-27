@@ -8,6 +8,8 @@ const DonateSection = () => {
     const [bankDetails, setBankDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [amount, setAmount] = useState("");
+    const [donationMessage, setDonationMessage] = useState("");
     const hasFetched = useRef(false);
 
     useEffect(() => {
@@ -59,6 +61,20 @@ const DonateSection = () => {
         }
     }, []);
 
+    const startDonation = () => {
+        const donationAmount = Number(amount);
+        if (!Number.isFinite(donationAmount) || donationAmount <= 0) {
+            setDonationMessage("Enter a donation amount greater than zero.");
+            return;
+        }
+
+        const formattedAmount = new Intl.NumberFormat("en-IN", {
+            maximumFractionDigits: 2
+        }).format(donationAmount);
+        setDonationMessage(`Amount selected: ₹${formattedAmount}. Please use a payment option below.`);
+        document.getElementById("donation-payment-methods")?.scrollIntoView({ behavior: "smooth" });
+    };
+
     return (
         <section className="py-20 px-6 bg-gray-50">
             <div className="max-w-6xl mx-auto">
@@ -77,8 +93,37 @@ const DonateSection = () => {
                     )}
                 </div>
 
+                <div className="mb-10 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                    <h3 className="mb-4 text-xl font-bold text-gray-900">Choose Your Donation Amount</h3>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                        <label className="flex min-h-12 flex-1 items-center gap-2 rounded-md border border-gray-300 px-4 focus-within:border-green-600 focus-within:ring-1 focus-within:ring-green-600">
+                            <span className="font-semibold text-gray-600" aria-hidden="true">₹</span>
+                            <span className="sr-only">Donation amount in rupees</span>
+                            <input
+                                type="number"
+                                min="1"
+                                step="1"
+                                value={amount}
+                                onChange={(event) => setAmount(event.target.value)}
+                                placeholder="Enter Amount"
+                                className="min-w-0 flex-1 bg-transparent text-gray-900 outline-none"
+                            />
+                        </label>
+                        <button
+                            type="button"
+                            onClick={startDonation}
+                            className="min-h-12 rounded-md bg-green-600 px-8 font-semibold text-white transition-colors hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                        >
+                            Donate Now
+                        </button>
+                    </div>
+                    {donationMessage && (
+                        <p className="mt-3 text-sm text-green-800" role="status">{donationMessage}</p>
+                    )}
+                </div>
+
                 {/* Donation Methods Grid */}
-                <div className="grid lg:grid-cols-2 gap-8 mb-12">
+                <div id="donation-payment-methods" className="grid lg:grid-cols-2 gap-8 mb-12 scroll-mt-8">
                     {/* Bank Account Details */}
                     <Card className="p-8 bg-gray-200 border">
                         <div className="flex items-center gap-3 mb-6">

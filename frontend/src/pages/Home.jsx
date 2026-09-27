@@ -177,7 +177,7 @@ const Home = () => {
           <div className="mt-12 grid gap-8 border-t border-gray-200 pt-8 md:grid-cols-3">
             <div>
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
-                <FaGraduationCap />
+                <FaGraduationCap aria-hidden="true" className="h-6 w-6 shrink-0 text-white " />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Beauty & wellness</h3>
               <p className="mt-3 leading-7 text-gray-600">
@@ -186,7 +186,7 @@ const Home = () => {
             </div>
             <div>
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
-                <FaHandsHelping />
+                <FaHandsHelping aria-hidden="true" className="h-6 w-6 shrink-0 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Tailoring & Aari work</h3>
               <p className="mt-3 leading-7 text-gray-600">
@@ -195,7 +195,7 @@ const Home = () => {
             </div>
             <div>
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
-                <FaBriefcase />
+                <FaBriefcase aria-hidden="true" className="h-6 w-6 shrink-0 text-white" />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Confidence for work</h3>
               <p className="mt-3 leading-7 text-gray-600">
@@ -209,6 +209,33 @@ const Home = () => {
               Explore our training courses <FaArrowRight aria-hidden="true" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Featured Training Poster */}
+      <section className="border-y border-green-900 bg-green-800 px-6 py-16">
+        <div className="mx-auto grid max-w-[99rem] items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-widest text-white">Training programs</p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-white md:text-4xl">
+              Learn practical skills. Build your livelihood.
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-white">
+              Explore hands-on training in beauty and wellness, beautician and makeup skills, mehndi, tailoring, and Aari work. Each program helps women build practical skills they can use to pursue employment or start earning independently.
+            </p>
+            <p className="mt-4 max-w-2xl leading-7 text-white">
+              Alongside vocational practice, learners can develop confidence and work-readiness through life-skills training, leadership development, and available placement support.
+            </p>
+            <Link to="/courses" className="mt-6 inline-flex items-center gap-2 font-semibold text-white hover:text-white/90">
+              Explore all courses <FaArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+          <img
+            src="/assets/Courses/poster1.jpeg"
+            alt="Basic Professional Beautician training course poster"
+            className="mx-auto max-h-[36rem] w-auto max-w-full rounded-md object-contain shadow-md"
+            loading="lazy"
+          />
         </div>
       </section>
 

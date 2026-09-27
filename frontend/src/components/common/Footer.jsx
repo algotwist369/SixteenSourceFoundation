@@ -11,6 +11,7 @@ import {
   FaEnvelope,
   FaGlobe,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 import navigationData from "../../data/navigation.json";
 import organizationData from "../../data/organization.json";
@@ -35,11 +36,16 @@ const Footer = () => {
       url: contact?.socialMedia?.youtube || "#",
       name: "YouTube",
     },
-    // {
-    //   icon: <FaLinkedinIn />,
-    //   url: contact?.socialMedia?.linkedin || "#",
-    //   name: "LinkedIn",
-    // },
+    {
+      icon: <FaLinkedinIn />,
+      url: contact?.socialMedia?.linkedin || "#",
+      name: "LinkedIn",
+    },
+    {
+      icon: <FaXTwitter />,
+      url: contact?.socialMedia?.twitter || "#",
+      name: "X",
+    },
   ];
 
   return (
