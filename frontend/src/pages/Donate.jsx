@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PageHeader from "../components/common/PageHeader";
+import React, { useEffect } from "react";
 import Section from "../components/common/Section";
 import Card from "../components/common/Card";
 import Heading from "../components/common/Heading";
-import { FaHeart, FaGraduationCap, FaHeartbeat, FaHome, FaCheckCircle } from "react-icons/fa";
+import { FaHeart, FaGraduationCap, FaFileAlt, FaChartLine, FaUsers, FaCertificate } from "react-icons/fa";
 import DonateSection from "../components/home/DonateSection";
+import SuccessStories from "../components/home/SuccessStories";
+import organizationData from "../data/organization.json";
 
 const Donate = () => {
-    const [selectedAmount, setSelectedAmount] = useState(null);
-    const [customAmount, setCustomAmount] = useState("");
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -16,36 +15,45 @@ const Donate = () => {
     const causes = [
         {
             icon: <FaGraduationCap className="text-4xl text-green-600" />,
-            title: "Education Fund",
-            description: "Help us provide quality education to underprivileged children",
-            impact: "₹5,000 educates a child for a year"
-        },
-        {
-            icon: <FaHeartbeat className="text-4xl text-green-600" />,
-            title: "Healthcare Support",
-            description: "Support medical camps and healthcare programs",
-            impact: "₹2,000 funds a medical camp"
-        },
-        {
-            icon: <FaHome className="text-4xl text-green-600" />,
-            title: "Shelter & Relief",
-            description: "Build homes and provide disaster relief",
-            impact: "₹50,000 builds a home"
+            title: "Beauty & Wellness Training",
+            description: "Support beautician, advanced beautician, mehndi, and makeup artist training for women and girls.",
+            impact: "Help learners build practical skills for employment and self-employment."
         },
         {
             icon: <FaHeart className="text-4xl text-green-600" />,
-            title: "General Fund",
-            description: "Support all our programs where needed most",
-            impact: "Any amount makes a difference"
+            title: "Tailoring & Aari Work",
+            description: "Contribute to hands-on tailoring and Aari-work training pathways.",
+            impact: "Support practical skills development and livelihood opportunities."
+        },
+        {
+            icon: <FaGraduationCap className="text-4xl text-green-600" />,
+            title: "Life Skills & Leadership",
+            description: "Help include life-skills and leadership development alongside vocational training.",
+            impact: "Contribute to learners' confidence and readiness for work."
         }
     ];
 
     const benefits = [
-        "80G Tax Exemption Certificate",
-        "Regular updates on impact",
-        "Transparency in fund utilization",
-        "Recognition on our donor wall",
-        "Invitation to annual events"
+        {
+            icon: <FaFileAlt />,
+            title: "Donation Receipt",
+            description: "We will provide an official receipt for your contribution."
+        },
+        {
+            icon: <FaChartLine />,
+            title: "Fund Utilisation Updates",
+            description: "We share updates on how your support is utilised."
+        },
+        {
+            icon: <FaUsers />,
+            title: "Impact Updates",
+            description: "We keep you informed about our program impact."
+        },
+        {
+            icon: <FaCertificate />,
+            title: "80G Tax Benefit (if applicable)",
+            description: "Donations may be eligible for an 80G tax benefit, where applicable."
+        }
     ];
 
 
@@ -60,8 +68,8 @@ const Donate = () => {
             {/* Where Your Money Goes */}
             <Section bgColor="bg-gray-50">
                 <Heading
-                    title="Support a Cause"
-                    subtitle="Choose where your donation makes the most impact"
+                    title="Support Skills & Livelihoods"
+                    subtitle="Your contribution can support the training pathways currently offered by Sixteensource Foundation."
                 />
                 <div className="grid md:grid-cols-2 gap-6 mt-10">
                     {causes.map((cause, index) => (
@@ -89,78 +97,43 @@ const Donate = () => {
                     title="Donor Benefits"
                     subtitle="What you receive when you donate"
                 />
-                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mt-10 max-w-5xl mx-auto">
-                    {benefits.map((benefit, index) => (
-                        <Card key={index} className="text-center">
-                            <FaCheckCircle className="text-3xl text-green-500 mx-auto mb-3" />
-                            <p className="text-gray-700 text-sm">{benefit}</p>
+                <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 mt-10 max-w-7xl mx-auto">
+                    {benefits.map((benefit) => (
+                        <Card key={benefit.title} className="h-full border border-green-100 p-5 shadow-sm">
+                            <div className="flex items-start gap-4">
+                                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-green-50 text-2xl text-white">
+                                    {benefit.icon}
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold leading-snug text-gray-900">{benefit.title}</h3>
+                                    <p className="mt-2 text-sm leading-6 text-gray-600">{benefit.description}</p>
+                                </div>
+                            </div>
                         </Card>
                     ))}
-                </div>
-            </Section>
-
-            {/* Other Ways to Give */}
-            <Section bgColor="bg-gray-50">
-                <Heading
-                    title="Other Ways to Support"
-                    subtitle="Can't donate online? Here are alternatives"
-                />
-                <div className="grid md:grid-cols-3 gap-8 mt-10 max-w-5xl mx-auto">
-                    <Card>
-                        <h3 className="text-lg font-bold mb-3">Bank Transfer</h3>
-                        <p className="text-sm text-gray-600 mb-2">
-                            <strong>Bank:</strong> State Bank of India
-                        </p>
-                        <p className="text-sm text-gray-600 mb-2">
-                            <strong>Account:</strong> 123456789012
-                        </p>
-                        <p className="text-sm text-gray-600">
-                            <strong>IFSC:</strong> SBIN0001234
-                        </p>
-                    </Card>
-                    <Card>
-                        <h3 className="text-lg font-bold mb-3">UPI Payment</h3>
-                        <p className="text-sm text-gray-600 mb-2">
-                            Scan the QR code or use our UPI ID
-                        </p>
-                        <p className="text-green-600 font-semibold">
-                            donate@sixteensource
-                        </p>
-                    </Card>
-                    <Card>
-                        <h3 className="text-lg font-bold mb-3">In-Kind Donations</h3>
-                        <p className="text-sm text-gray-600">
-                            Books, clothes, food, medicines, and other materials are always welcome.
-                            Contact us for details.
-                        </p>
-                    </Card>
                 </div>
             </Section>
 
             {/* Transparency */}
             <Section bgColor="bg-green-600">
                 <div className="text-center text-white">
-                    <h2 className="text-3xl font-bold mb-4">100% Transparent</h2>
-                    <p className="text-lg mb-4 max-w-3xl mx-auto">
-                        We believe in complete transparency. Every donation is tracked and reported.
-                        Annual financial reports are publicly available on our website.
+                    <h2 className="text-3xl font-bold mb-4">Transparent Giving</h2>
+                    <p className="text-lg max-w-3xl mx-auto">
+                        Contact us for information about how donations support our training activities and to request available financial and registration documents.
                     </p>
-                    <div className="grid md:grid-cols-3 gap-6 mt-8 max-w-4xl mx-auto">
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                            <h3 className="text-4xl font-bold mb-2">85%</h3>
-                            <p className="text-lg">Directly to Programs</p>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                            <h3 className="text-4xl font-bold mb-2">10%</h3>
-                            <p className="text-lg">Operations</p>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
-                            <h3 className="text-4xl font-bold mb-2">5%</h3>
-                            <p className="text-lg">Future Growth</p>
-                        </div>
-                    </div>
+                    <a
+                        href={`mailto:${organizationData.contact.email}?subject=${encodeURIComponent("Donation and document enquiry")}`}
+                        className="inline-flex mt-6 rounded border border-white px-5 py-3 font-semibold text-white hover:bg-white hover:text-green-700 transition-colors"
+                    >
+                        Contact the Foundation
+                    </a>
                 </div>
             </Section>
+
+            <SuccessStories
+                title="Donor & Beneficiary Testimonials"
+                subtitle="Hear directly from people who support and take part in our work."
+            />
         </div>
     );
 };

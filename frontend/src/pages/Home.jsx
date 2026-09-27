@@ -12,6 +12,7 @@ import { getAllFaqs } from "../admin/services/faq";
 import { getAllGalleries } from "../admin/services/gallery";
 import { getAllTeams } from "../admin/services/team";
 import { SERVER_URL } from "../env";
+import { FaGraduationCap, FaHandsHelping, FaBriefcase, FaFileAlt, FaChartLine, FaUsers, FaCertificate, FaArrowRight } from "react-icons/fa";
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "", className = "text-4xl md:text-5xl font-bold text-white mb-2" }) => {
@@ -89,7 +90,7 @@ const Home = () => {
   }, []);
 
 
-  const { tagline, mission, stats, team, values } = organizationData;
+  const { stats } = organizationData;
   const [activeFaq, setActiveFaq] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
   const [teamMembers, setTeamMembers] = useState([]);
@@ -157,6 +158,59 @@ const Home = () => {
 
       {/* Case Study Section */}
       <CaseStudy />
+
+      {/* Current Work */}
+      <section className="bg-white px-6 py-20">
+        <div className="max-w-[99rem] mx-auto">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-widest text-green-700">Our current focus</p>
+              <h2 className="mt-3 text-3xl font-bold leading-tight text-gray-900 md:text-4xl">
+                Skills that open up livelihood opportunities
+              </h2>
+            </div>
+            <p className="max-w-3xl text-lg leading-8 text-gray-600 lg:justify-self-end">
+              We support women and girls through practical vocational training, confidence-building, and pathways toward work and self-employment.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-8 border-t border-gray-200 pt-8 md:grid-cols-3">
+            <div>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
+                <FaGraduationCap />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Beauty & wellness</h3>
+              <p className="mt-3 leading-7 text-gray-600">
+                Beautician, advanced beautician, mehndi, and makeup artist training.
+              </p>
+            </div>
+            <div>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
+                <FaHandsHelping />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Tailoring & Aari work</h3>
+              <p className="mt-3 leading-7 text-gray-600">
+                Hands-on textile and craft skills designed to support livelihood opportunities.
+              </p>
+            </div>
+            <div>
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-50 text-2xl text-green-700">
+                <FaBriefcase />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Confidence for work</h3>
+              <p className="mt-3 leading-7 text-gray-600">
+                Life skills, leadership development, placement assistance, and professional certification.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-9">
+            <Link to="/courses" className="inline-flex items-center gap-2 font-semibold text-green-700 hover:text-green-800">
+              Explore our training courses <FaArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Gallery Section */}
       <section className="py-20 px-6 bg-white">
@@ -314,6 +368,51 @@ const Home = () => {
       </section>
 
       <SuccessStories />
+
+      {/* Donor Transparency */}
+      <section className="bg-green-50 px-6 py-20">
+        <div className="max-w-[99rem] mx-auto">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-widest text-white">For our donors</p>
+            <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">Your support, kept in view</h2>
+            <p className="mt-4 text-lg leading-7 text-gray-50">
+              We want you to understand how your contribution connects to our work and the people it supports.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="border-t-2 border-green-600 pt-5">
+              <FaFileAlt className="text-2xl text-white" aria-hidden="true" />
+              <h3 className="mt-4 text-lg font-bold text-white">Donation receipt</h3>
+              <p className="mt-2 leading-6 text-gray-50">Receive an official receipt for your contribution.</p>
+            </div>
+            <div className="border-t-2 border-green-600 pt-5">
+              <FaChartLine className="text-2xl text-white" aria-hidden="true" />
+              <h3 className="mt-4 text-lg font-bold text-white">Fund updates</h3>
+              <p className="mt-2 leading-6 text-gray-50">Get updates on how your support is utilised.</p>
+            </div>
+            <div className="border-t-2 border-green-600 pt-5">
+              <FaUsers className="text-2xl text-white" aria-hidden="true" />
+              <h3 className="mt-4 text-lg font-bold text-white">Program impact</h3>
+              <p className="mt-2 leading-6 text-gray-50">Follow the progress of our training activities.</p>
+            </div>
+            <div className="border-t-2 border-green-600 pt-5">
+              <FaCertificate className="text-2xl text-white" aria-hidden="true" />
+              <h3 className="mt-4 text-lg font-bold text-white">80G tax benefit</h3>
+              <p className="mt-2 leading-6 text-gray-50">Available only where applicable to the donation.</p>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/donate" className="inline-flex items-center gap-2 rounded-md bg-green-700 px-5 py-3 font-semibold text-white transition-colors hover:bg-green-800">
+              Support our work <FaArrowRight aria-hidden="true" />
+            </Link>
+            <Link to="/about#legal-documents" className="font-semibold text-white underline decoration-green-300 underline-offset-4 hover:underline decoration-2 hover:decoration-green-400">
+              Request registration and report documents
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Donate Section */}
       <DonateSection />

@@ -10,8 +10,13 @@
   
   "footerLinks": {
     "quickLinks": [
-      { "name": "About Us", "path": "/about" },
-      { "name": "Contact Us", "path": "/contact" }
+      { "name": "Home", "path": "/" },
+      { "name": "Skill Development", "path": "/courses" },
+      { "name": "Gallery", "path": "/gallery" },
+      { "name": "Events", "path": "/events" },
+      { "name": "Team", "path": "/team" },
+      { "name": "Contact", "path": "/contact" },
+      { "name": "About Us", "path": "/about" }
     ],
     "getInvolved": [
       { "name": "Donate", "path": "/donate" },

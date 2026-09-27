@@ -65,12 +65,13 @@ const CreateSuccessStories = () => {
                         </div>
 
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Role</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Role / relationship</label>
                             <input
                                 type="text"
                                 name="role"
                                 value={formData.role}
                                 onChange={handleChange}
+                                placeholder="Beneficiary, donor, volunteer, etc."
                                 required
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
@@ -89,7 +90,7 @@ const CreateSuccessStories = () => {
                     </div>
 
                     <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">YouTube Video URL</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">YouTube Video URL (optional)</label>
                         <div className="relative">
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <HiLink className="text-gray-400" />
@@ -101,7 +102,6 @@ const CreateSuccessStories = () => {
                                 onChange={handleChange}
                                 placeholder="https://www.youtube.com/watch?v=..."
                                 className="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required
                             />
                         </div>
                         {embedUrl && (
