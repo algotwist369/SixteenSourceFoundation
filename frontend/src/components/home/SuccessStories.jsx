@@ -4,7 +4,10 @@ import { FaQuoteLeft } from "react-icons/fa";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { getYouTubeEmbedUrl } from "../../utils/youtube";
 
-export default function SuccessStories() {
+export default function SuccessStories({
+    title = "Success Stories",
+    subtitle = "Real people, real transformations. Hear how our programs changed lives."
+}) {
     const [testimonials, setTestimonials] = useState([]);
     const [index, setIndex] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -31,10 +34,10 @@ export default function SuccessStories() {
                 const normalized = rawList.map((item, idx) => {
                     return {
                         id: item?._id || item?.id || idx,
-                        name: item?.title || item?.name || "Anonymous",
+                        name: item?.name || item?.title || "Anonymous",
                         story: item?.description || item?.story || "Story coming soon.",
                         video: getYouTubeEmbedUrl(item?.video),
-                        achievement: item?.designation || item?.achievement || ""
+                        achievement: item?.role || item?.designation || item?.achievement || ""
                     };
                 });
 
@@ -103,8 +106,8 @@ export default function SuccessStories() {
             <div className="max-w-7xl mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Success Stories</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Real people, real transformations. Hear how our programs changed lives.</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -124,11 +127,10 @@ export default function SuccessStories() {
                                         className="w-full h-full object-cover"
                                     ></iframe>
                                 ) : (
-                                    <img
-                                        src="https://via.placeholder.com/800x600?text=Success+Story"
-                                        alt="Success Story Placeholder"
-                                        className="w-full h-full object-cover rounded-xl"
-                                    />
+                                    <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-gray-100 p-8 text-gray-500">
+                                        <FaQuoteLeft className="text-4xl text-green-600" />
+                                        <span className="text-sm font-medium">Written testimonial</span>
+                                    </div>
                                 )}
                             </div>
                         </div>
